@@ -1,0 +1,56 @@
+.signup-container--title {
+  grid-area: title;
+  text-align: center;
+}
+.signup-container--first-row {
+  grid-area: first-row;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  align-items: stretch;
+}
+.signup-container--second-row {
+  grid-area: second-row;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: stretch;
+  column-gap: 20px;
+}
+
+.signup-container--third-row {
+  grid-area: third-row;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: stretch;
+}
+
+.signup-container--signup-button {
+  grid-area: button;
+  text-align: center;
+}
+
+.signup-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 120px auto auto auto 100px auto;
+  grid-template-areas:
+    ". . ."
+    ". title ."
+    ". first-row ."
+    ". second-row ."
+    ". third-row ."
+    ". button .";
+}
+
+@media (max-width: 1080px) {
+  .signup-container--first-row {
+      grid-template-columns: 1fr;
+  }
+  .signup-container--second-row {
+      grid-template-columns: 1fr;
+  }
+}
+

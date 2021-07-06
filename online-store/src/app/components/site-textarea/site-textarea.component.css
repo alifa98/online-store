@@ -1,0 +1,29 @@
+.site-textarea {
+  grid-area: textarea;
+  padding: 0px 5px;
+  border: 0;
+  background: #fff;
+}
+.site-textarea::placeholder {
+  color: #cbcbcb;
+}
+.site-textarea:focus {
+  /* Removes black border after focusing the element */
+  outline: none;
+}
+
+.site-textarea-label {
+  grid-area: label;
+  background: #0ebac5;
+  padding-top: 40%;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 7px 7px 0;
+}
+
+.site-textarea-container {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 90px auto;
+  grid-template-areas: "label textarea";
+}
