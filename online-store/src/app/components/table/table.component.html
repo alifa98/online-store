@@ -1,0 +1,17 @@
+<div class="table-container">
+    <div class="table-container--white-box">
+        <table>
+            <thead>
+                <tr>
+                    <th *ngFor="let header of headers">{{header}}</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr *ngFor="let item of items " dir="rtl">
+                    <td *ngFor="let property of item | keyvalue">{{property.value}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

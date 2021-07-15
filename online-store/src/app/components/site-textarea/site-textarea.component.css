@@ -1,6 +1,6 @@
 .site-textarea {
   grid-area: textarea;
-  padding: 0px 5px;
+  padding: 10px 7px;
   border: 0;
   background: #fff;
 }
@@ -19,11 +19,18 @@
   text-align: center;
   color: #fff;
   border-radius: 0 7px 7px 0;
+
+  user-select: none;
 }
 
 .site-textarea-container {
   display: grid;
-  height: 100%;
+  min-height: 120px;
+  height: 90%;
   grid-template-columns: 90px auto;
   grid-template-areas: "label textarea";
+}
+
+textarea {
+  resize: none;
 }

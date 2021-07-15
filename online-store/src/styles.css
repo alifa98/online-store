@@ -1,6 +1,9 @@
 * {
-  font-family:BYekan,'BYekan',tahoma;
-  background-color: #e8e9ed;
+  font-family: BYekan, "BYekan", tahoma;
+}
+
+body {
+  background-color: #f7f7f7;
 }
 
 .turquoise-blue {

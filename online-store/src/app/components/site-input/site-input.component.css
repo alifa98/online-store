@@ -19,6 +19,8 @@
   text-align: center;
   color: #fff;
   border-radius: 0 7px 7px 0;
+
+  user-select: none;
 }
 
 .site-input-container {

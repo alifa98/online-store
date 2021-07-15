@@ -1,8 +1,25 @@
-.signup-container--title {
+.profile-container--title {
   grid-area: title;
   text-align: center;
+  margin-bottom: 15px;
 }
-.signup-container--first-row {
+
+.profile-container--title > * {
+  display: inline;
+}
+@media (max-width: 900px) {
+  .profile-container--title > * {
+    display: block;
+  }
+}
+
+.profile-container--tab {
+  grid-area: tab;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.profile-container--first-row {
   grid-area: first-row;
 
   display: grid;
@@ -10,16 +27,16 @@
   column-gap: 20px;
   align-items: stretch;
 }
-.signup-container--second-row {
+.profile-container--second-row {
   grid-area: second-row;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   justify-items: stretch;
   column-gap: 20px;
 }
 
-.signup-container--third-row {
+.profile-container--third-row {
   grid-area: third-row;
 
   display: grid;
@@ -27,18 +44,19 @@
   justify-items: stretch;
 }
 
-.signup-container--signup-button {
+.profile-container--profile-button {
   grid-area: button;
   text-align: center;
 }
 
-.signup-container {
+.profile-container {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 120px auto auto auto 100px auto;
+  grid-template-rows: 120px auto;
   grid-template-areas:
     ". . ."
     ". title ."
+    ". tab ."
     ". first-row ."
     ". second-row ."
     ". third-row ."
@@ -46,10 +64,10 @@
 }
 
 @media (max-width: 1080px) {
-  .signup-container--first-row {
+  .profile-container--first-row {
     grid-template-columns: 1fr;
   }
-  .signup-container--second-row {
+  .profile-container--second-row {
     grid-template-columns: 1fr;
   }
 }

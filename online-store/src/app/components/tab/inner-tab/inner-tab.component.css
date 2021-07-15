@@ -1,0 +1,24 @@
+.inner-tab {
+  background-color: #f7f7f7;
+  padding: 1px 30px;
+
+  user-select: none;
+}
+
+.inner-tab:hover {
+  background-color: #d3d3d3;
+}
+
+.start {
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+
+.end {
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+
+.active {
+  background-color: #eee;
+}
