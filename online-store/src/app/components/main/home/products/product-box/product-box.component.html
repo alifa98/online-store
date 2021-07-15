@@ -1,1 +1,13 @@
-<p>product-box works!</p>
+<div class="card">
+  <div class="pic"><img src="{{imageAddress}}" title="{{title}}" alt="{{title}}">
+  </div>
+  <div class="product-title"><strong>{{title}}</strong></div>
+  <div class="product-category"><span>{{category}}</span></div>
+  <hr>
+  <div class="card-bottom-flex">
+    <div class="price">{{price | toman}}</div>
+    <div class="action">
+      <app-btn classes="btn-blue" onClickEventName="" text="خرید محصول"></app-btn>
+    </div>
+  </div>
+</div>

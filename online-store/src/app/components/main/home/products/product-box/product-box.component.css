@@ -1,0 +1,25 @@
+.card {
+  margin: 5px;
+  padding: 10px;
+  line-height: 1.5;
+}
+
+.pic img {
+  width: 200px;
+}
+
+.product-title {
+  font-size: 1.1em;
+}
+
+.product-category {
+  color: gray;
+}
+
+.card-bottom-flex {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+}
