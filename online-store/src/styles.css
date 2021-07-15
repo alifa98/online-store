@@ -21,3 +21,13 @@ body {
 .w-350 {
   width: 350px;
 }
+
+.btn-blue {
+  background-color: #0076e4;
+  box-shadow: 0 0 5px#3b80c0;
+  color: white;
+}
+
+.btn-blue:hover {
+  background-color: #0084ff;
+}

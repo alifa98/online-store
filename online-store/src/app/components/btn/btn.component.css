@@ -1,0 +1,9 @@
+.btn {
+  padding: 5px;
+  display: inline-block;
+  border-radius: 20px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: auto 10px;
+}

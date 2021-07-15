@@ -16,6 +16,13 @@ import { HeaderComponent } from './components/main/header/header.component';
 import { HomeComponent } from './components/main/home/home.component';
 import { FooterComponent } from './components/main/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HeroHeaderComponent } from './components/main/home/hero-header/hero-header.component';
+import { SortBoxComponent } from './components/main/home/products/sort-box/sort-box.component';
+import { ProductBoxComponent } from './components/main/home/products/product-box/product-box.component';
+import { FilterBoxComponent } from './components/main/home/products/filter-box/filter-box.component';
+import { CategoryBoxComponent } from './components/main/home/products/category-box/category-box.component';
+import { ProductsBodyComponent } from './components/main/home/products-body/products-body.component';
+import { BtnComponent } from './components/btn/btn.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -38,7 +45,14 @@ const appRoutes: Routes = [
     TableComponent,
     HeaderComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    HeroHeaderComponent,
+    SortBoxComponent,
+    ProductBoxComponent,
+    FilterBoxComponent,
+    CategoryBoxComponent,
+    ProductsBodyComponent,
+    BtnComponent
   ],
   imports: [
     BrowserModule,

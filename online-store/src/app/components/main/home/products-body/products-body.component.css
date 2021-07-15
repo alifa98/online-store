@@ -1,0 +1,28 @@
+.products-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.sortbox-flexitem {
+  flex: 10;
+}
+
+.main-prodoct-sidebar-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.sidebar-flexitem {
+  flex: 1;
+}
+
+.products-flexitem {
+  flex: 3;
+}
+
+.products-flexitem {
+  display: flex;
+  flex-wrap: wrap;
+}
