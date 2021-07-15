@@ -10,6 +10,13 @@
   flex-direction: column;
 }
 
+/*
+this makes to middle div fills all spaces between the header and the footer.
+*/
+.content-holder {
+  flex-grow: 10;
+}
+
 @media screen and (max-width: 479px) {
   .container {
     width: 98%;
