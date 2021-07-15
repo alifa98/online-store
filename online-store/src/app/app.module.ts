@@ -12,8 +12,13 @@ import { ProfileComponent } from './components/main/profile/profile.component';
 import { TabComponent } from './components/tab/tab.component';
 import { InnerTabComponent } from './components/tab/inner-tab/inner-tab.component';
 import { TableComponent } from './components/table/table.component';
+import { HeaderComponent } from './components/main/header/header.component';
+import { HomeComponent } from './components/main/home/home.component';
+import { FooterComponent } from './components/main/footer/footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'profile', component: ProfileComponent },
@@ -31,12 +36,16 @@ const appRoutes: Routes = [
     TabComponent,
     InnerTabComponent,
     TableComponent,
+    HeaderComponent,
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,0 +1,24 @@
+<ul class="menu">
+  <li class="menu-item title">فروشگاه</li>
+  <li class="menu-item"> <a [routerLink]="['']">صفحه اول</a></li>
+  <li class="menu-item"> <a [routerLink]="['contact-us']">تماس با ما</a></li>
+  <li class="menu-item"> <a [routerLink]="['support']">پشتیبانی</a></li>
+  <li class="menu-item"> <a [routerLink]="['products']">محصولات</a></li>
+
+  <div *ngIf="isLoggedIn()" class="menu-item end dropdown">
+    <span style="margin-left: 10px;">{{name}}</span>
+    <fa-icon [icon]="faCaretDownIcon"></fa-icon>
+
+    <div class="dropdown-content">
+      <a [routerLink]="['profile']">
+        <p>پروفایل</p>
+      </a>
+      <a [routerLink]="['logout']">
+        <p>خروج از حساب</p>
+      </a>
+
+    </div>
+  </div>
+
+  <li class="menu-item end"> <a [routerLink]="['login']">ورود / ثبت نام</a></li>
+</ul>

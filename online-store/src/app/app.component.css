@@ -1,0 +1,17 @@
+* {
+  direction: rtl;
+}
+
+.container {
+  max-width: 1028px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 479px) {
+  .container {
+    width: 98%;
+  }
+}
