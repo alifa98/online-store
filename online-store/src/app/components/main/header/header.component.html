@@ -1,14 +1,21 @@
-<ul class="menu">
+<ul class="menu" [ngClass]="{'responsive': responsive}">
   <li class="menu-item title">فروشگاه</li>
   <li class="menu-item"> <a [routerLink]="['']">صفحه اول</a></li>
   <li class="menu-item"> <a [routerLink]="['contact-us']">تماس با ما</a></li>
   <li class="menu-item"> <a [routerLink]="['support']">پشتیبانی</a></li>
   <li class="menu-item"> <a [routerLink]="['products']">محصولات</a></li>
+  <li *ngIf="responsive && !isLoggedIn()" class="menu-item"><a [routerLink]="['login']">ورود / ثبت نام</a></li>
+  <li *ngIf="responsive && isLoggedIn()" class="menu-item"><a [routerLink]="['profile']">پروفایل</a></li>
+  <li *ngIf="responsive && isLoggedIn()" class="menu-item"><a [routerLink]="['logout']">خروج از حساب</a></li>
 
-
+  <a class="barIcon" (click)="responsive = !responsive">
+    <fa-icon [icon]="faBarsIcon"></fa-icon>
+  </a>
   <div *ngIf="isLoggedIn()" class="menu-item end dropdown" [ngClass]="{'gold-bg': onDropDown}">
-    <span style="margin-left: 10px;">{{name}}</span>
-    <fa-icon [icon]="faCaretDownIcon"></fa-icon>
+    <div class="menu-item--content">
+      <span>{{name}}</span>
+      <fa-icon [icon]="faCaretDownIcon"></fa-icon>
+    </div>
   </div>
   <div class="dropdown-outer-content" (mouseover)="onDropDown = true" (mouseout)="onDropDown = false">
     <div class="dropdown-content">
@@ -21,5 +28,5 @@
     </div>
   </div>
 
-  <li *ngIf="!isLoggedIn()" class="menu-item end"> <a [routerLink]="['login']">ورود / ثبت نام</a></li>
+  <li *ngIf="!isLoggedIn()" class="menu-item end"> <a class="menu-item--content" [routerLink]="['login']">ورود / ثبت نام</a></li>
 </ul>

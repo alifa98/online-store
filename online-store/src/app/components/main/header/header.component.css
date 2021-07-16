@@ -5,9 +5,41 @@
   border-radius: 5pt;
   font-size: larger;
   display: flex;
-  text-align: center;
   justify-content: right;
   flex-direction: row;
+  position: relative;
+}
+
+.barIcon {
+  display: none;
+}
+@media (max-width: 905px) {
+  .menu li:not(:first-child) {display: none}
+  .menu .end {
+    display: none;
+  }
+
+  .barIcon {
+    margin-right: auto;
+    margin-left: 10px;
+    display: block;
+  }
+
+  .menu.responsive .barIcon {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .menu.responsive {
+    display: block;
+  }
+  .menu.responsive li {
+    display: block;
+    text-align: right;
+    background-color: #fff;
+    width: 100%;
+  }
 }
 
 .menu-item {
@@ -16,10 +48,18 @@
 }
 
 .menu-item.end {
+  text-align: center;
   margin-right: auto;
-  padding: 0 20px;
+  padding: 0 15px;
   border: 5px solid gold;
   border-radius: 24px;
+  height: 25px;
+  margin-top: 15px;
+
+}
+.menu-item--content {
+  position: relative;
+  top: -20px;
 }
 
 .menu-item a {

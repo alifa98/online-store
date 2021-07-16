@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Mock } from 'src/app/mockData';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +9,12 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent implements OnInit {
   onDropDown = false;
+  responsive = false;
 
   constructor() { }
   name: string = Mock.getName();
   faCaretDownIcon = faCaretDown;
+  faBarsIcon = faBars;
 
   isLoggedIn(): boolean {
     return true;
