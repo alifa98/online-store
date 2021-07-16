@@ -4,7 +4,7 @@
     <app-sort-box></app-sort-box>
   </div>
 
-  <div class="main-prodoct-sidebar-container">
+  <div class="main-product-sidebar-container">
 
     <div class="sidebar-flexitem">
       <app-category-box></app-category-box>
@@ -12,15 +12,7 @@
     </div>
 
     <div class="products-flexitem">
-      <app-product-box imageAddress="https://avatars.githubusercontent.com/u/31096694?v=4" title="عنوان یک" category="دسته" price="1000"></app-product-box>
-
-      <app-product-box imageAddress="https://avatars.githubusercontent.com/u/31096694?v=4" title="عنوان یک" category="دسته" price="1000"></app-product-box>
-
-      <app-product-box imageAddress="https://avatars.githubusercontent.com/u/31096694?v=4" title="عنوان یک" category="دسته" price="1000"></app-product-box>
-
-      <app-product-box imageAddress="https://avatars.githubusercontent.com/u/31096694?v=4" title="عنوان یک" category="دسته" price="1000"></app-product-box>
-
-      <app-product-box imageAddress="https://avatars.githubusercontent.com/u/31096694?v=4" title="عنوان یک" category="دسته" price="1000"></app-product-box>
+      <app-product-box *ngFor="let prod of products" imageAddress="{{prod.imgAddress}}" title="{{prod.name}}" category="{{prod.category}}" price="{{prod.price}}"></app-product-box>
 
     </div>
 

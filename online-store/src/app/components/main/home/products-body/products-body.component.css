@@ -2,16 +2,24 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  margin: 10px 10px;
 }
 
 .sortbox-flexitem {
   flex: 10;
 }
 
-.main-prodoct-sidebar-container {
+.main-product-sidebar-container {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+}
+
+@media screen and (max-width: 479px) {
+  .main-product-sidebar-container {
+    flex-direction: column;
+  }
+
 }
 
 .sidebar-flexitem {
