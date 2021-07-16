@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UiService } from 'src/app/services/ui.service';
 
 @Component({
@@ -7,11 +7,15 @@ import { UiService } from 'src/app/services/ui.service';
   styleUrls: ['./tab.component.css'],
 })
 export class TabComponent implements OnInit {
+  @Input() endText: string;
+  @Input() midText: string;
+  @Input() startText: string;
+
   constructor(private UiService: UiService) { }
 
   ngOnInit(): void { }
 
   tabClick(tabItem): void {
-    this.UiService.changeProfileTabStatus(tabItem);
+    this.UiService.changeTabStatus(tabItem);
   }
 }

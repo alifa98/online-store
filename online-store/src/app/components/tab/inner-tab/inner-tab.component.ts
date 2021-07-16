@@ -9,10 +9,9 @@ import { UiService } from 'src/app/services/ui.service';
   styleUrls: ['./inner-tab.component.css'],
 })
 export class InnerTabComponent implements OnInit {
-  @Input() text: String;
+  @Input() text: string;
   @Input() start: boolean;
   @Input() end: boolean;
-  @Input() name: String;
   @Input() active: boolean;
 
   @Output() tabItemClick = new EventEmitter();
@@ -20,10 +19,10 @@ export class InnerTabComponent implements OnInit {
   subscription: Subscription;
 
   constructor(private UiService: UiService) {
-    this.subscription = this.UiService.onProfileTabChange().subscribe(
+    this.subscription = this.UiService.onTabChange().subscribe(
       (value) => {
-        if (value == this.name) this.active = true;
-        else this.active = false;
+        if (value === this.text) { this.active = true; }
+        else { this.active = false; }
       }
     );
   }

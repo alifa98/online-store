@@ -9,6 +9,7 @@ import { TableHeader } from 'src/app/interface/TableHeaders';
 export class TableComponent implements OnInit {
   @Input() headers: TableHeader[];
   @Input() items: any[];
+  @Input() operation: boolean;
 
   constructor() { }
 

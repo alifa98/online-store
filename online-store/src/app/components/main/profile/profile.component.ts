@@ -11,31 +11,31 @@ import { UiService } from 'src/app/services/ui.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  currentProfileStatus: string = 'Profile';
+  currentProfileStatus = 'پروفایل';
   subscription: Subscription;
 
   receipts: Receipt[] = Mock.getReceipts();
   headers: TableHeader[] = [
     {
-      "key": "trackingCode",
-      "name": "کد پیگیری"
+      key: 'trackingCode',
+      name: 'کد پیگیری'
     },
     {
-      "key": "productName",
-      "name": "کالا"
+      key: 'productName',
+      name: 'کالا'
     },
     {
-      "key": "amount",
-      "name": "قیمت پرداخت شده"
+      key: 'amount',
+      name: 'قیمت پرداخت شده'
     },
     {
-      "key": "address",
-      "name": "آدرس ارسال شده"
+      key: 'address',
+      name: 'آدرس ارسال شده'
     },
   ];
 
   constructor(private UiService: UiService) {
-    this.subscription = this.UiService.onProfileTabChange().subscribe(
+    this.subscription = this.UiService.onTabChange().subscribe(
       (value) => (this.currentProfileStatus = value)
     );
   }

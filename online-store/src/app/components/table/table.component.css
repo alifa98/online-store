@@ -22,3 +22,12 @@ td {
 th {
   color: rgba(0, 0, 0, 0.3);
 }
+
+
+.operation {
+  user-select: none;
+}
+
+.operation:hover {
+  color: #0ebac5;
+}

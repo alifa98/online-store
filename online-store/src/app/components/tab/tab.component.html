@@ -1,4 +1,5 @@
 <div class="tab">
-  <app-inner-tab text="پروفایل" end="1" dir="rtl" name="Profile" active='1' (tabItemClick)="tabClick('Profile')"></app-inner-tab>
-  <app-inner-tab text="رسید ها" start="1" dir="rtl" name="Receipts" (tabItemClick)="tabClick('Receipts')"></app-inner-tab>
+  <app-inner-tab text="{{endText}}" end="1"  active='1' (tabItemClick)="tabClick(endText)"></app-inner-tab>
+  <app-inner-tab *ngIf="midText" text="{{midText}}" (tabItemClick)="tabClick(midText)"></app-inner-tab>
+  <app-inner-tab text="{{startText}}" start="1" (tabItemClick)="tabClick(startText)"></app-inner-tab>
 </div>

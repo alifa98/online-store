@@ -5,18 +5,18 @@
     <app-btn class="profile-container--profile-button" classes="btn-gold btn-small" text="افزایش موجودی"></app-btn>
   </div>
   <div class="profile-container--tab">
-    <app-tab></app-tab>
+    <app-tab endText="پروفایل" startText="رسید ها"></app-tab>
   </div>
-  <div *ngIf="currentProfileStatus == 'Profile'" class="profile-container--first-row">
+  <div *ngIf="currentProfileStatus == 'پروفایل'" class="profile-container--first-row">
     <app-site-input type="text" label="نام" placeholder="نام خود را وارد کنید..." value="سروش"></app-site-input>
     <app-site-input type="text" label="نام خانوادگی" placeholder="نام خانوادگی خود را وارد کنید..." value="فرجی"></app-site-input>
   </div>
-  <div *ngIf="currentProfileStatus == 'Profile'" class="profile-container--second-row">
+  <div *ngIf="currentProfileStatus == 'پروفایل'" class="profile-container--second-row">
     <app-site-input type="password" label="رمز عبور" placeholder="رمز عبور خود را وارد کنید..."></app-site-input>
   </div>
-  <div *ngIf="currentProfileStatus == 'Profile'" class="profile-container--third-row">
+  <div *ngIf="currentProfileStatus == 'پروفایل'" class="profile-container--third-row">
     <app-site-textarea dir="rtl" label="آدرس" placeholder="آدرس خود را وارد کنید..." value='تهران، تهران، امیرکبیر'></app-site-textarea>
   </div>
-  <app-btn class="profile-container--profile-button" classes="btn-gold" onClickEventName="" text="ویرایش اطلاعات"></app-btn>
+  <app-btn *ngIf="currentProfileStatus == 'پروفایل'" class="profile-container--profile-button" classes="btn-gold" onClickEventName="" text="ویرایش اطلاعات"></app-btn>
 </div>
-<app-table *ngIf="currentProfileStatus == 'Receipts'" [headers]="headers" [items]="receipts"></app-table>
+<app-table *ngIf="currentProfileStatus == 'رسید ها'" [headers]="headers" [items]="receipts"></app-table>
