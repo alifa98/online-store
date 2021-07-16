@@ -20,5 +20,5 @@
     </div>
   </div>
 
-  <li class="menu-item end"> <a [routerLink]="['login']">ورود / ثبت نام</a></li>
+  <li *ngIf="!isLoggedIn()" class="menu-item end"> <a [routerLink]="['login']">ورود / ثبت نام</a></li>
 </ul>

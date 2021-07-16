@@ -40,7 +40,6 @@
   position: relative;
   min-width: 160px;
   display: inline-block;
-  z-index: 999 !important;
 }
 
 .dropdown:hover {

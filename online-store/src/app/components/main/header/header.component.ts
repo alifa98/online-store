@@ -10,11 +10,11 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 export class HeaderComponent implements OnInit {
 
   constructor() { }
-  name: String = Mock.getName();
+  name: string = Mock.getName();
   faCaretDownIcon = faCaretDown;
 
   isLoggedIn(): boolean {
-    return false;
+    return true;
   }
 
   ngOnInit(): void {
