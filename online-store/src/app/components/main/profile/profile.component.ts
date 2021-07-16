@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Receipt } from 'src/app/interface/Receipt';
+import { TableHeaders } from 'src/app/interface/TableHeaders';
 import { Mock } from 'src/app/mockData';
 import { UiService } from 'src/app/services/ui.service';
 
@@ -14,11 +15,23 @@ export class ProfileComponent implements OnInit {
   subscription: Subscription;
 
   receipts: Receipt[] = Mock.getReceipts();
-  headers: string[] = [
-    'کد پیگیری',
-    'کالا',
-    'قیمت پرداخت شده',
-    'آدرس ارسال شده',
+  headers: TableHeaders[] = [
+    {
+      "key": "trackingCode",
+      "name": "کد پیگیری"
+    },
+    {
+      "key": "productName",
+      "name": "کالا"
+    },
+    {
+      "key": "amount",
+      "name": "قیمت پرداخت شده"
+    },
+    {
+      "key": "address",
+      "name": "آدرس ارسال شده"
+    },
   ];
 
   constructor(private UiService: UiService) {

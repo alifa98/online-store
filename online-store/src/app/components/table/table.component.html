@@ -3,13 +3,13 @@
     <table>
       <thead>
         <tr>
-          <th *ngFor="let header of headers">{{header}}</th>
+          <th *ngFor="let header of headers">{{header.name}}</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr *ngFor="let item of items " dir="rtl">
-          <td *ngFor="let property of item | keyvalue">{{property.value}}</td>
+        <tr *ngFor="let item of items">
+          <td *ngFor="let header of headers">{{item[header.key]}}</td>
         </tr>
       </tbody>
     </table>
