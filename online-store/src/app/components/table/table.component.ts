@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { TableHeaders } from 'src/app/interface/TableHeaders';
 
 @Component({
   selector: 'app-table',
@@ -6,10 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  @Input() headers: string[];
+  @Input() headers: TableHeaders[];
   @Input() items: any[];
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

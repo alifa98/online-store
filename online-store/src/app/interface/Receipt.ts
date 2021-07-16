@@ -1,6 +1,6 @@
 export interface Receipt {
   trackingCode: string;
-  product: string;
-  price: string;
+  productName: string;
+  amount: string;
   address: string;
 }

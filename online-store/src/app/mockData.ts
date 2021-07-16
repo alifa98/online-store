@@ -43,26 +43,26 @@ export class Mock {
         return [
             {
                 trackingCode: 'SHOP102030',
-                product: 'موس گیمینگ ریزر',
-                price: '10,000 تومان',
+                productName: 'موس گیمینگ ریزر',
+                amount: '10,000 تومان',
                 address: 'تهران، تهران، امیرکبیر',
             },
             {
                 trackingCode: 'SHOP102030',
-                product: 'موس گیمینگ ریزر',
-                price: '10,000 تومان',
+                productName: 'موس گیمینگ ریزر',
+                amount: '10,000 تومان',
                 address: 'تهران، تهران، امیرکبیر',
             },
             {
                 trackingCode: 'SHOP102030',
-                product: 'موس گیمینگ ریزر',
-                price: '10,000 تومان',
+                productName: 'موس گیمینگ ریزر',
+                amount: '10,000 تومان',
                 address: 'تهران، تهران، امیرکبیر',
             },
             {
                 trackingCode: 'SHOP102030',
-                product: 'موس گیمینگ ریزر',
-                price: '10,000 تومان',
+                productName: 'موس گیمینگ ریزر',
+                amount: '10,000 تومان',
                 address: 'تهران، تهران، امیرکبیر',
             },
         ]
