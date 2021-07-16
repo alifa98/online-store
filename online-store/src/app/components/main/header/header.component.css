@@ -105,13 +105,13 @@
   text-align: right;
   position: absolute;
   background-color: #BBB;
-  min-width: 210px;
+  min-width: 200px;
   margin-right: -25px;
   z-index: 1;
   border-radius: 15px;
   height: 180px;
   left: 25px;
-  top: 30px;
+  top: 25px;
 }
 
 .dropdown-content a {
