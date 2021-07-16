@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Receipt } from 'src/app/Receipt';
+import { Receipt } from 'src/app/interface/Receipt';
+import { Mock } from 'src/app/mockData';
 import { UiService } from 'src/app/services/ui.service';
-import { RECEIPTS } from '../../../mock-receipts';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   currentProfileStatus: string = 'Profile';
   subscription: Subscription;
 
-  receipts: Receipt[] = RECEIPTS;
+  receipts: Receipt[] = Mock.getReceipts();
   headers: string[] = [
     'کد پیگیری',
     'کالا',
@@ -27,5 +27,5 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }
