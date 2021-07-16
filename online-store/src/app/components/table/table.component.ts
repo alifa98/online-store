@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TableHeaders } from 'src/app/interface/TableHeaders';
+import { TableHeader } from 'src/app/interface/TableHeaders';
 
 @Component({
   selector: 'app-table',
@@ -7,7 +7,7 @@ import { TableHeaders } from 'src/app/interface/TableHeaders';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  @Input() headers: TableHeaders[];
+  @Input() headers: TableHeader[];
   @Input() items: any[];
   @Input() operation: boolean;
 

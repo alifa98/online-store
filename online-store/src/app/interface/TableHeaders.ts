@@ -1,4 +1,4 @@
-export interface TableHeaders {
+export interface TableHeader {
     key: string;
     name: string;
 }
