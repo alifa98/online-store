@@ -8,6 +8,7 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  onDropDown = false;
 
   constructor() { }
   name: string = Mock.getName();

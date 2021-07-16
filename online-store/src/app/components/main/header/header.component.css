@@ -33,13 +33,14 @@
 }
 
 .menu-item a:hover {
-  color: #0ebac5 !important;
+  color: #0ebac5;
 }
 
 .dropdown {
   position: relative;
   min-width: 160px;
   display: inline-block;
+  z-index: 3;
 }
 
 .dropdown:hover {
@@ -47,17 +48,35 @@
   cursor: pointer;
 }
 
+.gold-bg {
+  background-color: gold;
+}
+
+.dropdown-outer-content {
+  position: relative;
+  display: none;
+}
+
+.dropdown-outer-content:hover {
+  display: block;
+}
+
 .dropdown-content {
   text-align: right;
-  display: none;
   position: absolute;
   background-color: #BBB;
   min-width: 210px;
   margin-right: -25px;
-  z-index: -1;
+  z-index: 1;
   border-radius: 15px;
-  margin-top: -50px;
-  padding-top: 50px;
+  height: 180px;
+  left: 25px;
+  top: 30px;
+}
+
+.dropdown-content a {
+  color: #000;
+  text-decoration: none;
 }
 
 .dropdown-content p {
@@ -68,6 +87,6 @@
   background-color: #CCC;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover + .dropdown-outer-content {
   display: block;
 }

@@ -16,7 +16,6 @@ this makes to middle div fills all spaces between the header and the footer.
 .content-holder {
   flex-grow: 10;
   background-color: #f7f7f7;
-  z-index: -2;
 }
 
 @media screen and (max-width: 479px) {

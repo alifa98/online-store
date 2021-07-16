@@ -5,10 +5,12 @@
   <li class="menu-item"> <a [routerLink]="['support']">پشتیبانی</a></li>
   <li class="menu-item"> <a [routerLink]="['products']">محصولات</a></li>
 
-  <div *ngIf="isLoggedIn()" class="menu-item end dropdown">
+
+  <div *ngIf="isLoggedIn()" class="menu-item end dropdown" [ngClass]="{'gold-bg': onDropDown}">
     <span style="margin-left: 10px;">{{name}}</span>
     <fa-icon [icon]="faCaretDownIcon"></fa-icon>
-
+  </div>
+  <div class="dropdown-outer-content" (mouseover)="onDropDown = true" (mouseout)="onDropDown = false">
     <div class="dropdown-content">
       <a [routerLink]="['profile']">
         <p>پروفایل</p>
@@ -16,7 +18,6 @@
       <a [routerLink]="['logout']">
         <p>خروج از حساب</p>
       </a>
-
     </div>
   </div>
 
