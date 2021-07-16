@@ -1,7 +1,7 @@
 .inner-tab {
   background-color: #f7f7f7;
   padding: 1px 30px;
-
+  display: inline-block;
   user-select: none;
 }
 

@@ -28,7 +28,7 @@ export class InnerTabComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onClick(): void {
     this.tabItemClick.emit();

@@ -1,24 +1,22 @@
 <div class="profile-container">
-    <div class="profile-container--title" dir="rtl">
-        <h2 dir="rtl">سروش عزیز، خوش آمدید |</h2>
-        <h4>موجودی حساب شما 1,000,000</h4>
-        <app-yellow-button text="افزایش موجودی" small="1"></app-yellow-button>
-    </div>
-    <div class="profile-container--tab">
-        <app-tab>
-        </app-tab>
-    </div>
-    <div *ngIf="currentProfileStatus == 'Profile'" class="profile-container--first-row" dir="rtl">
-      <app-site-input  type="text" label="نام" placeholder="نام خود را وارد کنید..." value="سروش"></app-site-input>
-      <app-site-input  type="text" label="نام خانوادگی" placeholder="نام خانوادگی خود را وارد کنید..." value="فرجی"></app-site-input>
-    </div>
-    <div *ngIf="currentProfileStatus == 'Profile'" class="profile-container--second-row" dir="rtl">
-      <app-site-input  type="password" label="رمز عبور" placeholder="رمز عبور خود را وارد کنید..."></app-site-input>
-    </div>
-    <div *ngIf="currentProfileStatus == 'Profile'" class="profile-container--third-row" dir="rtl">
-      <app-site-textarea dir="rtl" label="آدرس" placeholder="آدرس خود را وارد کنید..." value='تهران، تهران، امیرکبیر'></app-site-textarea>
-    </div>
-    <app-yellow-button *ngIf="currentProfileStatus == 'Profile'" text="ویرایش اطلاعات" class="profile-container--profile-button"></app-yellow-button>
+  <div class="profile-container--title" dir="rtl">
+    <h2 dir="rtl">سروش عزیز، خوش آمدید |</h2>
+    <h4>موجودی حساب شما 1,000,000</h4>
+    <app-yellow-button text="افزایش موجودی" small="1"></app-yellow-button>
+  </div>
+  <div class="profile-container--tab">
+    <app-tab></app-tab>
+  </div>
+  <div *ngIf="currentProfileStatus == 'Profile'" class="profile-container--first-row">
+    <app-site-input type="text" label="نام" placeholder="نام خود را وارد کنید..." value="سروش"></app-site-input>
+    <app-site-input type="text" label="نام خانوادگی" placeholder="نام خانوادگی خود را وارد کنید..." value="فرجی"></app-site-input>
+  </div>
+  <div *ngIf="currentProfileStatus == 'Profile'" class="profile-container--second-row">
+    <app-site-input type="password" label="رمز عبور" placeholder="رمز عبور خود را وارد کنید..."></app-site-input>
+  </div>
+  <div *ngIf="currentProfileStatus == 'Profile'" class="profile-container--third-row">
+    <app-site-textarea dir="rtl" label="آدرس" placeholder="آدرس خود را وارد کنید..." value='تهران، تهران، امیرکبیر'></app-site-textarea>
+  </div>
+  <app-yellow-button *ngIf="currentProfileStatus == 'Profile'" text="ویرایش اطلاعات" class="profile-container--profile-button"></app-yellow-button>
 </div>
 <app-table *ngIf="currentProfileStatus == 'Receipts'" [headers]="headers" [items]="receipts"></app-table>
-  
