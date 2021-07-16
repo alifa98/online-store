@@ -7,9 +7,9 @@ import { UiService } from 'src/app/services/ui.service';
   styleUrls: ['./tab.component.css'],
 })
 export class TabComponent implements OnInit {
-  constructor(private UiService: UiService) {}
+  constructor(private UiService: UiService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   tabClick(tabItem): void {
     this.UiService.changeProfileTabStatus(tabItem);
