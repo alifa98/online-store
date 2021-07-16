@@ -1,4 +1,4 @@
-<div class="site-input-container my-5">
+<div class="site-input-container my-5" [ngClass]="{'stretch-label': stretchLabel}">
   <span class="site-input-label">{{label}}</span>
   <input class="site-input" type="{{type}}" placeholder="{{placeholder}}" value="{{value}}" dir="rtl">
 </div>

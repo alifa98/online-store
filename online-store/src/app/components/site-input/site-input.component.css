@@ -28,3 +28,7 @@
   grid-template-columns: 90px auto;
   grid-template-areas: "label input";
 }
+
+.stretch-label {
+  grid-template-columns: auto;
+}

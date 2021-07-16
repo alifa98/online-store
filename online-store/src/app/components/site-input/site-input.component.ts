@@ -10,6 +10,7 @@ export class SiteInputComponent implements OnInit {
   @Input() placeholder: string;
   @Input() value: string;
   @Input() type: string;
+  @Input() stretchLabel: boolean;
 
   constructor() {}
 
