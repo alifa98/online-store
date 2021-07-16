@@ -10,12 +10,12 @@ export class UiService {
 
   constructor() {}
 
-  changeProfileTabStatus(status): void {
+  changeTabStatus(status): void {
     this.profileTabStatus = status;
     this.profileSubject.next(this.profileTabStatus);
   }
 
-  onProfileTabChange(): Observable<any> {
+  onTabChange(): Observable<any> {
     return this.profileSubject.asObservable();
   }
 }

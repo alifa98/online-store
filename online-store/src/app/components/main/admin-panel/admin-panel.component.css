@@ -1,0 +1,29 @@
+.admin-container--title {
+  grid-area: title-row;
+  text-align: center;
+}
+
+.admin-container--tab {
+  grid-area: tab-row;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.admin-container--content {
+  grid-area: content-row;
+  text-align: center;
+}
+
+.admin-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas:
+    ". . ."
+    ". title-row ."
+    ". tab-row ."
+    ". content-row .";
+}
+
+
+
+

@@ -10,7 +10,7 @@ import { RECEIPTS } from '../../../mock-receipts';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  currentProfileStatus: string = 'Profile';
+  currentProfileStatus = 'پروفایل';
   subscription: Subscription;
 
   receipts: Receipt[] = RECEIPTS;
@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   ];
 
   constructor(private UiService: UiService) {
-    this.subscription = this.UiService.onProfileTabChange().subscribe(
+    this.subscription = this.UiService.onTabChange().subscribe(
       (value) => (this.currentProfileStatus = value)
     );
   }

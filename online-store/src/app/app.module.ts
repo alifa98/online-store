@@ -23,12 +23,16 @@ import { CategoryBoxComponent } from './components/main/home/products/category-b
 import { ProductsBodyComponent } from './components/main/home/products-body/products-body.component';
 import { BtnComponent } from './components/btn/btn.component';
 import { TomanPipe } from './pipes/toman.pipe';
+import { TripletTabComponent } from './components/triplet-tab/triplet-tab.component';
+import { TripletInnerTabComponent } from './components/triplet-tab/triplet-inner-tab/triplet-inner-tab.component';
+import { AdminPanelComponent } from './components/main/admin-panel/admin-panel.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'admin', component: AdminPanelComponent },
 ];
 
 @NgModule({
@@ -52,7 +56,10 @@ const appRoutes: Routes = [
     CategoryBoxComponent,
     ProductsBodyComponent,
     BtnComponent,
-    TomanPipe
+    TomanPipe,
+    TripletTabComponent,
+    TripletInnerTabComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
