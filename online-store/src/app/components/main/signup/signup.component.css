@@ -28,14 +28,15 @@
 }
 
 .signup-container--signup-button {
+  margin-top: 40px;
   grid-area: button;
   text-align: center;
 }
 
 .signup-container {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 120px auto auto auto 100px auto;
+  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-rows: 50px auto auto auto 100px auto;
   grid-template-areas:
     ". . ."
     ". title ."
