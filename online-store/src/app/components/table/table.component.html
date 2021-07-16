@@ -4,12 +4,17 @@
       <thead>
         <tr>
           <th *ngFor="let header of headers">{{header.name}}</th>
+          <th *ngIf="operation">عملیات</th>
         </tr>
       </thead>
 
       <tbody>
         <tr *ngFor="let item of items">
           <td *ngFor="let header of headers">{{item[header.key]}}</td>
+          <td *ngIf="operation">
+            <span class="px-8 operation">ویرایش دسته بندی</span>
+            <span class="px-8 operation">X حذف دسته بندی</span>
+          </td>
         </tr>
       </tbody>
     </table>

@@ -11,7 +11,7 @@
     </div>
 
     <div *ngIf="currentAdminStatus == 'لیست دسته'">
-      <p>لیست دسته</p>
+      <app-table [headers]="categoryHeaders" [items]="categories" operation="True"></app-table>
     </div>
 
     <div *ngIf="currentAdminStatus == 'رسید ها'">

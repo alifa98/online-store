@@ -17,20 +17,20 @@ export class ProfileComponent implements OnInit {
   receipts: Receipt[] = Mock.getReceipts();
   headers: TableHeaders[] = [
     {
-      "key": "trackingCode",
-      "name": "کد پیگیری"
+      key: 'trackingCode',
+      name: 'کد پیگیری'
     },
     {
-      "key": "productName",
-      "name": "کالا"
+      key: 'productName',
+      name: 'کالا'
     },
     {
-      "key": "amount",
-      "name": "قیمت پرداخت شده"
+      key: 'amount',
+      name: 'قیمت پرداخت شده'
     },
     {
-      "key": "address",
-      "name": "آدرس ارسال شده"
+      key: 'address',
+      name: 'آدرس ارسال شده'
     },
   ];
 
