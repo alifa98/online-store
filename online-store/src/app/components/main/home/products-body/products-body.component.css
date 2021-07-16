@@ -28,6 +28,8 @@
 
 .products-flexitem {
   flex: 3;
+  display: flex;
+  justify-content: center;
 }
 
 .products-flexitem {

@@ -1,1 +1,9 @@
-<p>category-box works!</p>
+<div class="card">
+  دسته بندی ها
+  <hr>
+
+  <div class="scroll">
+    <app-checkbox-item name="category" *ngFor="let item of categories" label="{{item.name}}" [value]="item.id"></app-checkbox-item>
+  </div>
+
+</div>

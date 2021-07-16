@@ -1,0 +1,43 @@
+.check-label {
+  display: block;
+  position: relative;
+  padding-right: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+/* Hide the default checkbox */
+input[type=checkbox] {
+  visibility: hidden;
+}
+
+.customShape {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 15px;
+  width: 15px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+}
+
+.check-label:hover input~.customShape {
+  background-color: #EEE;
+}
+
+.check-label input:checked~.customShape {
+  background-color: #0084ff;
+}
+
+.customShape:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.check-label input:checked~.customShape:after {
+  display: block;
+}

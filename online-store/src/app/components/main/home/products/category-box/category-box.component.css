@@ -1,0 +1,42 @@
+.card {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: white;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 5px #CCC;
+  max-height: 500px;
+}
+
+.pic {
+  text-align: center;
+}
+
+.pic img {
+  width: 200px;
+  max-width: 200px;
+
+}
+
+.product-title {
+  font-size: 1.1em;
+}
+
+.product-category {
+  color: gray;
+}
+
+.card-bottom-flex {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.card-bottom-flex .price {
+  font-size: 0.8em;
+}
+
+.scroll {
+  overflow-y: scroll;
+}

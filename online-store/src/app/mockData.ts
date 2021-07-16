@@ -1,3 +1,4 @@
+import { Category } from "./interface/category";
 import { Product } from "./interface/Product";
 import { Receipt } from "./interface/Receipt";
 
@@ -66,5 +67,32 @@ export class Mock {
                 address: 'تهران، تهران، امیرکبیر',
             },
         ]
+    }
+
+
+    static getCategories(): Category[] {
+        return [
+            {
+                id: 25,
+                name: 'شرق گستر غرب پرور',
+            },
+            {
+                id: 1,
+                name: 'خفن آفرینان آسیا گستر',
+            },
+            {
+                id: 26,
+                name: 'محصولات خفن',
+            },
+            {
+                id: 7,
+                name: 'دسته',
+            }, {
+                id: 9,
+                name: 'نام آوران کهن ایرانیان آریایی شرق و غرب (هخا)',
+            }
+
+        ]
+
     }
 }

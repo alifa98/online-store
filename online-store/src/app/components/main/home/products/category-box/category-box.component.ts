@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/app/interface/category';
+import { Mock } from 'src/app/mockData';
 
 @Component({
   selector: 'app-category-box',
@@ -12,4 +14,5 @@ export class CategoryBoxComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  categories: Category[] = Mock.getCategories();
 }

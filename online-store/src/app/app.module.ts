@@ -18,11 +18,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeroHeaderComponent } from './components/main/home/hero-header/hero-header.component';
 import { SortBoxComponent } from './components/main/home/products/sort-box/sort-box.component';
 import { ProductBoxComponent } from './components/main/home/products/product-box/product-box.component';
-import { FilterBoxComponent } from './components/main/home/products/filter-box/filter-box.component';
+import { PriceFilterBoxComponent } from './components/main/home/products/price-filter-box/price-filter-box.component';
 import { CategoryBoxComponent } from './components/main/home/products/category-box/category-box.component';
 import { ProductsBodyComponent } from './components/main/home/products-body/products-body.component';
 import { BtnComponent } from './components/btn/btn.component';
 import { TomanPipe } from './pipes/toman.pipe';
+import { CheckboxItemComponent } from './components/main/checkbox-item/checkbox-item.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -48,11 +49,12 @@ const appRoutes: Routes = [
     HeroHeaderComponent,
     SortBoxComponent,
     ProductBoxComponent,
-    FilterBoxComponent,
+    PriceFilterBoxComponent,
     CategoryBoxComponent,
     ProductsBodyComponent,
     BtnComponent,
-    TomanPipe
+    TomanPipe,
+    CheckboxItemComponent
   ],
   imports: [
     BrowserModule,
