@@ -31,3 +31,25 @@ body {
 .btn-blue:hover {
   background-color: #0084ff;
 }
+
+.btn-gold {
+  background-color: #ffc80a;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 100px;
+  font-weight: bold;
+  font-size: large;
+
+  user-select: none;
+}
+
+
+.btn-gold:hover {
+  background-color: #e0b934;
+}
+
+.btn-small {
+  padding: 4px;
+  font-size: small;
+}
+

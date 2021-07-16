@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/main/login/login.component';
 import { SiteInputComponent } from './components/site-input/site-input.component';
-import { YellowButtonComponent } from './components/yellow-button/yellow-button.component';
 import { SignupComponent } from './components/main/signup/signup.component';
 import { SiteTextareaComponent } from './components/site-textarea/site-textarea.component';
 import { ProfileComponent } from './components/main/profile/profile.component';
@@ -37,7 +36,6 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     SiteInputComponent,
-    YellowButtonComponent,
     SignupComponent,
     SiteTextareaComponent,
     ProfileComponent,

@@ -2,7 +2,7 @@
   <div class="profile-container--title" dir="rtl">
     <h2 dir="rtl">سروش عزیز، خوش آمدید |</h2>
     <h4>موجودی حساب شما 1,000,000</h4>
-    <app-yellow-button text="افزایش موجودی" small="1"></app-yellow-button>
+    <app-btn class="profile-container--profile-button" classes="btn-gold btn-small" text="افزایش موجودی"></app-btn>
   </div>
   <div class="profile-container--tab">
     <app-tab></app-tab>
@@ -17,6 +17,6 @@
   <div *ngIf="currentProfileStatus == 'Profile'" class="profile-container--third-row">
     <app-site-textarea dir="rtl" label="آدرس" placeholder="آدرس خود را وارد کنید..." value='تهران، تهران، امیرکبیر'></app-site-textarea>
   </div>
-  <app-yellow-button *ngIf="currentProfileStatus == 'Profile'" text="ویرایش اطلاعات" class="profile-container--profile-button"></app-yellow-button>
+  <app-btn class="profile-container--profile-button" classes="btn-gold" onClickEventName="" text="ویرایش اطلاعات"></app-btn>
 </div>
 <app-table *ngIf="currentProfileStatus == 'Receipts'" [headers]="headers" [items]="receipts"></app-table>
