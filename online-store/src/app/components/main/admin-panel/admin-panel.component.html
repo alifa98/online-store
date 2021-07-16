@@ -15,7 +15,7 @@
     </div>
 
     <div *ngIf="currentAdminStatus == 'رسید ها'">
-      <p>رسید ها</p>
+      <app-table [headers]="receiptHeaders" [items]="receipts"></app-table>
     </div>
 
   </div>
