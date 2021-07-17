@@ -1,0 +1,12 @@
+<div class="modal-overlay" (click)="onOverlayClick($event)" [ngClass]="{'d-none': !showModal}">
+  <div class="modal">
+      <div class="modal--container">
+        <div class="modal--container--close">
+          <fa-icon [icon]="faTimesIcon"></fa-icon>
+        </div>
+        <div class="modal--container--content">
+          TEST
+        </div>
+      </div>
+  </div>
+</div>

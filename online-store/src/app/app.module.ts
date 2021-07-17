@@ -26,6 +26,7 @@ import { BtnComponent } from './components/btn/btn.component';
 import { TomanPipe } from './pipes/toman.pipe';
 import { CheckboxItemComponent } from './components/main/checkbox-item/checkbox-item.component';
 import { AdminPanelComponent } from './components/main/admin-panel/admin-panel.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
     BtnComponent,
     TomanPipe,
     CheckboxItemComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

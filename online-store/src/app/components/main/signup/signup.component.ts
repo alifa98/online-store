@@ -18,9 +18,14 @@ export class SignupComponent implements OnInit {
     address: new FormControl('', [Validators.required, Validators.maxLength(1000)]),
   });
 
+  showModal = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onSubmit(): void {
+    this.showModal = true;
+  }
 }
