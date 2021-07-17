@@ -7,25 +7,25 @@
   max-height: 500px;
 }
 
-.pic {
+.card--pic {
   text-align: center;
 }
 
-.pic img {
+.card--pic img {
   width: 200px;
   max-width: 200px;
 
 }
 
-.product-title {
+.card--product-title {
   font-size: 1.1em;
 }
 
-.product-category {
+.card--product-category {
   color: gray;
 }
 
-.card-bottom-flex {
+.card--card-bottom-flex {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -33,7 +33,7 @@
 
 }
 
-.card-bottom-flex .price {
+.card--card-bottom-flex .card--card-bottom-flex--price {
   font-size: 0.8em;
 }
 

@@ -5,6 +5,7 @@ import { Receipt } from '../../../interface/Receipt';
 import { Mock } from '../../../mockData';
 import { TableHeader } from '../../../interface/TableHeaders';
 import { Category } from 'src/app/interface/category';
+import {Product} from '../../../interface/Product';
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',
@@ -39,6 +40,8 @@ export class AdminPanelComponent implements OnInit {
     }
   ];
   categories: Category[] = Mock.getCategories();
+
+  products: Product[] = Mock.getProducts();
 
   constructor(private uiService: UiService) {
     this.subscription = this.uiService.onTabChange().subscribe(

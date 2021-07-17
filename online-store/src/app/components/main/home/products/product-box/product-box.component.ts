@@ -14,6 +14,8 @@ export class ProductBoxComponent implements OnInit {
   @Input() category: string;
   @Input() imageAddress: string;
   @Input() productId: string;
+  @Input() btnText: string;
+  @Input() showSoldNumber: boolean;
 
   ngOnInit(): void {
   }

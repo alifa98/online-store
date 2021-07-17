@@ -1,13 +1,18 @@
 <div class="card">
-  <div class="pic"><img src="{{imageAddress}}" title="{{title}}" alt="{{title}}">
+  <div *ngIf="showSoldNumber" class="card--sold-number">
+    <div class="card--sold-number--content">
+      12
+    </div>
   </div>
-  <div class="product-title"><strong>{{title}}</strong></div>
-  <div class="product-category"><span>{{category}}</span></div>
+  <div class="card--pic"><img src="{{imageAddress}}" title="{{title}}" alt="{{title}}">
+  </div>
+  <div class="card--product-title"><strong>{{title}}</strong></div>
+  <div class="card--product-category"><span>{{category}}</span></div>
   <hr>
-  <div class="card-bottom-flex">
-    <div class="price">{{price | toman}}</div>
-    <div class="action">
-      <app-btn classes="btn-blue" onClickEventName="" text="خرید محصول"></app-btn>
+  <div class="card--card-bottom-flex">
+    <div class="card--card-bottom-flex--price">{{price | toman}}</div>
+    <div class="card--card-bottom-flex--action">
+      <app-btn classes="btn-blue" onClickEventName="" text="{{btnText}}"></app-btn>
     </div>
   </div>
 </div>

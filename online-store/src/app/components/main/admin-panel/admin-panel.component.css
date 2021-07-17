@@ -15,6 +15,23 @@
   margin-bottom: 15px;
 }
 
+.admin-container--content--products {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  column-gap: 0px;
+}
+
+@media (max-width: 800px) {
+  .admin-container--content--products {
+    display: block;
+  }
+
+}
+/*.admin-container--content--products * {*/
+/*  border: 1px solid black;*/
+/*}*/
+
 .admin-container {
   display: grid;
   grid-template-areas:
