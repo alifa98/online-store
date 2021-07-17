@@ -13,6 +13,7 @@
   grid-area: content-row;
   text-align: center;
   margin-bottom: 15px;
+
 }
 
 .admin-container--content--products {
@@ -24,13 +25,11 @@
 
 @media (max-width: 800px) {
   .admin-container--content--products {
-    display: block;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
-
 }
-/*.admin-container--content--products * {*/
-/*  border: 1px solid black;*/
-/*}*/
 
 .admin-container {
   display: grid;

@@ -5,6 +5,12 @@
   user-select: none;
 }
 
+@media (max-width: 428px) {
+  .inner-tab {
+    font-size: 3vw;
+  }
+}
+
 .inner-tab:hover {
   background-color: #d3d3d3;
 }

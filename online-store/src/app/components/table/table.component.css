@@ -26,6 +26,7 @@ th {
 
 .operation {
   user-select: none;
+  display: inline-block;
 }
 
 .operation:hover {
