@@ -34,3 +34,15 @@
 textarea {
   resize: none;
 }
+
+.invalid-input {
+  border: 2px solid red;
+}
+
+.valid-input {
+  border: 2px solid green;
+}
+
+.input-error-text {
+  color: red;
+}

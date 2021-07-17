@@ -1,15 +1,18 @@
-<div class="signup-container">
-  <h2 class="signup-container--title turquoise-blue">فروشگاه - ثبت نام</h2>
-  <div class="signup-container--first-row" dir="rtl">
-    <app-site-input  type="text" label="نام" placeholder="نام خود را وارد کنید..." ></app-site-input>
-    <app-site-input  type="text" label="نام خانوادگی" placeholder="نام خانوادگی خود را وارد کنید..."></app-site-input>
+<form [formGroup]="signUpForm">
+  <div class="signup-container">
+    <h2 class="signup-container--title turquoise-blue">فروشگاه - ثبت نام</h2>
+    <div class="signup-container--first-row" dir="rtl">
+      <app-site-input [control]="signUpForm.get('firstName')" type="text" label="نام" placeholder="نام خود را وارد کنید..."></app-site-input>
+      <app-site-input [control]="signUpForm.get('lastName')" type="text" label="نام خانوادگی" placeholder="نام خانوادگی خود را وارد کنید..."></app-site-input>
+    </div>
+    <div class="signup-container--second-row" dir="rtl">
+      <app-site-input [control]="signUpForm.get('email')" type="email" label="ایمیل" placeholder="ایمیل خود را وارد کنید..." ></app-site-input>
+      <app-site-input [control]="signUpForm.get('password')" type="password" label="رمز عبور" placeholder="رمز عبور خود را وارد کنید..."
+      patternError="رمزعبور بایستی شامل عدد و حروف باشد"></app-site-input>
+    </div>
+    <div class="signup-container--third-row" dir="rtl">
+      <app-site-textarea [control]="signUpForm.get('address')" dir="rtl" label="آدرس" placeholder="آدرس خود را وارد کنید..."></app-site-textarea>
+    </div>
+    <app-btn classes="btn-gold" text="ثبت نام" class="signup-container--signup-button"></app-btn>
   </div>
-  <div class="signup-container--second-row" dir="rtl">
-    <app-site-input  type="email" label="ایمیل" placeholder="ایمیل خود را وارد کنید..." ></app-site-input>
-    <app-site-input  type="password" label="رمز عبور" placeholder="رمز عبور خود را وارد کنید..."></app-site-input>
-  </div>
-  <div class="signup-container--third-row" dir="rtl">
-    <app-site-textarea dir="rtl" label="آدرس" placeholder="آدرس خود را وارد کنید..."></app-site-textarea>
-  </div>
-  <app-btn classes="btn-gold" text="ثبت نام" class="signup-container--signup-button"></app-btn>
-</div>
+</form>

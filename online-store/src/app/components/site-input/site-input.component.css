@@ -32,3 +32,15 @@
 .stretch-label {
   grid-template-columns: auto;
 }
+
+.input-error-text {
+  color: red;
+}
+
+.invalid-input {
+  border: 2px solid red;
+}
+
+.valid-input {
+  border: 2px solid green;
+}

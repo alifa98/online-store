@@ -21,7 +21,10 @@
     </div>
     <div *ngIf="currentAdminStatus == 'رسید ها'">
       <div class="admin-container--content--search">
-        <app-site-input label="جستجوی کد پیگیری" placeholder="کد پیگیری را برای جستجو وارد کنید..." stretchLabel="1"></app-site-input>
+        <form [formGroup]="trackingCodeForm">
+          <app-site-input label="جستجوی کد پیگیری" placeholder="کد پیگیری را برای جستجو وارد کنید..."
+                          stretchLabel="1" [control]="trackingCodeForm.get('trackingCode')"></app-site-input>
+        </form>
       </div>
       <app-table [headers]="receiptHeaders" [items]="receipts"></app-table>
     </div>

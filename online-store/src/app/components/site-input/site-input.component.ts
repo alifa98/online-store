@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-site-input',
@@ -11,6 +12,8 @@ export class SiteInputComponent implements OnInit {
   @Input() value: string;
   @Input() type: string;
   @Input() stretchLabel: boolean;
+  @Input() control: FormControl;
+  @Input() patternError: string;
 
   constructor() {}
 

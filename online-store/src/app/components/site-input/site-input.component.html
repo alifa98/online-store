@@ -1,4 +1,19 @@
 <div class="site-input-container my-5" [ngClass]="{'stretch-label': stretchLabel}">
   <span class="site-input-label">{{label}}</span>
-  <input class="site-input" type="{{type}}" placeholder="{{placeholder}}" value="{{value}}" dir="rtl">
+  <input class="site-input" type="{{type}}" placeholder="{{placeholder}}" value="{{value}}"
+         [formControl]="control" [ngClass]="{'invalid-input': control.errors && (control.touched || control.dirty),
+                                             'valid-input': !control.errors && control.dirty}">
+</div>
+<div *ngIf="control.errors && control.errors.required && (control.touched || control.dirty)" class="input-error-text">
+  این فیلد اجباری است
+</div>
+<div *ngIf="control.errors && control.errors.maxlength && (control.touched || control.dirty)" class="input-error-text">
+ حداکثر طول مجاز برابر با 255 می باشد
+</div>
+<div *ngIf="control.errors && control.errors.minlength && (control.touched || control.dirty)" class="input-error-text">
+ حداقل طول مجاز برابر با 8 می باشد
+</div>
+<div *ngIf="control.errors && control.errors.pattern && (control.touched || control.dirty)" class="input-error-text">
+ <span *ngIf="patternError">{{patternError}}</span>
+ <span *ngIf="!patternError">فرمت ورودی اشتباه است</span>
 </div>
