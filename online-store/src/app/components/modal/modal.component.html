@@ -1,6 +1,7 @@
 <div class="modal-overlay" (click)="onOverlayClick($event)" [ngClass]="{'d-none': !showModal}">
   <div class="modal">
-      <div class="modal--container" [ngClass]="{'invalid-border': error, 'valid-border': !error}">
+      <div class="modal--container" [ngClass]="{'invalid-border': error, 'valid-border': !error,
+                                                'modal-blow-up': showModal, 'modal-blow-down': blowDown}">
         <div class="modal--container--close">
           <fa-icon [icon]="faTimesIcon" (click)="closeModal()"></fa-icon>
         </div>

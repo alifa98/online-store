@@ -10,6 +10,8 @@ export class ModalComponent implements OnInit {
   @Input() text: string;
   @Input() error: boolean;
 
+  blowDown = false;
+
   @Output() modalClosed: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   faTimesIcon = faTimes;
@@ -20,9 +22,17 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   closeModal(): void {
-    this.showModal = false;
-    this.modalClosed.emit(true);
+    this.blowDown = true;
+    this.sleep(300).then(() => {
+      this.showModal = false;
+      this.modalClosed.emit(true);
+      this.blowDown = false;
+    });
   }
 
   onOverlayClick(event): void {

@@ -23,6 +23,17 @@
   width: 70%;
   background-color: white;
   border-radius: 24px;
+
+
+
+}
+
+.modal-blow-up {
+  animation: blowUpModal .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+}
+
+.modal-blow-down {
+  animation: blowDownModal .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
 }
 
 .invalid-border {
@@ -46,3 +57,23 @@
   padding-top: 50px;
 }
 
+
+@keyframes blowUpModal {
+  0% {
+    transform:scale(0);
+  }
+  100% {
+    transform:scale(1);
+  }
+}
+
+@keyframes blowDownModal {
+  0% {
+    transform:scale(1);
+    opacity:1;
+  }
+  100% {
+    transform:scale(0);
+    opacity:0;
+  }
+}
