@@ -40,4 +40,10 @@ input[type=checkbox] {
 
 .check-label input:checked~.customShape:after {
   display: block;
+  border: 3px solid white;
+  border-radius: 100%;
+  margin-top: 2px;
+  margin-right: 2px;
+  width: 5px;
+  height: 5px;
 }
