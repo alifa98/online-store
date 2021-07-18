@@ -7,36 +7,6 @@
   max-height: 500px;
 }
 
-.card--pic {
-  text-align: center;
-}
-
-.card--pic img {
-  width: 200px;
-  max-width: 200px;
-
-}
-
-.card--product-title {
-  font-size: 1.1em;
-}
-
-.card--product-category {
-  color: gray;
-}
-
-.card--card-bottom-flex {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-
-}
-
-.card--card-bottom-flex .card--card-bottom-flex--price {
-  font-size: 0.8em;
-}
-
 .scroll {
   overflow-y: scroll;
 }

@@ -15,7 +15,7 @@
   flex-direction: row;
 }
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 905px) {
   .main-product-sidebar-container {
     flex-direction: column;
   }
