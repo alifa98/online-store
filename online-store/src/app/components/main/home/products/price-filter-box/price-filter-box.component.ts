@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { range } from 'rxjs';
 
 @Component({
   selector: 'app-price-filter-box',
@@ -12,4 +13,11 @@ export class PriceFilterBoxComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  rangeValue: Number = 100000;;
+
+  onChange(event: any): void {
+    this.rangeValue = event.target.value;
+  }
+
+  // Emmit On change
 }

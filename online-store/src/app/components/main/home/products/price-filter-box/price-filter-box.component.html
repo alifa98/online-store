@@ -1,2 +1,11 @@
-<!-- <p>filter-box works!</p> -->
-<!-- this is Additional -->
+<div class="card">
+  تنظیم قیمت کالا
+  <hr>
+
+
+  <div class="slidecontainer">
+    <input (change)="onChange($event)" type="range" min="0" max="10000000" [value]="rangeValue" class="slider" id="priceRange">
+  </div>
+  <div>{{rangeValue | toman}}</div>
+
+</div>
