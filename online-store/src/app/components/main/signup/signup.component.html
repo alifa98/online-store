@@ -17,4 +17,4 @@
   </div>
 </form>
 
-<app-modal [showModal]="showModal" (modalClosed)="showModal = false"></app-modal>
+<app-modal [showModal]="showModal" (modalClosed)="showModal = false" text="{{modalText}}" [error]="modalError"></app-modal>

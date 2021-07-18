@@ -19,6 +19,10 @@ export class SignupComponent implements OnInit {
   });
 
   showModal = false;
+  modalText: string;
+  modalError: boolean;
+
+  mockEmails = ['test@test.com', 'johndoe@test.com', 'janedoe@test.com'];
 
   constructor() { }
 
@@ -26,6 +30,22 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.signUpForm.invalid) {
+      this.modalText = 'لطفا فرم را به شکل صحیح پر کنید.';
+      this.modalError = true;
+    }
+    else {
+      const enteredEmail = this.signUpForm.get('email').value;
+      if (this.mockEmails.includes(enteredEmail)) {
+        this.modalText = 'ایمیل وارد شده تکراری می باشد. لطفا با ایمیل جدید امتحان کنید.';
+        this.modalError = true;
+      }
+      else {
+        this.modalText = 'ثبت نام با موفقیت انجام شد.';
+        this.modalError = false;
+      }
+    }
+
     this.showModal = true;
   }
 }

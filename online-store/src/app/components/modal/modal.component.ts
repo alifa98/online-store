@@ -7,20 +7,29 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 })
 export class ModalComponent implements OnInit {
   @Input() showModal = false;
-  faTimesIcon = faTimes;
+  @Input() text: string;
+  @Input() error: boolean;
+
   @Output() modalClosed: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  faTimesIcon = faTimes;
+
 
   constructor(private elRef: ElementRef) { }
 
   ngOnInit(): void {
   }
 
+  closeModal(): void {
+    this.showModal = false;
+    this.modalClosed.emit(true);
+  }
+
   onOverlayClick(event): void {
     const modalContainerContent = this.elRef.nativeElement.querySelector('.modal--container--content');
     const clickedInsideModal = event.target === modalContainerContent;
     if (!clickedInsideModal) {
-      this.showModal = false;
-      this.modalClosed.emit(true);
+      this.closeModal();
     }
   }
 }

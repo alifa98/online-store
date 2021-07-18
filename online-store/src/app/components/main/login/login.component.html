@@ -1,6 +1,10 @@
-<div class="login-container" [formGroup]="loginForm">
-    <h2 class="turquoise-blue">فروشگاه - ورود</h2>
-    <app-site-input label="ایمیل" [control]="loginForm.get('email')" type="email" placeholder="ایمیل خود را وارد کنید..."></app-site-input>
-    <app-site-input label="رمز عبور" [control]="loginForm.get('password')" type="password" placeholder="رمز عبور خود را وارد کنید..."></app-site-input>
-    <app-btn classes="btn-gold" text="ورود"></app-btn>
-</div>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="login-container" >
+      <h2 class="turquoise-blue">فروشگاه - ورود</h2>
+      <app-site-input label="ایمیل" [control]="loginForm.get('email')" type="email" placeholder="ایمیل خود را وارد کنید..."></app-site-input>
+      <app-site-input label="رمز عبور" [control]="loginForm.get('password')" type="password" placeholder="رمز عبور خود را وارد کنید..."></app-site-input>
+      <app-btn classes="btn-gold" text="ورود"></app-btn>
+  </div>
+</form>
+
+<app-modal [showModal]="showModal" (modalClosed)="showModal = false" text="{{modalText}}" [error]="modalError"></app-modal>
