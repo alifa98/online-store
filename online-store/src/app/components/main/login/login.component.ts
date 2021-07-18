@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,9 @@ export class LoginComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private userService: UserService) {
+    userService.isAuthenticated().subscribe(res => console.log(res));
+  }
 
   ngOnInit(): void {
   }
@@ -40,17 +43,18 @@ export class LoginComponent implements OnInit {
       this.modalError = true;
     }
     else {
-      this.modalText = 'ایمیل یا رمزعبور اشتباه می باشد.';
-      this.modalError = true;
-
       const enteredEmail = this.loginForm.get('email').value;
       const enteredPassword = this.loginForm.get('password').value;
 
-      this.mockCredentials.forEach(credential => {
-        if (enteredEmail === credential.email && enteredPassword === credential.password) {
-          this.modalText = 'ورود با موفقیت انجام شد.';
-          this.modalError = false;
-        }
+      this.userService.login(enteredEmail, enteredPassword).subscribe(res => {
+          if (res.success === true) {
+            this.modalText = 'ورود با موفقیت انجام شد.';
+            this.modalError = false;
+          }
+          else {
+            this.modalText = 'ایمیل یا رمزعبور اشتباه می باشد.';
+            this.modalError = true;
+          }
       });
     }
 
