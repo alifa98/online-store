@@ -37,7 +37,7 @@ class Receipt(models.Model):
     sold_amount = models.IntegerField(default=0)
     buyer_full_name = models.CharField(max_length=300)
     buyer_address = models.CharField(max_length=1000)
-    price = models.FloatField(default=0)
+    price = models.IntegerField(default=0)
     tracking_code = models.CharField(max_length=20, null=True, blank=False)
     purchase_date = models.DateTimeField(default=timezone.now)
     state = models.CharField(max_length=100, choices=receipt_state, default='در حال انجام')
