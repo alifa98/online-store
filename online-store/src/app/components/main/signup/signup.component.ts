@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -24,7 +25,7 @@ export class SignupComponent implements OnInit {
 
   mockEmails = ['test@test.com', 'johndoe@test.com', 'janedoe@test.com'];
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -36,14 +37,19 @@ export class SignupComponent implements OnInit {
     }
     else {
       const enteredEmail = this.signUpForm.get('email').value;
-      if (this.mockEmails.includes(enteredEmail)) {
-        this.modalText = 'ایمیل وارد شده تکراری می باشد. لطفا با ایمیل جدید امتحان کنید.';
-        this.modalError = true;
-      }
-      else {
-        this.modalText = 'ثبت نام با موفقیت انجام شد.';
-        this.modalError = false;
-      }
+
+      this.userService.signup(this.signUpForm.get('email').value, this.signUpForm.get('password').value,
+        this.signUpForm.get('firstName').value, this.signUpForm.get('lastName').value, this.signUpForm.get('address').value)
+        .subscribe(res => {
+          if (res.success) {
+            this.modalText = 'ثبت نام با موفقیت انجام شد.';
+            this.modalError = false;
+          }
+          else {
+            this.modalText = res.error;
+            this.modalError = true;
+          }
+        });
     }
 
     this.showModal = true;

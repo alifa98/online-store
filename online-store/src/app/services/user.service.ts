@@ -12,7 +12,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = '/api/';
+  private apiUrl = '/api/user/';
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +25,14 @@ export class UserService {
   login(username, password): Observable<any> {
     const url = `${this.apiUrl}login/`;
     const body = `login=1&username=${username}&password=${password}`;
+
+    return this.http.post(url, body, httpOptions);
+  }
+
+  signup(username, password, firstName, lastName, address): Observable<any> {
+    const url = `${this.apiUrl}signup/`;
+    const body = `signup=1&username=${username}&password=${password}&first_name=${firstName}&last_name=${lastName}
+                  &address=${address}`;
 
     return this.http.post(url, body, httpOptions);
   }

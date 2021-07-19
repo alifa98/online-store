@@ -20,16 +20,6 @@ export class LoginComponent implements OnInit {
   modalText: string;
   modalError: boolean;
 
-  mockCredentials = [
-    {
-      email: 'johndoe@test.com',
-      password: 'test1234'
-    },
-    {
-      email: 'janedoe@test.com',
-      password: 'test1234'
-    }
-  ];
 
   constructor(private userService: UserService) {
     userService.isAuthenticated().subscribe(res => console.log(res));
@@ -52,7 +42,7 @@ export class LoginComponent implements OnInit {
             this.modalError = false;
           }
           else {
-            this.modalText = 'ایمیل یا رمزعبور اشتباه می باشد.';
+            this.modalText = res.error;
             this.modalError = true;
           }
       });

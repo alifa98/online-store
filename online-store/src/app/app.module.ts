@@ -69,10 +69,6 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
     ReactiveFormsModule,
     HttpClientModule,
-    HttpClientXsrfModule.withOptions({
-      cookieName: 'csrftoken',
-      headerName: 'X-CSRFTOKEN',
-    }),
     FontAwesomeModule,
   ],
   providers: [],

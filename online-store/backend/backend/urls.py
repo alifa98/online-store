@@ -21,7 +21,7 @@ from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/login/', include('user.urls')),
+    path('api/user/', include('user.urls')),
 ]
 
 if settings.DEBUG:
