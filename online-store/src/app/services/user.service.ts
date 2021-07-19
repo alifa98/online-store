@@ -13,15 +13,21 @@ const httpOptions = {
 })
 export class UserService {
   private apiUrl = '/api/user/';
+  isLoggedIn: boolean;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+      this.updateIsLoggedIn();
+  }
 
-  isAuthenticated(): Observable<any> {
+  updateIsLoggedIn(): void {
     const url = `${this.apiUrl}login/`;
     const params = new HttpParams().set('is_authenticated', '1');
 
-    return this.http.get(url, {params});
+    this.http.get(url, {params}).subscribe(res => {
+        this.isLoggedIn = res['is_authenticated'];
+    });
   }
+
   login(username, password): Observable<any> {
     const url = `${this.apiUrl}login/`;
     const body = `login=1&username=${username}&password=${password}`;
@@ -33,6 +39,7 @@ export class UserService {
     const url = `${this.apiUrl}signup/`;
     const body = `signup=1&username=${username}&password=${password}&first_name=${firstName}&last_name=${lastName}
                   &address=${address}`;
+
 
     return this.http.post(url, body, httpOptions);
   }

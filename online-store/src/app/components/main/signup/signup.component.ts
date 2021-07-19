@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -23,9 +24,7 @@ export class SignupComponent implements OnInit {
   modalText: string;
   modalError: boolean;
 
-  mockEmails = ['test@test.com', 'johndoe@test.com', 'janedoe@test.com'];
-
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -36,14 +35,16 @@ export class SignupComponent implements OnInit {
       this.modalError = true;
     }
     else {
-      const enteredEmail = this.signUpForm.get('email').value;
-
       this.userService.signup(this.signUpForm.get('email').value, this.signUpForm.get('password').value,
         this.signUpForm.get('firstName').value, this.signUpForm.get('lastName').value, this.signUpForm.get('address').value)
         .subscribe(res => {
+          this.userService.updateIsLoggedIn();
           if (res.success) {
-            this.modalText = 'ثبت نام با موفقیت انجام شد.';
+            this.modalText = 'ثبت نام با موفقیت انجام شد. انتقال به صفحه پروفایل';
             this.modalError = false;
+            setTimeout(() => {
+              this.router.navigate(['profile']);
+            }, 2000);
           }
           else {
             this.modalText = res.error;

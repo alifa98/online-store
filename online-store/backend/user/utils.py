@@ -11,4 +11,5 @@ def signup_info_is_valid(first_name, last_name, username, password, address):
 
 
 def login_is_valid(username, password):
+    print(len(password))
     return len(username) < 255 and 8 <= len(password) < 255 and password_is_valid(password)

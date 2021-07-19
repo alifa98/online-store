@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +22,8 @@ export class LoginComponent implements OnInit {
   modalError: boolean;
 
 
-  constructor(private userService: UserService) {
-    userService.isAuthenticated().subscribe(res => console.log(res));
+  constructor(private userService: UserService, private router: Router) {
+
   }
 
   ngOnInit(): void {
@@ -37,9 +38,13 @@ export class LoginComponent implements OnInit {
       const enteredPassword = this.loginForm.get('password').value;
 
       this.userService.login(enteredEmail, enteredPassword).subscribe(res => {
+          this.userService.updateIsLoggedIn();
           if (res.success === true) {
-            this.modalText = 'ورود با موفقیت انجام شد.';
+            this.modalText = 'ورود با موفقیت انجام شد. انتقال به صفحه پروفایل';
             this.modalError = false;
+            setTimeout(() => {
+              this.router.navigate(['profile']);
+            }, 2000);
           }
           else {
             this.modalText = res.error;

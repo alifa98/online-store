@@ -6,7 +6,7 @@
   <li class="menu-item"> <a [routerLink]="['products']">محصولات</a></li>
   <li *ngIf="responsive && !isLoggedIn()" class="menu-item"><a [routerLink]="['login']">ورود / ثبت نام</a></li>
   <li *ngIf="responsive && isLoggedIn()" class="menu-item"><a [routerLink]="['profile']">پروفایل</a></li>
-  <li *ngIf="responsive && isLoggedIn()" class="menu-item"><a [routerLink]="['logout']">خروج از حساب</a></li>
+  <li *ngIf="responsive && isLoggedIn()" class="menu-item"><a (click)="logout()">خروج از حساب</a></li>
 
   <a class="barIcon" (click)="responsive = !responsive">
     <fa-icon [icon]="faBarsIcon"></fa-icon>
@@ -22,7 +22,7 @@
       <a [routerLink]="['profile']">
         <p>پروفایل</p>
       </a>
-      <a [routerLink]="['logout']">
+      <a (click)="logout()">
         <p>خروج از حساب</p>
       </a>
     </div>

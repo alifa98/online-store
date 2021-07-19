@@ -14,7 +14,8 @@ def login_view(request):
         if 'login' in request.POST:
             username = request.POST.get('username')
             password = request.POST.get('password')
-            if login_is_valid(username, password):
+
+            if not login_is_valid(username, password):
                 return JsonResponse({"success": False, 'error': 'فرمت اشتباه است'})
             user = authenticate(request, username=username, password=password)
             if user is not None:
