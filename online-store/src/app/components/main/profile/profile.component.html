@@ -1,22 +1,27 @@
-<div class="profile-container" [formGroup]="profileForm">
-  <div class="profile-container--title" dir="rtl">
-    <h2>سروش عزیز، خوش آمدید |</h2>
-    <h4>موجودی حساب شما 1,000,000</h4>
-    <app-btn class="profile-container--profile-button" classes="btn-gold btn-small" text="افزایش موجودی"></app-btn>
+<form [formGroup]="profileForm" (ngSubmit)="onEditSubmit()">
+  <div class="profile-container">
+    <div class="profile-container--title" dir="rtl">
+      <h2>سروش عزیز، خوش آمدید |</h2>
+      <h4>موجودی حساب شما {{currentBalance}}</h4>
+      <app-btn class="profile-container--profile-button" classes="btn-gold btn-small" text="افزایش موجودی" type="button" (onBtnClick)="increaseCredit()"></app-btn>
+    </div>
+    <div class="profile-container--tab">
+      <app-tab endText="پروفایل" startText="رسید ها"></app-tab>
+    </div>
+    <div *ngIf="currentProfileStatus == 'پروفایل'" class="profile-container--first-row">
+      <app-site-input type="text" [control]="profileForm.get('firstName')" label="نام" placeholder="نام خود را وارد کنید..." value="سروش"></app-site-input>
+      <app-site-input type="text" [control]="profileForm.get('lastName')" label="نام خانوادگی" placeholder="نام خانوادگی خود را وارد کنید..." value="فرجی"></app-site-input>
+    </div>
+    <div *ngIf="currentProfileStatus == 'پروفایل'" class="profile-container--second-row">
+      <app-site-input type="password" [control]="profileForm.get('password')" label="رمز عبور" placeholder="رمز عبور خود را وارد کنید..."></app-site-input>
+    </div>
+    <div *ngIf="currentProfileStatus == 'پروفایل'" class="profile-container--third-row">
+      <app-site-textarea [control]="profileForm.get('address')" label="آدرس" placeholder="آدرس خود را وارد کنید..." value='تهران، تهران، امیرکبیر'></app-site-textarea>
+    </div>
+    <app-btn *ngIf="currentProfileStatus == 'پروفایل'" class="profile-container--profile-button" classes="btn-gold" onClickEventName="" text="ویرایش اطلاعات"></app-btn>
   </div>
-  <div class="profile-container--tab">
-    <app-tab endText="پروفایل" startText="رسید ها"></app-tab>
-  </div>
-  <div *ngIf="currentProfileStatus == 'پروفایل'" class="profile-container--first-row">
-    <app-site-input type="text" [control]="profileForm.get('firstName')" label="نام" placeholder="نام خود را وارد کنید..." value="سروش"></app-site-input>
-    <app-site-input type="text" [control]="profileForm.get('lastName')" label="نام خانوادگی" placeholder="نام خانوادگی خود را وارد کنید..." value="فرجی"></app-site-input>
-  </div>
-  <div *ngIf="currentProfileStatus == 'پروفایل'" class="profile-container--second-row">
-    <app-site-input type="password" [control]="profileForm.get('password')" label="رمز عبور" placeholder="رمز عبور خود را وارد کنید..."></app-site-input>
-  </div>
-  <div *ngIf="currentProfileStatus == 'پروفایل'" class="profile-container--third-row">
-    <app-site-textarea [control]="profileForm.get('address')" label="آدرس" placeholder="آدرس خود را وارد کنید..." value='تهران، تهران، امیرکبیر'></app-site-textarea>
-  </div>
-  <app-btn *ngIf="currentProfileStatus == 'پروفایل'" class="profile-container--profile-button" classes="btn-gold" onClickEventName="" text="ویرایش اطلاعات"></app-btn>
-</div>
+</form>
+
 <app-table *ngIf="currentProfileStatus == 'رسید ها'" [headers]="headers" [items]="receipts"></app-table>
+
+<app-modal [showModal]="showModal" (modalClosed)="showModal = false" text="{{modalText}}" [error]="modalError"></app-modal>

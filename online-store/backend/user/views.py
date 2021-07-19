@@ -1,7 +1,5 @@
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse, QueryDict
 from django.contrib.auth import authenticate, login, logout
-from django.core import serializers
-from django.middleware.csrf import get_token
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import User
@@ -57,3 +55,60 @@ def sign_up_view(request):
 
             else:
                 return JsonResponse({'success': False, 'error': 'فرمت ورودی اشتباه است'})
+
+
+@csrf_exempt
+def info(request):
+    if request.method == "GET":
+        result = {
+            'firstName': request.user.first_name,
+            'lastName': request.user.last_name,
+            'address': request.user.address,
+            'balance': request.user.credit
+        }
+        return JsonResponse(result)
+
+    if request.method == "POST":
+        if 'increase_credit' in request.POST:
+            request.user.credit += 10000
+            request.user.save()
+            return JsonResponse({'success': True})
+
+    if request.method == "PUT":
+        if not request.user.is_authenticated:
+            return JsonResponse({'success': False, 'error': 'خطا در ورود. ابتدا بایستی در سایت وارد شوید'})
+
+        put = QueryDict(request.body)
+        first_name = put.get('first_name')
+        last_name = put.get('last_name')
+        password = put.get('password')
+        address = put.get('address')
+
+        if first_name is not None and 0 < len(first_name) < 255:
+            request.user.first_name = first_name
+        else:
+            return JsonResponse({'success': False, 'error': 'خطا در نام'})
+
+        if last_name is not None and 0 < len(last_name) < 255:
+            request.user.last_name = last_name
+        else:
+            return JsonResponse({'success': False, 'error': 'خطا در نام خانوادگی'})
+
+        if password is not None and 8 <= len(password) < 255 and password_is_valid(password):
+            request.user.set_password(password)
+        elif len(password) > 0:
+            return JsonResponse({'success': False, 'error': 'خطا در رمز عبور'})
+
+        if address is not None and 0 < len(address) <= 1000:
+            request.user.address = address
+        else:
+            return JsonResponse({'success': False, 'error': 'خطا در آدرس'})
+
+        request.user.save()
+
+        if len(password) > 0:  # User has changed the password
+            login(request, request.user)  # stay connected
+        return JsonResponse({'success': True})
+
+
+
