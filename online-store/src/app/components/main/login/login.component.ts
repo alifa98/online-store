@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
 
       this.userService.login(enteredEmail, enteredPassword).subscribe(res => {
           this.userService.updateIsLoggedIn();
+          this.userService.updateFirstName();
+
           if (res.success === true) {
             this.modalText = 'ورود با موفقیت انجام شد. انتقال به صفحه پروفایل';
             this.modalError = false;

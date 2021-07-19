@@ -13,7 +13,7 @@
   </a>
   <div *ngIf="isLoggedIn()" class="menu-item end dropdown" [ngClass]="{'gold-bg': onDropDown}">
     <div class="menu-item--content">
-      <span>{{name}}</span>
+      <span>{{getFirstName()}}</span>
       <fa-icon [icon]="faCaretDownIcon"></fa-icon>
     </div>
   </div>

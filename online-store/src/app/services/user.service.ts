@@ -14,6 +14,7 @@ const httpOptions = {
 export class UserService {
   private apiUrl = '/api/user/';
   isLoggedIn: boolean;
+  firstName: string;
 
   constructor(private http: HttpClient) {
       this.updateIsLoggedIn();
@@ -25,6 +26,13 @@ export class UserService {
 
     this.http.get(url, {params}).subscribe(res => {
         this.isLoggedIn = res['is_authenticated'];
+    });
+  }
+
+  updateFirstName(): void {
+    const url = `${this.apiUrl}info/`;
+    this.http.get(url).subscribe(res => {
+      this.firstName = res['firstName'];
     });
   }
 

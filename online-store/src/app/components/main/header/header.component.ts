@@ -14,8 +14,8 @@ export class HeaderComponent implements OnInit {
   responsive = false;
 
   constructor(private userService: UserService, private router: Router) {
+    this.userService.updateFirstName();
   }
-  name: string = Mock.getName();
   faCaretDownIcon = faCaretDown;
   faBarsIcon = faBars;
 
@@ -25,6 +25,11 @@ export class HeaderComponent implements OnInit {
   isLoggedIn(): boolean {
     return this.userService.isLoggedIn;
   }
+
+  getFirstName(): string {
+    return this.userService.firstName;
+  }
+
   logout(): void {
     this.userService.logout().subscribe(res => {
       this.userService.updateIsLoggedIn();

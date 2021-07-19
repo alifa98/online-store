@@ -65,7 +65,9 @@ export class ProfileComponent implements OnInit {
   onEditSubmit(): void {
     this.userService.updateUserInfo(this.profileForm.get('firstName').value, this.profileForm.get('lastName').value,
       this.profileForm.get('password').value, this.profileForm.get('address').value).subscribe(res => {
+        this.userService.updateFirstName();
         this.modalError = !res.success;
+
         if (res.success) {
           this.modalText = 'با موفقیت تغییر داده شد';
         }
