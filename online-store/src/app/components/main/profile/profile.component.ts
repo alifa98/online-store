@@ -67,7 +67,7 @@ export class ProfileComponent implements OnInit {
     this.userService.onLoginChange().subscribe(
       (value => {
         this.isLoggedIn = value;
-        if(!value) {
+        if (!value) {
           router.navigate(['login']);
         }
       })

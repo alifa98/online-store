@@ -1,0 +1,23 @@
+.site-input-choice-container {
+  display: grid;
+  grid-template-columns: 90px auto;
+  grid-template-areas: "label input";
+}
+
+.site-input-choice-label {
+  grid-area: label;
+  background: #0ebac5;
+  padding: 10px 5px;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 7px 7px 0;
+
+  user-select: none;
+}
+
+.site-input-choice {
+  grid-area: input;
+  padding: 12px 5px;
+  border: 0;
+  background: #fff;
+}

@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
       Validators.pattern('([a-zA-Z]+[0-9]+)|([0-9]+[a-zA-Z]+)')]),
   });
 
+  // modal
   showModal = false;
   modalText: string;
   modalError: boolean;

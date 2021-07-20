@@ -29,6 +29,8 @@ import { CheckboxItemComponent } from './components/main/checkbox-item/checkbox-
 import { AdminPanelComponent } from './components/main/admin-panel/admin-panel.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { PaginationComponent } from './components/main/pagination/pagination.component';
+import { AddProductComponent } from './components/main/add-product/add-product.component';
+import { SiteInputChoiceComponent } from './components/site-input-choice/site-input-choice.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,6 +38,7 @@ const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'admin', component: AdminPanelComponent },
+  { path: 'admin/add_product', component: AddProductComponent },
 ];
 
 
@@ -64,7 +67,9 @@ const appRoutes: Routes = [
     CheckboxItemComponent,
     AdminPanelComponent,
     ModalComponent,
-    PaginationComponent
+    PaginationComponent,
+    AddProductComponent,
+    SiteInputChoiceComponent
   ],
   imports: [
     BrowserModule,
