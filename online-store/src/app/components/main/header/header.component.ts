@@ -3,6 +3,7 @@ import { Mock } from 'src/app/mockData';
 import { faCaretDown, faBars } from '@fortawesome/free-solid-svg-icons';
 import {UserService} from '../../../services/user.service';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -13,18 +14,27 @@ export class HeaderComponent implements OnInit {
   onDropDown = false;
   responsive = false;
 
-  constructor(private userService: UserService, private router: Router) {
-    this.userService.updateFirstName();
-  }
+  isLoggedIn: boolean;
+  subscription: Subscription;
+
   faCaretDownIcon = faCaretDown;
   faBarsIcon = faBars;
+
+  constructor(private userService: UserService, private router: Router) {
+    this.subscription = this.userService.onLoginChange().subscribe(
+      (value => {
+      this.isLoggedIn = value;
+      if (value) {
+        this.userService.updateFirstName();
+      }
+      })
+    );
+
+  }
 
   ngOnInit(): void {
   }
 
-  isLoggedIn(): boolean {
-    return this.userService.isLoggedIn;
-  }
 
   getFirstName(): string {
     return this.userService.firstName;
@@ -32,7 +42,7 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.userService.logout().subscribe(res => {
-      this.userService.updateIsLoggedIn();
+      this.userService.updateLoginStatus();
       if (res.success) {
         this.router.navigate(['']);
       }

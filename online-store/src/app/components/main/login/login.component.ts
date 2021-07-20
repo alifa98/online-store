@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -21,21 +22,19 @@ export class LoginComponent implements OnInit {
   modalText: string;
   modalError: boolean;
 
+  isLoggedIn: boolean;
+  subscription: Subscription;
+
 
   constructor(private userService: UserService, private router: Router) {
-
+    this.subscription = this.userService.onLoginChange().subscribe(
+      (value => {
+      this.isLoggedIn = value;
+      })
+    );
   }
 
   ngOnInit(): void {
-  }
-
-  isLoggedIn(): boolean {
-    if (this.userService.isLoggedIn) {
-      setTimeout(() => {
-        this.router.navigate(['profile']);
-      }, 2000);
-    }
-    return this.userService.isLoggedIn;
   }
 
   onSubmit(): void {
@@ -48,7 +47,7 @@ export class LoginComponent implements OnInit {
       const enteredPassword = this.loginForm.get('password').value;
 
       this.userService.login(enteredEmail, enteredPassword).subscribe(res => {
-          this.userService.updateIsLoggedIn();
+          this.userService.updateLoginStatus();
           this.userService.updateFirstName();
 
           if (res.success === true) {

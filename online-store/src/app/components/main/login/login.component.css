@@ -15,3 +15,13 @@
     width: 45%;
   }
 }
+
+
+.login-btn {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.signup-link {
+  text-decoration: none;
+}

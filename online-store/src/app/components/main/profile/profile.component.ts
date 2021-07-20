@@ -32,6 +32,8 @@ export class ProfileComponent implements OnInit {
   modalText: string;
   modalError: boolean;
 
+  isLoggedIn: boolean;
+
   receipts: Receipt[];
   headers: TableHeader[] = [
     {
@@ -56,23 +58,20 @@ export class ProfileComponent implements OnInit {
     },
   ];
 
-  constructor(private UiService: UiService, private userService: UserService, private productService: ProductService, private router: Router) {
-    // make sure user is logged in before
-    if (!this.userService.isLoggedIn) {
-      this.router.navigate(['login']);
-    }
-
+  constructor(private UiService: UiService, private userService: UserService, private productService: ProductService,
+              private router: Router) {
     this.subscription = this.UiService.onTabChange().subscribe(
       (value) => (this.currentProfileStatus = value)
     );
 
-    this.userService.getUserInfo().subscribe(res => {
-      this.profileForm.get('firstName').setValue(res.firstName);
-      this.profileForm.get('lastName').setValue(res.lastName);
-      this.profileForm.get('address').setValue(res.address);
-      this.currentBalance = res.balance;
-    });
-
+    this.userService.onLoginChange().subscribe(
+      (value => {
+        this.isLoggedIn = value;
+        if(!value) {
+          router.navigate(['login']);
+        }
+      })
+    );
     this.productService.getReceipts().subscribe(res => {
         this.receipts = res;
     });
@@ -102,5 +101,12 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+      this.userService.getUserInfo().subscribe(res => {
+            this.profileForm.get('firstName').setValue(res.firstName);
+            this.profileForm.get('lastName').setValue(res.lastName);
+            this.profileForm.get('address').setValue(res.address);
+            this.currentBalance = res.balance;
+      });
+  }
 }

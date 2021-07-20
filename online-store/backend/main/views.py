@@ -5,7 +5,7 @@ from .models import Receipt
 
 def receipt_view(request):
     if request.method == "GET":
-        receipts = Receipt.objects.all()
+        receipts = Receipt.objects.filter(related_user=request.user)
         json_result = []
         for receipt in receipts:
             json_result.append({

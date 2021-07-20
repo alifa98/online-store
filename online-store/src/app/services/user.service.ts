@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 const httpOptions = {
@@ -16,17 +16,25 @@ export class UserService {
   isLoggedIn: boolean;
   firstName: string;
 
+  private loginStatus: boolean;
+  private loginSubject = new Subject<any>();
+
   constructor(private http: HttpClient) {
-      this.updateIsLoggedIn();
+      this.updateLoginStatus();
   }
 
-  updateIsLoggedIn(): void {
+  updateLoginStatus(): void {
     const url = `${this.apiUrl}login/`;
     const params = new HttpParams().set('is_authenticated', '1');
 
     this.http.get(url, {params}).subscribe(res => {
-        this.isLoggedIn = res['is_authenticated'];
+        this.loginStatus = res['is_authenticated'];
+        this.loginSubject.next(this.loginStatus);
     });
+  }
+
+  onLoginChange(): Observable<any> {
+    return this.loginSubject.asObservable();
   }
 
   updateFirstName(): void {
