@@ -28,6 +28,16 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  isLoggedIn(): boolean {
+    if (this.userService.isLoggedIn) {
+      setTimeout(() => {
+        this.router.navigate(['profile']);
+      }, 2000);
+    }
+    return this.userService.isLoggedIn;
+  }
+
   onSubmit(): void {
     if (this.loginForm.invalid) {
       this.modalText = 'لطفا فرم را به شکل صحیح پر کنید.';

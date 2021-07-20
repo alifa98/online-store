@@ -6,9 +6,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = '/api/';
+  private apiUrl = '/api/product';
 
   constructor(private http: HttpClient) { }
 
+  getReceipts(): Observable<any> {
+    const url = `${this.apiUrl}/receipt/`;
+    return this.http.get(url);
+  }
 
 }

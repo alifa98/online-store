@@ -1,4 +1,4 @@
-<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" *ngIf="!isLoggedIn()">
   <div class="signup-container">
     <h2 class="signup-container--title turquoise-blue">فروشگاه - ثبت نام</h2>
     <div class="signup-container--first-row" dir="rtl">
@@ -16,5 +16,9 @@
     <app-btn type="submit" classes="btn-gold" text="ثبت نام" class="signup-container--signup-button"></app-btn>
   </div>
 </form>
+
+<div class="signup-container">
+  <h2 class="signup-container--title turquoise-blue">شما در حال حاضر وارد سایت شده اید. انتقال به صفحه پروفایل...</h2>
+</div>
 
 <app-modal [showModal]="showModal" (modalClosed)="showModal = false" text="{{modalText}}" [error]="modalError"></app-modal>

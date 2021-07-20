@@ -6,6 +6,8 @@ import { Mock } from 'src/app/mockData';
 import { UiService } from 'src/app/services/ui.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
+import {ProductService} from '../../../services/product.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -30,7 +32,7 @@ export class ProfileComponent implements OnInit {
   modalText: string;
   modalError: boolean;
 
-  receipts: Receipt[] = Mock.getReceipts();
+  receipts: Receipt[];
   headers: TableHeader[] = [
     {
       key: 'trackingCode',
@@ -48,17 +50,31 @@ export class ProfileComponent implements OnInit {
       key: 'address',
       name: 'آدرس ارسال شده'
     },
+    {
+      key: 'state',
+      name: 'وضعیت'
+    },
   ];
 
-  constructor(private UiService: UiService, private userService: UserService) {
+  constructor(private UiService: UiService, private userService: UserService, private productService: ProductService, private router: Router) {
+    // make sure user is logged in before
+    if (!this.userService.isLoggedIn) {
+      this.router.navigate(['login']);
+    }
+
     this.subscription = this.UiService.onTabChange().subscribe(
       (value) => (this.currentProfileStatus = value)
     );
+
     this.userService.getUserInfo().subscribe(res => {
       this.profileForm.get('firstName').setValue(res.firstName);
       this.profileForm.get('lastName').setValue(res.lastName);
       this.profileForm.get('address').setValue(res.address);
       this.currentBalance = res.balance;
+    });
+
+    this.productService.getReceipts().subscribe(res => {
+        this.receipts = res;
     });
   }
 
