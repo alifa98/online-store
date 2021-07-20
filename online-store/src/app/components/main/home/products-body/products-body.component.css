@@ -36,3 +36,13 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.pagination-container {
+  margin-top: 10px;
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}

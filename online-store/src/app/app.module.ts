@@ -28,6 +28,7 @@ import { TomanPipe } from './pipes/toman.pipe';
 import { CheckboxItemComponent } from './components/main/checkbox-item/checkbox-item.component';
 import { AdminPanelComponent } from './components/main/admin-panel/admin-panel.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { PaginationComponent } from './components/main/pagination/pagination.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -62,7 +63,8 @@ const appRoutes: Routes = [
     TomanPipe,
     CheckboxItemComponent,
     AdminPanelComponent,
-    ModalComponent
+    ModalComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

@@ -68,3 +68,21 @@ hr {
 .d-none {
   display: none;
 }
+
+.gray-btn {
+  background: linear-gradient(rgb(230, 230, 230), rgb(207, 207, 207));
+  padding: 10px 10px;
+  border: 1px solid #999;
+  border-radius: 7px !important;
+  font-size: normal;
+  user-select: none;
+}
+
+.gray-btn:hover {
+  background: #CCC;
+}
+
+.gray-btn.active {
+  background: #BBB;
+  box-shadow: inset 0px 0px 5px #555;
+}

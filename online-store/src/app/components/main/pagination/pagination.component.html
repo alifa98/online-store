@@ -1,0 +1,10 @@
+<div class="pagination">
+
+  <app-btn [disabled]="currentPage == 1" classes='gray-btn {{ currentPage == 1 ? "disable": ""}} ' (onBtnClick)="loadProductPage(currentPage-1)" text="صفحه قبل"></app-btn>
+
+  <app-btn *ngFor="let number of getPagesNumbers()" (onBtnClick)="loadProductPage(number)" classes='gray-btn {{ currentPage==number ? "active":"" }}' text="{{number}}"> </app-btn>
+
+  <app-btn [disabled]="currentPage == getPagesNumbers().slice(-1)[0]" classes='gray-btn {{ currentPage == getPagesNumbers().slice(-1)[0] ? "disable": ""}}'
+    (onBtnClick)="loadProductPage(currentPage+1)" text="صفحه بعد"></app-btn>
+
+</div>
