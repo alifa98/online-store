@@ -12,10 +12,13 @@
     </div>
 
     <div class="products-flexitem">
-      <app-product-box *ngFor="let prod of products" imageAddress="{{prod.imgAddress}}" title="{{prod.name}}"
-                       category="{{prod.category}}" btnText="خرید محصول" price="{{prod.price}}"></app-product-box>
-    </div>
+      <app-product-box *ngFor="let prod of products" imageAddress="{{prod.imgAddress}}" title="{{prod.name}}" category="{{prod.category}}" btnText="خرید محصول" price="{{prod.price}}">
+      </app-product-box>
 
+      <app-pagination class="pagination-container" [totalItems]="count" [itemsPerPage]="productPerPage" [currentPage]="currentPage"></app-pagination>
+
+
+    </div>
   </div>
 
 

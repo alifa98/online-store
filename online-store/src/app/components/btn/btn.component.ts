@@ -10,10 +10,13 @@ export class BtnComponent implements OnInit {
 
   @Input() text: string;
   @Input() type: string;
+  @Input() disabled: boolean;
   @Input() classes: string;
   @Output() onBtnClick = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+    this.disabled = false;
+  }
 
   ngOnInit(): void {
   }

@@ -13,6 +13,10 @@ export class ProductsBodyComponent implements OnInit {
 
 
   products: Product[] = Mock.getProducts();
+  count: Number = 40;
+
+  productPerPage: Number = 15;
+  currentPage: Number = 1;
 
   ngOnInit(): void {
   }
