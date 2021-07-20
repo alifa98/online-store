@@ -22,6 +22,56 @@ def product_view(request):
         return JsonResponse({'success': False, 'error': 'درخواست نا معتبر'}, safe=False)
 
 
+def get_products_generic(request, perPage, currentPage, category_pk, search_text, sort_by):
+
+    products = Product.objects.all()
+
+    if category_pk is not None:
+        products = Product.objects.filter(category=category_pk)
+
+    if search_text is not None:
+        products = products.filter(name__icontains=search_text)
+
+    if sort_by is not None:
+        products = products.order_by(sort_by).reverse()
+
+    if perPage is None or perPage is None:
+        begin = 0
+        perPage = 10
+    else:
+        begin = ((currentPage - 1) * perPage)
+
+    presented_in_list = products
+    if(begin + perPage < products.count()):
+        presented_in_list = products[begin:begin + perPage]
+
+    json_result = []
+    products_json = []
+    for product in presented_in_list:
+        products_json.append({
+            'id': product.pk,
+            'name': product.name,
+            'price': product.price,
+            'category': product.category.name,
+            'image': product.image.url,
+            'soldAmount': product.sold_amount,
+            'availableAmount': product.available_amount
+        })
+
+    json_result.append({
+        "products": products_json,
+        "count": len(products),
+        "begin": begin
+    })
+
+    return JsonResponse(json_result, safe=False)
+
+
+def get_filtered_products(request):
+    if request.method == "POST":
+        return get_products_generic(request, int(request.POST.get('perPage')), int(request.POST.get('currentPage')), request.POST.get('category'), request.POST.get('name'), request.POST.get('sort'))
+
+
 def receipt_view(request):
     if request.method == "GET":
         receipts = Receipt.objects.filter(related_user=request.user)
@@ -44,8 +94,8 @@ def categories_view(request):
         json_result = []
         for category in categories:
             json_result.append({
-              'text': category.name,
-              'value': category.pk
+                'text': category.name,
+                'value': category.pk
             })
 
         return JsonResponse(json_result, safe=False)
