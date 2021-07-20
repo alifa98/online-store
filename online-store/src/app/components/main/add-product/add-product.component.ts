@@ -26,6 +26,7 @@ export class AddProductComponent implements OnInit {
   modalError: boolean;
 
   constructor(private userService: UserService, private productService: ProductService) {
+    this.userService.updateLoginStatus();
     this.userService.onLoginChange().subscribe(
       (value => {
         this.isLoggedIn = value;
