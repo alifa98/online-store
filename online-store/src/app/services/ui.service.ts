@@ -8,6 +8,9 @@ export class UiService {
   private profileTabStatus: string;
   private profileSubject = new Subject<any>();
 
+  private loginStatus: boolean;
+  private loginSubject = new Subject<any>();
+
   constructor() {}
 
   changeTabStatus(status): void {
@@ -18,4 +21,6 @@ export class UiService {
   onTabChange(): Observable<any> {
     return this.profileSubject.asObservable();
   }
+
+
 }

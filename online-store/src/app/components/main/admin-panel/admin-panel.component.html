@@ -7,7 +7,7 @@
   </div>
   <div class="admin-container--content">
     <div *ngIf="currentAdminStatus == 'لیست کالا ها'">
-      <app-btn classes="btn-blue" text="+ ایجاد محصول"></app-btn>
+      <app-btn classes="btn-blue" text="+ ایجاد محصول" routerLink="add_product" ></app-btn>
       <div class="admin-container--content--products">
         <app-product-box *ngFor="let prod of products" imageAddress="{{prod.imgAddress}}" title="{{prod.name}}"
                        category="{{prod.category}}" btnText="ویرایش محصول" price="{{prod.price}}" showSoldNumber="1">

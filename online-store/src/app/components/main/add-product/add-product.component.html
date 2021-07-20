@@ -1,0 +1,15 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" *ngIf="isLoggedIn">
+  <div class="add-product-container">
+      <h2 class="turquoise-blue">اضافه کردن محصول جدید</h2>
+      <app-site-input label="نام کالا" [control]="productForm.get('name')" type="text" placeholder="نام کالا را وارد کنید ..."></app-site-input>
+      <app-site-input-choice  [items]="categories" label="دسته بندی" [control]="productForm.get('category')"></app-site-input-choice>
+      <app-site-input label="قیمت" [control]="productForm.get('price')" type="text" placeholder="قیمت را وارد کنید ..."></app-site-input>
+    <label for="product-image">عکس کالا</label>
+      <input id="product-image" type="file"
+            (change)="onFileSelect($event)" accept="image/jpeg">
+      <app-btn classes="btn-gold" class="my-5" text="ایجاد محصول"></app-btn>
+  </div>
+</form>
+
+
+<app-modal [showModal]="showModal" (modalClosed)="showModal = false" text="{{modalText}}" [error]="modalError"></app-modal>

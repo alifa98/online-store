@@ -1,12 +1,10 @@
 from django.http import JsonResponse, QueryDict
 from django.contrib.auth import authenticate, login, logout
-from django.views.decorators.csrf import csrf_exempt
 
 from .models import User
 from .utils import *
 
 
-@csrf_exempt
 def login_view(request):
     if request.method == "POST":
         if 'login' in request.POST:
@@ -30,7 +28,6 @@ def login_view(request):
             return JsonResponse({'is_authenticated': request.user.is_authenticated})
 
 
-@csrf_exempt
 def sign_up_view(request):
     if request.method == "POST":
         if 'signup' in request.POST:
@@ -57,7 +54,6 @@ def sign_up_view(request):
                 return JsonResponse({'success': False, 'error': 'فرمت ورودی اشتباه است'})
 
 
-@csrf_exempt
 def info(request):
     if request.method == "GET":
         result = {

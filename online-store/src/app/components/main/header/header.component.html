@@ -4,14 +4,14 @@
   <li class="menu-item"> <a [routerLink]="['contact-us']">تماس با ما</a></li>
   <li class="menu-item"> <a [routerLink]="['support']">پشتیبانی</a></li>
   <li class="menu-item"> <a [routerLink]="['products']">محصولات</a></li>
-  <li *ngIf="responsive && !isLoggedIn()" class="menu-item"><a [routerLink]="['login']">ورود / ثبت نام</a></li>
-  <li *ngIf="responsive && isLoggedIn()" class="menu-item"><a [routerLink]="['profile']">پروفایل</a></li>
-  <li *ngIf="responsive && isLoggedIn()" class="menu-item"><a (click)="logout()">خروج از حساب</a></li>
+  <li *ngIf="responsive && !isLoggedIn" class="menu-item"><a [routerLink]="['login']">ورود / ثبت نام</a></li>
+  <li *ngIf="responsive && isLoggedIn" class="menu-item"><a [routerLink]="['profile']">پروفایل</a></li>
+  <li *ngIf="responsive && isLoggedIn" class="menu-item"><a (click)="logout()">خروج از حساب</a></li>
 
   <a class="barIcon" (click)="responsive = !responsive">
     <fa-icon [icon]="faBarsIcon"></fa-icon>
   </a>
-  <div *ngIf="isLoggedIn()" class="menu-item end dropdown" [ngClass]="{'gold-bg': onDropDown}">
+  <div *ngIf="isLoggedIn" class="menu-item end dropdown" [ngClass]="{'gold-bg': onDropDown}">
     <div class="menu-item--content">
       <span>{{getFirstName()}}</span>
       <fa-icon [icon]="faCaretDownIcon"></fa-icon>
@@ -28,5 +28,5 @@
     </div>
   </div>
 
-  <li *ngIf="!isLoggedIn()" class="menu-item end"> <a class="menu-item--content" [routerLink]="['login']">ورود / ثبت نام</a></li>
+  <li *ngIf="!isLoggedIn" class="menu-item end"> <a class="menu-item--content" [routerLink]="['login']">ورود / ثبت نام</a></li>
 </ul>

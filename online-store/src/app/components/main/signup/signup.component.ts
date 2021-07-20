@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
-import {Route, Router} from '@angular/router';
+import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-signup',
@@ -20,22 +21,23 @@ export class SignupComponent implements OnInit {
     address: new FormControl('', [Validators.required, Validators.maxLength(1000)]),
   });
 
+  // modal
   showModal = false;
   modalText: string;
   modalError: boolean;
 
-  constructor(private userService: UserService, private router: Router) { }
+  isLoggedIn: boolean;
+  subscription: Subscription;
 
-  ngOnInit(): void {
+  constructor(private userService: UserService, private router: Router) {
+    this.subscription = this.userService.onLoginChange().subscribe(
+      (value => {
+      this.isLoggedIn = value;
+      })
+    );
   }
 
-  isLoggedIn(): boolean {
-    if (this.userService.isLoggedIn) {
-      setTimeout(() => {
-        this.router.navigate(['profile']);
-      }, 2000);
-    }
-    return this.userService.isLoggedIn;
+  ngOnInit(): void {
   }
 
   onSubmit(): void {
@@ -47,7 +49,7 @@ export class SignupComponent implements OnInit {
       this.userService.signup(this.signUpForm.get('email').value, this.signUpForm.get('password').value,
         this.signUpForm.get('firstName').value, this.signUpForm.get('lastName').value, this.signUpForm.get('address').value)
         .subscribe(res => {
-          this.userService.updateIsLoggedIn();
+          this.userService.updateLoginStatus();
           if (res.success) {
             this.modalText = 'ثبت نام با موفقیت انجام شد. انتقال به صفحه پروفایل';
             this.modalError = false;

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django_common.auth_backends import User
 
 
 class Category(models.Model):
@@ -33,6 +34,7 @@ receipt_state = [
 
 
 class Receipt(models.Model):
+    related_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=False)
     product_name = models.CharField(max_length=200)
     sold_amount = models.IntegerField(default=0)
     buyer_full_name = models.CharField(max_length=300)
