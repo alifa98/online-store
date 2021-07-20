@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { interval } from 'rxjs';
-
+import { faArrowLeft, faArrowRight, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-hero-header',
   templateUrl: './hero-header.component.html',
@@ -12,6 +11,8 @@ export class HeroHeaderComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  arrowRight: IconDefinition = faArrowRight;
+  arrowLeft: IconDefinition = faArrowLeft;
 
   sliderImages = [
     "https://images.unsplash.com/photo-1542293787938-c9e299b880cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950",
