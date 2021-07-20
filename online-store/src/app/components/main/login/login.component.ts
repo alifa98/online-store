@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,38 +21,47 @@ export class LoginComponent implements OnInit {
   modalText: string;
   modalError: boolean;
 
-  mockCredentials = [
-    {
-      email: 'johndoe@test.com',
-      password: 'test1234'
-    },
-    {
-      email: 'janedoe@test.com',
-      password: 'test1234'
-    }
-  ];
 
-  constructor() { }
+  constructor(private userService: UserService, private router: Router) {
+
+  }
 
   ngOnInit(): void {
   }
+
+  isLoggedIn(): boolean {
+    if (this.userService.isLoggedIn) {
+      setTimeout(() => {
+        this.router.navigate(['profile']);
+      }, 2000);
+    }
+    return this.userService.isLoggedIn;
+  }
+
   onSubmit(): void {
     if (this.loginForm.invalid) {
       this.modalText = 'لطفا فرم را به شکل صحیح پر کنید.';
       this.modalError = true;
     }
     else {
-      this.modalText = 'ایمیل یا رمزعبور اشتباه می باشد.';
-      this.modalError = true;
-
       const enteredEmail = this.loginForm.get('email').value;
       const enteredPassword = this.loginForm.get('password').value;
 
-      this.mockCredentials.forEach(credential => {
-        if (enteredEmail === credential.email && enteredPassword === credential.password) {
-          this.modalText = 'ورود با موفقیت انجام شد.';
-          this.modalError = false;
-        }
+      this.userService.login(enteredEmail, enteredPassword).subscribe(res => {
+          this.userService.updateIsLoggedIn();
+          this.userService.updateFirstName();
+
+          if (res.success === true) {
+            this.modalText = 'ورود با موفقیت انجام شد. انتقال به صفحه پروفایل';
+            this.modalError = false;
+            setTimeout(() => {
+              this.router.navigate(['profile']);
+            }, 2000);
+          }
+          else {
+            this.modalText = res.error;
+            this.modalError = true;
+          }
       });
     }
 

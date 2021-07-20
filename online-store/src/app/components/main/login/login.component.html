@@ -1,10 +1,15 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div class="login-container" >
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" *ngIf="!isLoggedIn()">
+  <div class="login-container">
       <h2 class="turquoise-blue">فروشگاه - ورود</h2>
       <app-site-input label="ایمیل" [control]="loginForm.get('email')" type="email" placeholder="ایمیل خود را وارد کنید..."></app-site-input>
       <app-site-input label="رمز عبور" [control]="loginForm.get('password')" type="password" placeholder="رمز عبور خود را وارد کنید..."></app-site-input>
       <app-btn classes="btn-gold" text="ورود"></app-btn>
   </div>
 </form>
+
+<div class="login-container" *ngIf="isLoggedIn()">
+  <h2 class="turquoise-blue">شما در حال حاضر وارد سایت شده اید. انتقال به صفحه پروفایل...</h2>
+</div>
+
 
 <app-modal [showModal]="showModal" (modalClosed)="showModal = false" text="{{modalText}}" [error]="modalError"></app-modal>

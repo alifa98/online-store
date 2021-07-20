@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../../services/user.service';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -22,11 +24,18 @@ export class SignupComponent implements OnInit {
   modalText: string;
   modalError: boolean;
 
-  mockEmails = ['test@test.com', 'johndoe@test.com', 'janedoe@test.com'];
-
-  constructor() { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  isLoggedIn(): boolean {
+    if (this.userService.isLoggedIn) {
+      setTimeout(() => {
+        this.router.navigate(['profile']);
+      }, 2000);
+    }
+    return this.userService.isLoggedIn;
   }
 
   onSubmit(): void {
@@ -35,15 +44,22 @@ export class SignupComponent implements OnInit {
       this.modalError = true;
     }
     else {
-      const enteredEmail = this.signUpForm.get('email').value;
-      if (this.mockEmails.includes(enteredEmail)) {
-        this.modalText = 'ایمیل وارد شده تکراری می باشد. لطفا با ایمیل جدید امتحان کنید.';
-        this.modalError = true;
-      }
-      else {
-        this.modalText = 'ثبت نام با موفقیت انجام شد.';
-        this.modalError = false;
-      }
+      this.userService.signup(this.signUpForm.get('email').value, this.signUpForm.get('password').value,
+        this.signUpForm.get('firstName').value, this.signUpForm.get('lastName').value, this.signUpForm.get('address').value)
+        .subscribe(res => {
+          this.userService.updateIsLoggedIn();
+          if (res.success) {
+            this.modalText = 'ثبت نام با موفقیت انجام شد. انتقال به صفحه پروفایل';
+            this.modalError = false;
+            setTimeout(() => {
+              this.router.navigate(['profile']);
+            }, 2000);
+          }
+          else {
+            this.modalText = res.error;
+            this.modalError = true;
+          }
+        });
     }
 
     this.showModal = true;

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/main/login/login.component';
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
   { path: 'admin', component: AdminPanelComponent },
 ];
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +68,7 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
     ReactiveFormsModule,
+    HttpClientModule,
     FontAwesomeModule,
   ],
   providers: [],

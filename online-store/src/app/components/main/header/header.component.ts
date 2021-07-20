@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Mock } from 'src/app/mockData';
 import { faCaretDown, faBars } from '@fortawesome/free-solid-svg-icons';
+import {UserService} from '../../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,16 +13,29 @@ export class HeaderComponent implements OnInit {
   onDropDown = false;
   responsive = false;
 
-  constructor() { }
-  name: string = Mock.getName();
+  constructor(private userService: UserService, private router: Router) {
+    this.userService.updateFirstName();
+  }
   faCaretDownIcon = faCaretDown;
   faBarsIcon = faBars;
-
-  isLoggedIn(): boolean {
-    return true;
-  }
 
   ngOnInit(): void {
   }
 
+  isLoggedIn(): boolean {
+    return this.userService.isLoggedIn;
+  }
+
+  getFirstName(): string {
+    return this.userService.firstName;
+  }
+
+  logout(): void {
+    this.userService.logout().subscribe(res => {
+      this.userService.updateIsLoggedIn();
+      if (res.success) {
+        this.router.navigate(['']);
+      }
+    });
+  }
 }
