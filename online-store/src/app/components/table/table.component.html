@@ -1,6 +1,6 @@
 <div class="table-container">
   <div class="table-container--white-box">
-    <table>
+    <table *ngIf="items.length > 0">
       <thead>
         <tr>
           <th *ngFor="let header of headers">{{header.name}}</th>
@@ -18,5 +18,6 @@
         </tr>
       </tbody>
     </table>
+    <p *ngIf="items.length == 0">هیچ آیتمی موجود نمی باشد.</p>
   </div>
 </div>
