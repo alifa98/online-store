@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { ProductFiltering } from '../interface/ProductFiltering';
 
 const httpOptions = {
@@ -20,6 +20,18 @@ export class ProductService {
   getReceipts(): Observable<any> {
     const url = `${this.apiUrl}/receipt/`;
     return this.http.get(url);
+  }
+
+  getAllReceipts(): Observable<any> {
+    const url = `${this.apiUrl}/receipt/`;
+    const params = new HttpParams().set('all', '1');
+    return this.http.get(url, { params });
+  }
+
+  getSearchedReceipts(searchValue): Observable<any> {
+    const url = `${this.apiUrl}/receipt/`;
+    const params = new HttpParams().set('search', searchValue);
+    return this.http.get(url, { params });
   }
 
   getCategories(): Observable<any> {

@@ -84,7 +84,17 @@ def get_filtered_products(request):
 
 def receipt_view(request):
     if request.method == "GET":
-        receipts = Receipt.objects.filter(related_user=request.user)
+        if 'all' in request.GET:
+            if request.user.is_superuser:  # admin permission
+                receipts = Receipt.objects.all()
+            else:
+                return JsonResponse({'success': False, 'error': 'شما دسترسی ندارید'}, safe=False)
+        elif 'search' in request.GET:
+            search_value = request.GET.get('search')
+            receipts = Receipt.objects.filter(tracking_code__icontains=search_value)
+        else:
+            receipts = Receipt.objects.filter(related_user=request.user)
+
         json_result = []
         for receipt in receipts:
             json_result.append({
