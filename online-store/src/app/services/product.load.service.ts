@@ -45,7 +45,7 @@ export class ProductLoaderService {
     const formData = new FormData();
     formData.append('name', filtering.name);
     if (filtering.categories != null) {
-      formData.append('category', filtering.categories.toString());
+      formData.append('category', JSON.stringify(filtering.categories));
     }
     if (filtering.maxPrice != null) {
       formData.append('maxPrice', filtering.maxPrice.toString());
@@ -57,7 +57,6 @@ export class ProductLoaderService {
     }
     return this.http.post(`${this.apiUrl}/list/`, formData);
   }
-
 
 
   loadProducts(): void {

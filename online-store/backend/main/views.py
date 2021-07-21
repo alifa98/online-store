@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from .models import Receipt, Category, Product
+from django.db.models.query_utils import Q
 
 
 def product_view(request):
@@ -22,15 +23,16 @@ def product_view(request):
         return JsonResponse({'success': False, 'error': 'درخواست نا معتبر'}, safe=False)
 
 
-def get_products_generic(request, perPage, currentPage, category_pk, search_text, sort_by, maxPrice):
+def get_products_generic(request, perPage, currentPage, categories, search_text, sort_by, maxPrice):
 
     products = Product.objects.all()
 
     if maxPrice is not None and maxPrice != '':
         products = products.filter(price__lte=maxPrice)
 
-    if category_pk is not None:
-        products = Product.objects.filter(category=category_pk)
+    if categories is not None and len(categories) > 0:
+        categories_pk_list = [int(x.strip()) for x in categories.strip('][').split(',')]
+        products = products.filter(category__id__in=categories_pk_list)
 
     if search_text is not None and maxPrice != '':
         products = products.filter(name__icontains=search_text)
