@@ -26,16 +26,16 @@ def get_products_generic(request, perPage, currentPage, category_pk, search_text
 
     products = Product.objects.all()
 
-    if maxPrice is not None:
+    if maxPrice is not None and maxPrice != '':
         products = products.filter(price__lte=maxPrice)
 
     if category_pk is not None:
         products = Product.objects.filter(category=category_pk)
 
-    if search_text is not None:
+    if search_text is not None and maxPrice != '':
         products = products.filter(name__icontains=search_text)
 
-    if sort_by is not None:
+    if sort_by is not None and maxPrice != '':
         products = products.order_by(sort_by).reverse()
 
     if perPage is None or perPage is None:

@@ -75,4 +75,8 @@ export class ProductLoaderService {
     this.productFilter.currentPage = page;
   }
 
+  updateProductsSortByInFiltering(sortType: string): void {
+    this.productFilter.sortBy = sortType;
+  }
+
 }
