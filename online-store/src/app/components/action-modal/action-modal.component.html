@@ -1,0 +1,14 @@
+<div class="actionModal">
+
+  <div class="action" *ngIf='action == "buy" '>
+
+    <input class="modal-input" type="text">
+    <br>
+    <app-btn (onBtnClick)="onClose($event)" classes="btn-red" text="انصراف"></app-btn>
+    <app-btn (onBtnClick)="buy()" classes="btn-blue" text="خرید"></app-btn>
+
+  </div>
+
+
+
+</div>

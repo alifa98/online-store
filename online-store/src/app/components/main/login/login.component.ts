@@ -55,9 +55,16 @@ export class LoginComponent implements OnInit {
           if (res.success === true) {
             this.modalText = 'ورود با موفقیت انجام شد. انتقال به صفحه پروفایل';
             this.modalError = false;
-            setTimeout(() => {
-              this.router.navigate(['profile']);
-            }, 2000);
+             if (res.is_admin) {
+                setTimeout(() => {
+                  this.router.navigate(['admin']);
+                  }, 2000);
+             }
+             else {
+                setTimeout(() => {
+                  this.router.navigate(['profile']);
+                  }, 2000);
+             }
           }
           else {
             this.modalText = res.error;

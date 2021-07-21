@@ -33,6 +33,7 @@ import { AddProductComponent } from './components/main/add-product/add-product.c
 import { SiteInputChoiceComponent } from './components/site-input-choice/site-input-choice.component';
 import { SupportComponent } from './components/main/support/support.component';
 import { ContactComponent } from './components/main/contact/contact.component';
+import { ActionModalComponent } from './components/action-modal/action-modal.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -75,7 +76,8 @@ const appRoutes: Routes = [
     AddProductComponent,
     SiteInputChoiceComponent,
     SupportComponent,
-    ContactComponent
+    ContactComponent,
+    ActionModalComponent
   ],
   imports: [
     BrowserModule,

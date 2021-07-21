@@ -16,8 +16,11 @@
     </div>
 
     <div *ngIf="count !=0" class="products-flexitem" id="product">
-      <app-product-box *ngFor="let prod of products" imageAddress="{{prod.imgAddress}}" title="{{prod.name}}" category="{{prod.category}}" btnText="خرید محصول" price="{{prod.price}}">
+      <app-product-box *ngFor="let prod of products" imageAddress="{{prod.imgAddress}}" title="{{prod.name}}" category="{{prod.category}}" btnText="خرید محصول" price="{{prod.price}}"
+        (onBtnClick)="showBuyingModal(prod.id)">
       </app-product-box>
+
+      <action-modal *ngIf="showModal" (closeBtn)="closeModal()" action="buy" [data]="selectedProductId"></action-modal>
 
       <app-pagination class="pagination-container" [totalItems]="count" [itemsPerPage]="productPerPage" [currentPage]="currentPage"></app-pagination>
     </div>

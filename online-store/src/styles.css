@@ -94,3 +94,14 @@ hr {
   background: #BBB;
   box-shadow: inset 0px 0px 5px #555;
 }
+
+.btn-red {
+  background-color: red;
+  box-shadow: 0 0 5px#d3651b;
+  padding: 5px 10px;
+  color: white;
+}
+
+.btn-red:hover {
+  background-color: #ff3c00;
+}

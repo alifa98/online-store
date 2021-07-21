@@ -12,7 +12,7 @@ export class BtnComponent implements OnInit {
   @Input() type: string;
   @Input() disabled: boolean;
   @Input() classes: string;
-  @Output() onBtnClick = new EventEmitter();
+  @Output() onBtnClick = new EventEmitter<any>();
 
   constructor() {
     this.disabled = false;
@@ -21,8 +21,8 @@ export class BtnComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @HostListener('click') onClick() {
-    this.onBtnClick.emit();
+  onClick(e) {
+    this.onBtnClick.emit(e);
   }
 
 }

@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/interface/Product';
 import { ProductFiltering } from 'src/app/interface/ProductFiltering';
@@ -12,7 +13,8 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductsBodyComponent implements OnInit {
 
-
+  selectedProductId: number;
+  showModal: boolean = false;
 
   productPerPage: number = 15;
   currentPage: number = 1;
@@ -36,5 +38,15 @@ export class ProductsBodyComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
+  showBuyingModal(id) {
+    this.selectedProductId = id;
+    this.showModal = true;
+  }
+  closeModal() {
+    this.showModal = false;
+  }
+
 
 }
