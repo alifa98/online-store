@@ -21,7 +21,7 @@
     </div>
     <div *ngIf="currentAdminStatus == 'رسید ها'">
       <div class="admin-container--content--search">
-        <form [formGroup]="trackingCodeForm">
+        <form [formGroup]="trackingCodeForm" (ngSubmit)="onSearch()">
           <app-site-input label="جستجوی کد پیگیری" placeholder="کد پیگیری را برای جستجو وارد کنید..."
                           stretchLabel="1" [control]="trackingCodeForm.get('trackingCode')"></app-site-input>
         </form>

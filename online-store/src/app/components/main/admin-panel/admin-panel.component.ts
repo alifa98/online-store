@@ -7,6 +7,7 @@ import { TableHeader } from '../../../interface/TableHeaders';
 import { Category } from 'src/app/interface/category';
 import {Product} from '../../../interface/Product';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ProductService} from '../../../services/product.service';
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',
@@ -48,12 +49,22 @@ export class AdminPanelComponent implements OnInit {
 
   products: Product[] = Mock.getProducts();
 
-  constructor(private uiService: UiService) {
+  constructor(private uiService: UiService, private productService: ProductService) {
     this.subscription = this.uiService.onTabChange().subscribe(
       (value => {
         this.currentAdminStatus = value;
       })
     );
+
+    this.productService.getAllReceipts().subscribe(res => {
+        this.receipts = res;
+    });
+  }
+
+  onSearch(): void {
+    this.productService.getSearchedReceipts(this.trackingCodeForm.get('trackingCode').value).subscribe(res => {
+       this.receipts = res;
+    });
   }
 
   ngOnInit(): void {
