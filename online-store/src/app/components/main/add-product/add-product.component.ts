@@ -27,6 +27,7 @@ export class AddProductComponent implements OnInit {
 
   constructor(private userService: UserService, private productService: ProductService) {
     this.userService.updateLoginStatus();
+    this.userService.updateAdminStatus();
     this.userService.onLoginChange().subscribe(
       (value => {
         this.isLoggedIn = value;

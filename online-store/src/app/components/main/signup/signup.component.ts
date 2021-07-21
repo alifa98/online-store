@@ -50,6 +50,7 @@ export class SignupComponent implements OnInit {
         this.signUpForm.get('firstName').value, this.signUpForm.get('lastName').value, this.signUpForm.get('address').value)
         .subscribe(res => {
           this.userService.updateLoginStatus();
+          this.userService.updateAdminStatus();
           if (res.success) {
             this.modalText = 'ثبت نام با موفقیت انجام شد. انتقال به صفحه پروفایل';
             this.modalError = false;
