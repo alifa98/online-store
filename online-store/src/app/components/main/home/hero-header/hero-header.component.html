@@ -4,12 +4,12 @@
     <div class="slider-btn" (click)="nextImage()">
       <fa-icon [icon]="arrowRight"></fa-icon>
     </div>
-    <input type="text" placeholder="نام محصول خود را وارد کنید..." name="name" id="hero-header-serach-input">
+    <input type="text" placeholder="نام محصول خود را وارد کنید..." name="name" id="hero-header-serach-input" #headerSearchInput>
     <div class="slider-btn" (click)="previousImage()">
       <fa-icon [icon]="arrowLeft"></fa-icon>
     </div>
   </div>
   <div class="hero-header--search-button">
-    <app-btn classes="btn-gold" text="جستوجو کنید"></app-btn>
+    <app-btn classes="btn-gold" (click)="loadProductBySearch()" text="جستوجو کنید"></app-btn>
   </div>
 </div>

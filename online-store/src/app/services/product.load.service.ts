@@ -83,4 +83,10 @@ export class ProductLoaderService {
     this.productFilter.maxPrice = price;
   }
 
+  updateProductsSerarchTextInFiltering(txt: string): void {
+    this.productFilter.name = txt;
+  }
+
+
+
 }

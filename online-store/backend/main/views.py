@@ -36,7 +36,12 @@ def get_products_generic(request, perPage, currentPage, category_pk, search_text
         products = products.filter(name__icontains=search_text)
 
     if sort_by is not None and maxPrice != '':
-        products = products.order_by(sort_by).reverse()
+        if sort_by == 'price_reverse':
+            products = products.order_by('price')
+        else:
+            products = products.order_by(sort_by).reverse()
+    else:
+        products = products.order_by("sold_amount").reverse()
 
     if perPage is None or perPage is None:
         begin = 0

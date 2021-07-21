@@ -2,6 +2,8 @@
   مرتب سازی بر اساس:
 
   <app-btn classes='{{ activeSort == "sold_amount"? "btn-blue":"" }}' (click)='loadProductSortedBy("sold_amount")' text="بیشترین فروش"></app-btn>
-  <app-btn classes='{{ activeSort == "price"? "btn-blue":"" }}' (click)='loadProductSortedBy("price")' text="قیمت"></app-btn>
+  <app-btn classes='{{ activeSort == "price"? "btn-blue":"" }}' (click)='loadProductSortedBy("price")' text="بیشترین قیمت"></app-btn>
+  <app-btn classes='{{ activeSort == "price_reverse"? "btn-blue":"" }}' (click)='loadProductSortedBy("price_reverse")' text="کمترین قیمت"></app-btn>
+  <app-btn classes='{{ activeSort == "id"? "btn-blue":"" }}' (click)='loadProductSortedBy("id")' text="جدیدترین"></app-btn>
 
 </div>

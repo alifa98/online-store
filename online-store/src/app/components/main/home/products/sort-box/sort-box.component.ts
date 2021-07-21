@@ -11,6 +11,8 @@ export class SortBoxComponent implements OnInit {
   activeSort: string = '';
 
   constructor(private productLoaderService: ProductLoaderService) {
+
+    this.activeSort = 'sold_amount'
   }
 
   ngOnInit(): void {
@@ -19,7 +21,6 @@ export class SortBoxComponent implements OnInit {
 
 
   loadProductSortedBy(sortType: string): void {
-
     if (sortType == this.activeSort) {
       this.activeSort = null;
     } else {
