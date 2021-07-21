@@ -31,9 +31,13 @@ import { ModalComponent } from './components/modal/modal.component';
 import { PaginationComponent } from './components/main/pagination/pagination.component';
 import { AddProductComponent } from './components/main/add-product/add-product.component';
 import { SiteInputChoiceComponent } from './components/site-input-choice/site-input-choice.component';
+import { SupportComponent } from './components/main/support/support.component';
+import { ContactComponent } from './components/main/contact/contact.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'contact-us', component: ContactComponent },
+  { path: 'support', component: SupportComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'profile', component: ProfileComponent },
@@ -69,7 +73,9 @@ const appRoutes: Routes = [
     ModalComponent,
     PaginationComponent,
     AddProductComponent,
-    SiteInputChoiceComponent
+    SiteInputChoiceComponent,
+    SupportComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
