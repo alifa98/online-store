@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ProductFiltering } from '../interface/ProductFiltering';
 
 const httpOptions = {
   headers: new HttpHeaders({

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ProductLoaderService } from 'src/app/services/product.load.service';
 
 @Component({
   selector: 'app-pagination',
@@ -7,8 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PaginationComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private productLoaderService: ProductLoaderService) {
+  }
   @Input() totalItems: number;
   @Input() itemsPerPage: number;
   @Input() currentPage: number;
@@ -18,9 +19,9 @@ export class PaginationComponent implements OnInit {
   }
 
   loadProductPage(pageNumber: number) {
-    alert(pageNumber);
+    this.productLoaderService.updateProductsPageInFiltering(pageNumber);
+    this.productLoaderService.loadProducts()
   }
-
   ngOnInit(): void {
   }
 

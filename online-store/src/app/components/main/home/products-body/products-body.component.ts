@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/interface/Product';
+import { ProductFiltering } from 'src/app/interface/ProductFiltering';
 import { Mock } from 'src/app/mockData';
+import { ProductLoaderService } from 'src/app/services/product.load.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-products-body',
@@ -9,14 +12,27 @@ import { Mock } from 'src/app/mockData';
 })
 export class ProductsBodyComponent implements OnInit {
 
-  constructor() { }
 
 
-  products: Product[] = Mock.getProducts();
-  count: Number = 40;
+  productPerPage: number = 15;
+  currentPage: number = 1;
+  count: number = 40;
 
-  productPerPage: Number = 15;
-  currentPage: Number = 1;
+  products: Product[];
+
+  constructor(private productLoaderService: ProductLoaderService) {
+    productLoaderService.loadProducts();
+
+    this.productLoaderService.onProductFilteringChange().subscribe(
+      (result) => {
+        this.products = result[0].products
+        this.currentPage = productLoaderService.currentPage;
+        this.count = productLoaderService.count;
+        this.productPerPage = productLoaderService.productPerPage;
+      }
+    );
+
+  }
 
   ngOnInit(): void {
   }

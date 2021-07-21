@@ -45,7 +45,7 @@ def get_products_generic(request, perPage, currentPage, category_pk, search_text
         begin = ((currentPage - 1) * perPage)
 
     presented_in_list = products
-    if(begin + perPage < products.count()):
+    if(begin < products.count()):
         presented_in_list = products[begin:begin + perPage]
 
     json_result = []
@@ -56,7 +56,7 @@ def get_products_generic(request, perPage, currentPage, category_pk, search_text
             'name': product.name,
             'price': product.price,
             'category': product.category.name,
-            'image': product.image.url,
+            'imgAddress': product.image.url,
             'soldAmount': product.sold_amount,
             'availableAmount': product.available_amount
         })

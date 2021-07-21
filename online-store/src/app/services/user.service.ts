@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Observable, Subject} from 'rxjs';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,16 +20,16 @@ export class UserService {
   private loginSubject = new Subject<any>();
 
   constructor(private http: HttpClient) {
-      this.updateLoginStatus();
+    this.updateLoginStatus();
   }
 
   updateLoginStatus(): void {
     const url = `${this.apiUrl}login/`;
     const params = new HttpParams().set('is_authenticated', '1');
 
-    this.http.get(url, {params}).subscribe(res => {
-        this.loginStatus = res['is_authenticated'];
-        this.loginSubject.next(this.loginStatus);
+    this.http.get(url, { params }).subscribe(res => {
+      this.loginStatus = res['is_authenticated'];
+      this.loginSubject.next(this.loginStatus);
     });
   }
 
