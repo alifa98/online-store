@@ -11,7 +11,7 @@ export class UiService {
   private loginStatus: boolean;
   private loginSubject = new Subject<any>();
 
-  constructor() {}
+  constructor() { }
 
   changeTabStatus(status): void {
     this.profileTabStatus = status;

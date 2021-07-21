@@ -22,9 +22,12 @@ def product_view(request):
         return JsonResponse({'success': False, 'error': 'درخواست نا معتبر'}, safe=False)
 
 
-def get_products_generic(request, perPage, currentPage, category_pk, search_text, sort_by):
+def get_products_generic(request, perPage, currentPage, category_pk, search_text, sort_by, maxPrice):
 
     products = Product.objects.all()
+
+    if maxPrice is not None:
+        products = products.filter(price__lte=maxPrice)
 
     if category_pk is not None:
         products = Product.objects.filter(category=category_pk)
@@ -69,7 +72,7 @@ def get_products_generic(request, perPage, currentPage, category_pk, search_text
 
 def get_filtered_products(request):
     if request.method == "POST":
-        return get_products_generic(request, int(request.POST.get('perPage')), int(request.POST.get('currentPage')), request.POST.get('category'), request.POST.get('name'), request.POST.get('sort'))
+        return get_products_generic(request, int(request.POST.get('perPage')), int(request.POST.get('currentPage')), request.POST.get('category'), request.POST.get('name'), request.POST.get('sortBy'), request.POST.get('maxPrice'))
 
 
 def receipt_view(request):
