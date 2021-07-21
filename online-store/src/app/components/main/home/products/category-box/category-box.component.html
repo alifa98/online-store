@@ -3,7 +3,7 @@
   <hr>
 
   <div class="scroll">
-    <app-checkbox-item name="category" *ngFor="let item of categories" label="{{item.categoryName}}" [value]="item.id"></app-checkbox-item>
+    <app-checkbox-item *ngFor="let item of categories" (click)="toggleCategory(item.id)" name="category" label="{{item.text}}" [value]="item.id"></app-checkbox-item>
   </div>
 
 </div>
