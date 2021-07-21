@@ -58,19 +58,28 @@ def sign_up_view(request):
 
 def info(request):
     if request.method == "GET":
-        result = {
-            'firstName': request.user.first_name,
-            'lastName': request.user.last_name,
-            'address': request.user.address,
-            'balance': request.user.credit
-        }
+        if request.user.is_authenticated:
+            result = {
+                'firstName': request.user.first_name,
+                'lastName': request.user.last_name,
+                'address': request.user.address,
+                'balance': request.user.credit
+            }
+        else:
+            result = {
+              'success': False,
+              'error': "بایستی ابتدا ورود کنید."
+            }
         return JsonResponse(result)
 
     if request.method == "POST":
         if 'increase_credit' in request.POST:
-            request.user.credit += 10000
-            request.user.save()
-            return JsonResponse({'success': True})
+            if request.user.is_authenticated:
+                request.user.credit += 10000
+                request.user.save()
+                return JsonResponse({'success': True})
+            else:
+                return JsonResponse({'success': False, 'error': 'بایستی ابتدا ورود کنید.'})
 
     if request.method == "PUT":
         if not request.user.is_authenticated:

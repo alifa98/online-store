@@ -44,8 +44,7 @@ export class CategoryBoxComponent implements OnInit {
 
     this.productLoaderService.currentPage = 1;
     this.productLoaderService.updateProductsCategoresInFiltering(toBeSentCategories);
-
-    this.productLoaderService.loadProducts()
+    this.productLoaderService.loadProducts();
   }
 
 
