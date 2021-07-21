@@ -7,28 +7,31 @@
   </div>
   <div class="admin-container--content">
     <div *ngIf="currentAdminStatus == 'لیست کالا ها'">
-      <app-btn classes="btn-blue" text="+ ایجاد محصول" routerLink="add_product" ></app-btn>
+      <app-btn classes="btn-blue" text="+ ایجاد محصول" routerLink="add_product"></app-btn>
       <div class="admin-container--content--products">
-        <app-product-box *ngFor="let prod of products" imageAddress="{{prod.imgAddress}}" title="{{prod.name}}"
-                       category="{{prod.category}}" btnText="ویرایش محصول" price="{{prod.price}}" showSoldNumber="1">
-
+        <app-product-box *ngFor="let prod of products" imageAddress="{{prod.imgAddress}}" title="{{prod.name}}" category="{{prod.category}}" btnText="ویرایش محصول" price="{{prod.price}}"
+          showSoldNumber="1" [soldAmount]="prod.soldAmount" (onBtnClick)="showEditProduct(prod)">
         </app-product-box>
+
       </div>
+      <app-pagination class="pagination-container" [totalItems]="count" [itemsPerPage]="productPerPage" [currentPage]="currentPage"></app-pagination>
     </div>
 
     <div *ngIf="currentAdminStatus == 'لیست دسته'">
-      <app-table [headers]="categoryHeaders" [items]="categories" editText="ویرایش دسته بندی"
-                 deleteText="X حذف دسته بندی" operation="True" (onDeleteClick)="deleteCategory($event)"></app-table>
+      <app-table [headers]="categoryHeaders" [items]="categories" editText="ویرایش دسته بندی" deleteText="X حذف دسته بندی" operation="True" (onDeleteClick)="deleteCategory($event)"
+        (onEditClick)="showEditCategory($event)"></app-table>
     </div>
     <div *ngIf="currentAdminStatus == 'رسید ها'">
       <div class="admin-container--content--search">
         <form [formGroup]="trackingCodeForm" (ngSubmit)="onSearch()">
-          <app-site-input label="جستجوی کد پیگیری" placeholder="کد پیگیری را برای جستجو وارد کنید..."
-                          stretchLabel="1" [control]="trackingCodeForm.get('trackingCode')"></app-site-input>
+          <app-site-input label="جستجوی کد پیگیری" placeholder="کد پیگیری را برای جستجو وارد کنید..." stretchLabel="1" [control]="trackingCodeForm.get('trackingCode')"></app-site-input>
         </form>
       </div>
       <app-table [headers]="receiptHeaders" [items]="receipts"></app-table>
     </div>
+
+    <action-modal *ngIf="showEditCategoryModal" (closeBtn)="closeModal()" action="editCategory" [data]="selectedCategory"></action-modal>
+    <action-modal *ngIf="showEditProductModal" (closeBtn)="closeModal()" [categories]="categories" action="editProduct" [data]="selectedProduct"></action-modal>
 
   </div>
 </div>

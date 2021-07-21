@@ -20,10 +20,11 @@ export class TableComponent implements OnInit {
   ngOnInit(): void { }
 
   editClick(item): void {
-    console.log(item);
+    this.onEditClick.emit(item);
   }
 
   deleteClick(itemId): void {
     this.onDeleteClick.emit(itemId);
   }
+
 }

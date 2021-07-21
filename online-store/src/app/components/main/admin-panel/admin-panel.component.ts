@@ -5,11 +5,12 @@ import { Receipt } from '../../../interface/Receipt';
 import { Mock } from '../../../mockData';
 import { TableHeader } from '../../../interface/TableHeaders';
 import { Category } from 'src/app/interface/category';
-import {Product} from '../../../interface/Product';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ProductService} from '../../../services/product.service';
-import {UserService} from '../../../services/user.service';
-import {Router} from '@angular/router';
+import { Product } from '../../../interface/Product';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ProductService } from '../../../services/product.service';
+import { ProductLoaderService } from 'src/app/services/product.load.service';
+import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-panel',
@@ -51,15 +52,25 @@ export class AdminPanelComponent implements OnInit {
   ];
   categories: Category[];
 
-  products: Product[] = Mock.getProducts();
+  products: Product[];
 
-  constructor(private uiService: UiService, private productService: ProductService, private userService: UserService,
-              private router: Router) {
+  productPerPage: number = 15;
+  currentPage: number = 1;
+  count: number = 40;
+
+
+  selectedProduct: Product;
+  showEditProductModal: boolean = false;
+
+  selectedCategory: Category;
+  showEditCategoryModal: boolean = false;
+
+  constructor(private uiService: UiService, private productService: ProductService, private productLoadService: ProductLoaderService, private userService: UserService, private router: Router) {
     this.userService.updateAdminStatus();
     this.userService.onIsAdminChange().subscribe(value => {
-        if (!value) {  // is not admin
-          router.navigate(['login']);
-        }
+      if (!value) {  // is not admin
+        router.navigate(['login']);
+      }
     });
 
     this.uiService.onTabChange().subscribe(
@@ -69,25 +80,35 @@ export class AdminPanelComponent implements OnInit {
     );
 
     this.productService.getAllReceipts().subscribe(res => {
-        this.receipts = res;
+      this.receipts = res;
     });
 
     this.productService.getCategories().subscribe(res => {
       this.categories = res;
       this.removeByAttr(this.categories, 'text', 'دسته بندی نشده');
     });
+
+    this.productLoadService.loadProducts();
+    this.productLoadService.onProductFilteringChange().subscribe(
+      (result) => {
+        this.products = result[0].products
+        this.currentPage = productLoadService.currentPage;
+        this.count = productLoadService.count;
+        this.productPerPage = productLoadService.productPerPage;
+      }
+    );
   }
 
   onSearch(): void {
     this.productService.getSearchedReceipts(this.trackingCodeForm.get('trackingCode').value).subscribe(res => {
-       this.receipts = res;
+      this.receipts = res;
     });
   }
 
   deleteCategory(categoryId): void {
     this.productService.deleteCategory(categoryId).subscribe(res => {
       if (res.success) {
-       this.removeByAttr(this.categories, 'id', categoryId);
+        this.removeByAttr(this.categories, 'id', categoryId);
       }
     });
   }
@@ -97,14 +118,30 @@ export class AdminPanelComponent implements OnInit {
 
   removeByAttr(arr, attr, value): void {
     let i = arr.length;
-    while (i--){
-       if ( arr[i]
-           && arr[i].hasOwnProperty(attr)
-           && (arguments.length > 2 && arr[i][attr] === value ) ){
+    while (i--) {
+      if (arr[i]
+        && arr[i].hasOwnProperty(attr)
+        && (arguments.length > 2 && arr[i][attr] === value)) {
 
-           arr.splice(i, 1);
+        arr.splice(i, 1);
 
-       }
+      }
     }
+  }
+
+
+  showEditProduct(product): void {
+    this.selectedProduct = product;
+    this.showEditProductModal = true;
+  }
+
+  showEditCategory(category): void {
+    this.selectedCategory = category;
+    this.showEditCategoryModal = true;
+  }
+  closeModal(): void {
+    this.showEditCategoryModal = false;
+    this.showEditProductModal = false;
+    this.productLoadService.loadProducts();
   }
 }

@@ -1,11 +1,14 @@
 from django.http import JsonResponse
 from .models import Receipt, Category, Product
 from django.core.exceptions import ObjectDoesNotExist
+import secrets
+
 
 
 def product_view(request):
     if request.method == "POST":
         if 'edit_product' in request.POST:
+            print(request.POST)
             product_id = request.POST.get('id')
             name = request.POST.get('productName')
             category = request.POST.get('category')
@@ -16,7 +19,7 @@ def product_view(request):
             product = Product.objects.get(id=product_id)
             if len(name) > 0 and len(category) > 0 and int(price) >= 0 and int(available_amount) >= 0:
                 product.name = name
-                product.category = category
+                product.category = Category.objects.get(pk=category)
                 product.price = int(price)
                 product.available_amount = available_amount
                 if image_file:
@@ -170,11 +173,46 @@ def categories_view(request):
 
 
 def make_categories():
-  categories = Category.objects.all()
-  json_result = []
-  for category in categories:
-    json_result.append({
-      'text': category.name,
-      'id': category.pk
-    })
-  return json_result
+    categories = Category.objects.all()
+    json_result = []
+    for category in categories:
+        json_result.append({
+            'text': category.name,
+            'id': category.pk
+        })
+    return json_result
+
+
+def buy(user, prodcutId, count):
+    json_result = {}
+    product = Product.objects.get(id=prodcutId)
+    if (user.credit >= product.price * count) and (product.available_amount >= count) and (count > 0):
+        product.available_amount -= count
+        user.credit -= product.price * count
+        product.save()
+        user.save()
+
+        receipt = Receipt(
+            related_user=user,
+            product_name=product.name,
+            sold_amount=count,
+            buyer_full_name=f"{user.first_name} {user.last_name}",
+            buyer_address=user.address,
+            price=product.price,
+            tracking_code=secrets.token_urlsafe(8),
+            state='انجام شده'
+        )
+        receipt.save()
+
+        json_result = {"success": True}
+    else:
+        json_result = {"success": False, "message": "عملیات ناموفق بود."}
+
+    return JsonResponse(json_result)
+
+
+def buy_view(request):
+    if request.method == "POST":
+        print(request.POST)
+        if request.user.is_authenticated:
+            return buy(request.user, int(request.POST.get('productId')), int(request.POST.get('number')))

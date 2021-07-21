@@ -63,12 +63,13 @@ def info(request):
                 'firstName': request.user.first_name,
                 'lastName': request.user.last_name,
                 'address': request.user.address,
-                'balance': request.user.credit
+                'balance': request.user.credit,
+                'username': request.user.username
             }
         else:
             result = {
-              'success': False,
-              'error': "بایستی ابتدا ورود کنید."
+                'success': False,
+                'error': "بایستی ابتدا ورود کنید."
             }
         return JsonResponse(result)
 
@@ -116,6 +117,3 @@ def info(request):
         if len(password) > 0:  # User has changed the password
             login(request, request.user)  # stay connected
         return JsonResponse({'success': True})
-
-
-
