@@ -4,7 +4,7 @@
 
 
   <div class="slidecontainer">
-    <input (change)="onChange($event)" type="range" min="0" max="10000000" [value]="rangeValue" class="slider" id="priceRange">
+    <input (change)="onChange($event)" type="range" min="0" max="10000" [value]="rangeValue" class="slider" id="priceRange">
   </div>
   <div>{{rangeValue | toman}}</div>
 

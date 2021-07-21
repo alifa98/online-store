@@ -79,4 +79,8 @@ export class ProductLoaderService {
     this.productFilter.sortBy = sortType;
   }
 
+  updateProductsMaxPricenFiltering(price: number): void {
+    this.productFilter.maxPrice = price;
+  }
+
 }

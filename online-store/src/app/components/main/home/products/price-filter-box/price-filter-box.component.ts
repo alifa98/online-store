@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { range } from 'rxjs';
+import { ProductLoaderService } from 'src/app/services/product.load.service';
 
 @Component({
   selector: 'app-price-filter-box',
@@ -8,16 +9,20 @@ import { range } from 'rxjs';
 })
 export class PriceFilterBoxComponent implements OnInit {
 
-  constructor() { }
+  rangeValue: number = 1000;;
+
+  constructor(private productLoaderService: ProductLoaderService) {
+  }
 
   ngOnInit(): void {
   }
 
-  rangeValue: Number = 100000;;
 
   onChange(event: any): void {
     this.rangeValue = event.target.value;
+
+    this.productLoaderService.updateProductsMaxPricenFiltering(this.rangeValue);
+    this.productLoaderService.loadProducts()
   }
 
-  // Emmit On change
 }
