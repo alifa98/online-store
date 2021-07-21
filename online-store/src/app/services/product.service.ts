@@ -38,6 +38,13 @@ export class ProductService {
     return this.http.get(url);
   }
 
+  editCategory(categoryId, categoryName): Observable<any> {
+    const url = `${this.apiUrl}/categories/`;
+    const body = `edit_category=${categoryId}&new_name=${categoryName}`;
+
+    return this.http.post(url, body, httpOptions);
+  }
+
   deleteCategory(categoryId): Observable<any> {
     const url = `${this.apiUrl}/categories/`;
     const formData = new FormData();

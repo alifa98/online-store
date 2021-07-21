@@ -19,6 +19,7 @@ export class ActionModalComponent implements OnInit {
   @Output() closeBtn = new EventEmitter<any>();
 
   @ViewChild('inputCount') inputRef: ElementRef;
+  @ViewChild('inputCategory') inputCategoryRef: ElementRef;
 
   outputMessage: string = "";
 
@@ -54,6 +55,17 @@ export class ActionModalComponent implements OnInit {
       result => {
         if (result['success'] != true) {
           this.outputMessage = result['message']
+        } else {
+          this.closeBtn.emit();
+        }
+      });
+  }
+
+  editCategory(): void {
+    this.pService.editCategory(this.data.id, this.inputCategoryRef.nativeElement.value).subscribe(
+      result => {
+        if (result['success'] != true) {
+          this.outputMessage = result['error']
         } else {
           this.closeBtn.emit();
         }
