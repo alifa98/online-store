@@ -77,8 +77,7 @@ export class AdminPanelComponent implements OnInit {
   deleteCategory(categoryId): void {
     this.productService.deleteCategory(categoryId).subscribe(res => {
       if (res.success) {
-       this.categories = res.new_categories;
-       this.removeByAttr(this.categories, 'text', 'دسته بندی نشده');
+       this.removeByAttr(this.categories, 'id', categoryId);
       }
     });
   }

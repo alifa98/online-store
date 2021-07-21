@@ -128,7 +128,23 @@ def categories_view(request):
                 if selected_category.name == 'دسته بندی نشده':
                     return JsonResponse({'success': False, 'error': 'امکان حذف این دسته بندی موجود نیست'})
                 selected_category.delete()
-                return JsonResponse({'success': True, 'new_categories': make_categories()})
+                return JsonResponse({'success': True})
+            except ObjectDoesNotExist:
+                return JsonResponse({'success': False, 'error': 'دسته بندی موجود نیست'})
+
+        if 'edit_category' in request.POST:
+            category_pk = request.POST.get('edit_category')
+            new_name = request.POST.get('new_name')
+            try:
+                selected_category = Category.objects.get(pk=category_pk)
+                if selected_category.name == 'دسته بندی نشده':
+                    return JsonResponse({'success': False, 'error': 'امکان تغییر این دسته بندی موجود نیست'})
+                if len(new_name) > 0:
+                    selected_category.name = new_name
+                    selected_category.save()
+                    return JsonResponse({'success': True})
+                else:
+                    return JsonResponse({'success': False, 'error': 'نام جدید نبایستی خالی باشد'})
             except ObjectDoesNotExist:
                 return JsonResponse({'success': False, 'error': 'دسته بندی موجود نیست'})
 
