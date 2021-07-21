@@ -16,6 +16,7 @@ export class ProductBoxComponent implements OnInit {
   @Input() productId: string;
   @Input() btnText: string;
   @Input() showSoldNumber: boolean;
+  @Input() soldAmount: number;
   @Output() onBtnClick = new EventEmitter<any>();
 
   ngOnInit(): void {

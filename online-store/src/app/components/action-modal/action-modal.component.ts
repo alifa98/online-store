@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ProductLoaderService } from 'src/app/services/product.load.service';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
@@ -15,6 +15,10 @@ export class ActionModalComponent implements OnInit {
   @Input() data: any;
   @Output() closeBtn = new EventEmitter<any>();
 
+  @ViewChild('inputCount') inputRef: ElementRef;
+
+  outputMessage: string = "";
+
   constructor(private pService: ProductService, private uService: UserService) { }
 
   ngOnInit(): void {
@@ -27,11 +31,13 @@ export class ActionModalComponent implements OnInit {
 
   //clean code note: emmit and handle in parent
   buy() {
-    console.log(this.uService.getUserInfo());
-    let username = "";
-    this.pService.buy(username, this.data.id, 0).subscribe(
+    this.pService.buy(this.data, this.inputRef.nativeElement.value).subscribe(
       result => {
-        console.log(result);
+        if (result["success"] != true) {
+          this.outputMessage = result["message"]
+        } else {
+          this.closeBtn.emit();
+        }
       });
   }
 

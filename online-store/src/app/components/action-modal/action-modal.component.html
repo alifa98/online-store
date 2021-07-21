@@ -2,11 +2,11 @@
 
   <div class="action" *ngIf='action == "buy" '>
 
-    <input class="modal-input" type="text">
+    <input type="number" min="1" class="modal-input" #inputCount>
     <br>
     <app-btn (onBtnClick)="onClose($event)" classes="btn-red" text="انصراف"></app-btn>
     <app-btn (onBtnClick)="buy()" classes="btn-blue" text="خرید"></app-btn>
-    <div class="message">پیغام خطا</div>
+    <div class="message"> {{outputMessage}} </div>
   </div>
 
 

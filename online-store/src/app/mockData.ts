@@ -8,42 +8,42 @@ export class Mock {
         return 'علی';
     }
 
-    static getProducts(filterings?: any): Product[] {
-        return [
-            {
-                id: 1,
-                name: 'محصول ۱',
-                category: 'کتگوری',
-                imgAddress: 'https://avatars.githubusercontent.com/u/31096694?v=4',
-                price: '10000',
-            },
-            {
-                id: 2,
-                name: 'محصول ۱',
-                category: 'کتگوری',
-                imgAddress: 'https://avatars.githubusercontent.com/u/31096694?v=4',
-                price: '1854646',
-            }, {
-                id: 3,
-                name: 'محصول ۱',
-                category: 'دسته ۲',
-                imgAddress: 'https://avatars.githubusercontent.com/u/31096694?v=4',
-                price: '10000',
-            }, {
-                id: 41,
-                name: 'محصول ۱',
-                category: 'کتگوری',
-                imgAddress: 'https://avatars.githubusercontent.com/u/31096694?v=4',
-                price: '15000',
-            }, {
-                id: 4,
-                name: 'محصول ۱',
-                category: 'کتگوری',
-                imgAddress: 'https://avatars.githubusercontent.com/u/31096694?v=4',
-                price: '1546',
-            },
-        ];
-    }
+    // static getProducts(filterings?: any): Product[] {
+    //     return [
+    //         {
+    //             id: 1,
+    //             name: 'محصول ۱',
+    //             category: 'کتگوری',
+    //             imgAddress: 'https://avatars.githubusercontent.com/u/31096694?v=4',
+    //             price: '10000',
+    //         },
+    //         {
+    //             id: 2,
+    //             name: 'محصول ۱',
+    //             category: 'کتگوری',
+    //             imgAddress: 'https://avatars.githubusercontent.com/u/31096694?v=4',
+    //             price: '1854646',
+    //         }, {
+    //             id: 3,
+    //             name: 'محصول ۱',
+    //             category: 'دسته ۲',
+    //             imgAddress: 'https://avatars.githubusercontent.com/u/31096694?v=4',
+    //             price: '10000',
+    //         }, {
+    //             id: 41,
+    //             name: 'محصول ۱',
+    //             category: 'کتگوری',
+    //             imgAddress: 'https://avatars.githubusercontent.com/u/31096694?v=4',
+    //             price: '15000',
+    //         }, {
+    //             id: 4,
+    //             name: 'محصول ۱',
+    //             category: 'کتگوری',
+    //             imgAddress: 'https://avatars.githubusercontent.com/u/31096694?v=4',
+    //             price: '1546',
+    //         },
+    //     ];
+    // }
 
     static getReceipts(): Receipt[] {
         return [

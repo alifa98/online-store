@@ -58,13 +58,8 @@ export class ProductService {
   }
 
 
-  buy(username: string, id: number, count: number) {
-    const formData = new FormData();
+  buy(id: number, count: number) {
 
-    formData.append('number', count.toString());
-    formData.append('productId', id.toString());
-    formData.append('username', username);
-
-    return this.http.post(`${this.apiUrl}/buy`, formData);
+    return this.http.post(`${this.apiUrl}/buy/`, `number=${count}&productId=${id}`, httpOptions);
   }
 }

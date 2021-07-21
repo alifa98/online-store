@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .models import Receipt, Category, Product
 from django.db.models.query_utils import Q
 from django.core.exceptions import ObjectDoesNotExist
+import secrets
 
 
 def product_view(request):
@@ -161,7 +162,36 @@ def make_categories():
     return json_result
 
 
-def buy(username, prodcutId, count):
-    json_result = []
-    product = Product.get(id=prodcutId)
-    # TODO
+def buy(user, prodcutId, count):
+    json_result = {}
+    product = Product.objects.get(id=prodcutId)
+    if (user.credit >= product.price * count) and (product.available_amount >= count) and (count > 0):
+        product.available_amount -= count
+        user.credit -= product.price * count
+        product.save()
+        user.save()
+
+        receipt = Receipt(
+            related_user=user,
+            product_name=product.name,
+            sold_amount=count,
+            buyer_full_name=f"{user.first_name} {user.last_name}",
+            buyer_address=user.address,
+            price=product.price,
+            tracking_code=secrets.token_urlsafe(8),
+            state='انجام شده'
+        )
+        receipt.save()
+
+        json_result = {"success": True}
+    else:
+        json_result = {"success": False, "message": "عملیات ناموفق بود."}
+
+    return JsonResponse(json_result)
+
+
+def buy_view(request):
+    if request.method == "POST":
+        print(request.POST)
+        if request.user.is_authenticated:
+            return buy(request.user, int(request.POST.get('productId')), int(request.POST.get('number')))
