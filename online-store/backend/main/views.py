@@ -1,13 +1,33 @@
 from django.http import JsonResponse
-from django.shortcuts import render
 from .models import Receipt, Category, Product
-from django.db.models.query_utils import Q
 from django.core.exceptions import ObjectDoesNotExist
 import secrets
 
 
+
 def product_view(request):
     if request.method == "POST":
+        if 'edit_product' in request.POST:
+            product_id = request.POST.get('id')
+            name = request.POST.get('productName')
+            category = request.POST.get('category')
+            price = request.POST.get('price')
+            available_amount = request.POST.get('availableAmount')
+            image_file = request.FILES.get('imageFile')
+
+            product = Product.objects.get(id=product_id)
+            if len(name) > 0 and len(category) > 0 and int(price) >= 0 and int(available_amount) >= 0:
+                product.name = name
+                product.category = category
+                product.price = int(price)
+                product.available_amount = available_amount
+                if image_file:
+                    product.image = image_file
+                product.save()
+
+                return JsonResponse({'success': True})
+            else:
+                return JsonResponse({'success': False, 'error': 'خطا در ویرایش کالا'})
         if 'create_new_product' in request.POST:
             name = request.POST.get('name')
             category_pk = request.POST.get('category')

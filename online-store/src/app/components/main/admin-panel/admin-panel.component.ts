@@ -9,6 +9,8 @@ import { Product } from '../../../interface/Product';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../../../services/product.service';
 import { ProductLoaderService } from 'src/app/services/product.load.service';
+import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-panel',
@@ -63,7 +65,14 @@ export class AdminPanelComponent implements OnInit {
   selectedCategory: Category;
   showEditCategoryModal: boolean = false
 
-  constructor(private uiService: UiService, private productService: ProductService, private productLoadService: ProductLoaderService) {
+  constructor(private uiService: UiService, private productService: ProductService, private productLoadService: ProductLoaderService, private userService: UserService, private router: Router) {
+    this.userService.updateAdminStatus();
+    this.userService.onIsAdminChange().subscribe(value => {
+      if (!value) {  // is not admin
+        router.navigate(['login']);
+      }
+    });
+
     this.uiService.onTabChange().subscribe(
       (value => {
         this.currentAdminStatus = value;

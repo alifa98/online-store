@@ -25,7 +25,6 @@ export class ProfileComponent implements OnInit {
       });
   currentProfileStatus = 'پروفایل';
   currentBalance: number;
-  subscription: Subscription;
 
   // modal:
   showModal = false;
@@ -60,9 +59,16 @@ export class ProfileComponent implements OnInit {
 
   constructor(private UiService: UiService, private userService: UserService, private productService: ProductService,
               private router: Router) {
-    this.subscription = this.UiService.onTabChange().subscribe(
+    this.UiService.onTabChange().subscribe(
       (value) => (this.currentProfileStatus = value)
     );
+
+    this.userService.updateAdminStatus();
+    this.userService.onIsAdminChange().subscribe(value => {
+        if (value) { // is admin
+          this.router.navigate(['admin']);
+        }
+    });
 
     this.userService.onLoginChange().subscribe(
       (value => {
