@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import { ProductFiltering } from '../interface/ProductFiltering';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -58,4 +57,14 @@ export class ProductService {
     return this.http.post(`${this.apiUrl}/`, formData);
   }
 
+
+  buy(username: string, id: number, count: number) {
+    const formData = new FormData();
+
+    formData.append('number', count.toString());
+    formData.append('productId', id.toString());
+    formData.append('username', username);
+
+    return this.http.post(`${this.apiUrl}/buy`, formData);
+  }
 }

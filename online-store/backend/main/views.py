@@ -4,6 +4,7 @@ from .models import Receipt, Category, Product
 from django.db.models.query_utils import Q
 from django.core.exceptions import ObjectDoesNotExist
 
+
 def product_view(request):
     if request.method == "POST":
         if 'create_new_product' in request.POST:
@@ -150,11 +151,17 @@ def categories_view(request):
 
 
 def make_categories():
-  categories = Category.objects.all()
-  json_result = []
-  for category in categories:
-    json_result.append({
-      'text': category.name,
-      'id': category.pk
-    })
-  return json_result
+    categories = Category.objects.all()
+    json_result = []
+    for category in categories:
+        json_result.append({
+            'text': category.name,
+            'id': category.pk
+        })
+    return json_result
+
+
+def buy(username, prodcutId, count):
+    json_result = []
+    product = Product.get(id=prodcutId)
+    # TODO
