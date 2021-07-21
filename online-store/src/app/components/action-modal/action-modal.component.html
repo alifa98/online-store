@@ -9,6 +9,35 @@
     <div class="message"> {{outputMessage}} </div>
   </div>
 
+  <div class="action" *ngIf='action == "editProduct" '>
+
+    <form [formGroup]="editProdcut" (ngSubmit)="onEditProductSubmit()">
+      <div class="add-product-container">
+        <h2 class="turquoise-blue">ویرایش کالا</h2>
+        <app-site-input label="نام کالا" [control]="editProdcut.get('name')" type="text" placeholder="نام کالا را وارد کنید ..."></app-site-input>
+        <app-site-input-choice [items]="categories" label="دسته بندی" [control]="editProdcut.get('category')"></app-site-input-choice>
+        <app-site-input label="قیمت" [control]="editProdcut.get('price')" type="text" placeholder="قیمت را وارد کنید ..."></app-site-input>
+        <app-site-input label="تعداد" [control]="editProdcut.get('availableAmount')" type="text" placeholder="تعداد را وارد کنید ..."></app-site-input>
+        <label for="product-image">عکس کالا</label>
+        <input id="product-image" type="file" (change)="onFileSelect($event)" accept="image/jpeg">
+        <app-btn classes="btn-gold" class="my-5" text="ثبت"></app-btn>
+        <app-btn (onBtnClick)="onClose($event)" classes="btn-red" text="انصراف"></app-btn>
+      </div>
+    </form>
+
+    <div class="message"> {{outputMessage}} </div>
+  </div>
+
+
+  <div class="action" *ngIf='action == "editCategory" '>
+
+    <input type="number" min="1" class="modal-input" #inputCount>
+    <br>
+
+    <app-btn (onBtnClick)="buy()" classes="btn-blue" text="خرید"></app-btn>
+    <div class="message"> {{outputMessage}} </div>
+  </div>
+
 
 
 </div>

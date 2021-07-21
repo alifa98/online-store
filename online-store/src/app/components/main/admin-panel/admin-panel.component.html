@@ -10,7 +10,7 @@
       <app-btn classes="btn-blue" text="+ ایجاد محصول" routerLink="add_product"></app-btn>
       <div class="admin-container--content--products">
         <app-product-box *ngFor="let prod of products" imageAddress="{{prod.imgAddress}}" title="{{prod.name}}" category="{{prod.category}}" btnText="ویرایش محصول" price="{{prod.price}}"
-          showSoldNumber="1" [soldAmount]="prod.soldAmount">
+          showSoldNumber="1" [soldAmount]="prod.soldAmount" (onBtnClick)="showEditProduct(prod)">
         </app-product-box>
 
       </div>
@@ -18,7 +18,8 @@
     </div>
 
     <div *ngIf="currentAdminStatus == 'لیست دسته'">
-      <app-table [headers]="categoryHeaders" [items]="categories" editText="ویرایش دسته بندی" deleteText="X حذف دسته بندی" operation="True" (onDeleteClick)="deleteCategory($event)"></app-table>
+      <app-table [headers]="categoryHeaders" [items]="categories" editText="ویرایش دسته بندی" deleteText="X حذف دسته بندی" operation="True" (onDeleteClick)="deleteCategory($event)"
+        (onEditClick)="showEditCategory($event)"></app-table>
     </div>
     <div *ngIf="currentAdminStatus == 'رسید ها'">
       <div class="admin-container--content--search">
@@ -28,6 +29,9 @@
       </div>
       <app-table [headers]="receiptHeaders" [items]="receipts"></app-table>
     </div>
+
+    <action-modal *ngIf="showEditCategoryModal" (closeBtn)="closeModal()" action="editCategory" [data]="selectedProdcut"></action-modal>
+    <action-modal *ngIf="showEditProductModal" (closeBtn)="closeModal()" action="editProduct" [data]="selectedCategory"></action-modal>
 
   </div>
 </div>

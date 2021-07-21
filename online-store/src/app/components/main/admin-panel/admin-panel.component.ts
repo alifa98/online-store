@@ -56,6 +56,13 @@ export class AdminPanelComponent implements OnInit {
   currentPage: number = 1;
   count: number = 40;
 
+
+  selectedProdcut: Product;
+  showEditProductModal: boolean = false
+
+  selectedCategory: Category;
+  showEditCategoryModal: boolean = false
+
   constructor(private uiService: UiService, private productService: ProductService, private productLoadService: ProductLoaderService) {
     this.uiService.onTabChange().subscribe(
       (value => {
@@ -111,5 +118,20 @@ export class AdminPanelComponent implements OnInit {
 
       }
     }
+  }
+
+
+  showEditProduct(product): void {
+    this.selectedProdcut = product;
+    this.showEditProductModal = true;
+  }
+
+  showEditCategory(category): void {
+    this.selectedCategory = category;
+    this.showEditCategoryModal = true;
+  }
+  closeModal(): void {
+    this.showEditCategoryModal = false;
+    this.showEditProductModal = false;
   }
 }
