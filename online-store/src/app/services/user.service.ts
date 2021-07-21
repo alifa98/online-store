@@ -13,11 +13,13 @@ const httpOptions = {
 })
 export class UserService {
   private apiUrl = '/api/user/';
-  isLoggedIn: boolean;
   firstName: string;
 
   private loginStatus: boolean;
   private loginSubject = new Subject<any>();
+
+  private adminStatus: boolean;
+  private adminSubject = new Subject<any>();
 
   constructor(private http: HttpClient) {
     this.updateLoginStatus();
@@ -31,6 +33,20 @@ export class UserService {
       this.loginStatus = res['is_authenticated'];
       this.loginSubject.next(this.loginStatus);
     });
+  }
+
+  updateAdminStatus(): void {
+    const url = `${this.apiUrl}login/`;
+    const params = new HttpParams().set('is_admin', '1');
+
+    this.http.get(url, {params}).subscribe(res => {
+        this.adminStatus = res['is_admin'];
+        this.adminSubject.next(this.adminStatus);
+    });
+  }
+
+  onIsAdminChange(): Observable<any> {
+    return this.adminSubject.asObservable();
   }
 
   onLoginChange(): Observable<any> {

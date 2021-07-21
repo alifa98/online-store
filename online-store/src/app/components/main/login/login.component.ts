@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
 
       this.userService.login(enteredEmail, enteredPassword).subscribe(res => {
           this.userService.updateLoginStatus();
+          this.userService.updateAdminStatus();
           this.userService.updateFirstName();
 
           if (res.success === true) {

@@ -1,7 +1,7 @@
 <form [formGroup]="profileForm" (ngSubmit)="onEditSubmit()">
   <div class="profile-container">
     <div class="profile-container--title" dir="rtl">
-      <h2>سروش عزیز، خوش آمدید |</h2>
+      <h2>{{getFirstName()}} عزیز، خوش آمدید |</h2>
       <h4>موجودی حساب شما {{currentBalance | toman}}</h4>
       <app-btn class="profile-container--profile-button" classes="btn-gold btn-small" text="افزایش موجودی" type="button" (onBtnClick)="increaseCredit()"></app-btn>
     </div>

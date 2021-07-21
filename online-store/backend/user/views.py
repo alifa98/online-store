@@ -26,6 +26,8 @@ def login_view(request):
     if request.method == "GET":
         if 'is_authenticated' in request.GET:
             return JsonResponse({'is_authenticated': request.user.is_authenticated})
+        if 'is_admin' in request.GET:
+            return JsonResponse({'is_admin': request.user.is_superuser})
 
 
 def sign_up_view(request):

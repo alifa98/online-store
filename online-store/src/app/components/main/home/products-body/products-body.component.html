@@ -11,7 +11,7 @@
       <app-price-filter-box></app-price-filter-box>
     </div>
 
-    <div class="products-flexitem">
+    <div class="products-flexitem" id="product">
       <app-product-box *ngFor="let prod of products" imageAddress="{{prod.imgAddress}}" title="{{prod.name}}" category="{{prod.category}}" btnText="خرید محصول" price="{{prod.price}}">
       </app-product-box>
 

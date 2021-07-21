@@ -15,13 +15,13 @@ export class HeaderComponent implements OnInit {
   responsive = false;
 
   isLoggedIn: boolean;
-  subscription: Subscription;
+  isAdmin: boolean;
 
   faCaretDownIcon = faCaretDown;
   faBarsIcon = faBars;
 
   constructor(private userService: UserService, private router: Router) {
-    this.subscription = this.userService.onLoginChange().subscribe(
+    this.userService.onLoginChange().subscribe(
       (value => {
       this.isLoggedIn = value;
       if (value) {
@@ -29,6 +29,11 @@ export class HeaderComponent implements OnInit {
       }
       })
     );
+
+    this.userService.updateAdminStatus();
+    this.userService.onIsAdminChange().subscribe(value => {
+      this.isAdmin = value;
+    });
 
   }
 
@@ -43,6 +48,7 @@ export class HeaderComponent implements OnInit {
   logout(): void {
     this.userService.logout().subscribe(res => {
       this.userService.updateLoginStatus();
+      this.userService.updateAdminStatus();
       if (res.success) {
         this.router.navigate(['']);
       }

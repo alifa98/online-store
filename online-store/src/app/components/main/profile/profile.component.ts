@@ -77,6 +77,10 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  getFirstName(): string {
+    return this.userService.firstName;
+  }
+
   onEditSubmit(): void {
     this.userService.updateUserInfo(this.profileForm.get('firstName').value, this.profileForm.get('lastName').value,
       this.profileForm.get('password').value, this.profileForm.get('address').value).subscribe(res => {
