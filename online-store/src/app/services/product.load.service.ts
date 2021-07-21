@@ -27,7 +27,7 @@ export class ProductLoaderService {
 
     this.productFilter = {
       name: '',
-      category: null,
+      categories: null,
       maxPrice: null,
       perPage: this.productPerPage,
       currentPage: this.currentPage,
@@ -44,8 +44,8 @@ export class ProductLoaderService {
   get_products(filtering: ProductFiltering): Observable<any> {
     const formData = new FormData();
     formData.append('name', filtering.name);
-    if (filtering.category != null) {
-      formData.append('category', filtering.category.toString());
+    if (filtering.categories != null) {
+      formData.append('category', filtering.categories.toString());
     }
     if (filtering.maxPrice != null) {
       formData.append('maxPrice', filtering.maxPrice.toString());
@@ -87,6 +87,9 @@ export class ProductLoaderService {
     this.productFilter.name = txt;
   }
 
+  updateProductsCategoresInFiltering(ids: number[]): void {
+    this.productFilter.categories = ids;
+  }
 
 
 }

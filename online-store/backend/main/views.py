@@ -103,7 +103,7 @@ def categories_view(request):
         for category in categories:
             json_result.append({
                 'text': category.name,
-                'value': category.pk
+                'id': category.pk
             })
 
         return JsonResponse(json_result, safe=False)
