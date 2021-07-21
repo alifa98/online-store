@@ -11,14 +11,17 @@
       <app-price-filter-box></app-price-filter-box>
     </div>
 
-    <div class="products-flexitem" id="product">
+    <div *ngIf="count == 0" class="products-flexitem" id="product">
+      <h2>محصولی یافت نشد ...</h2>
+    </div>
+
+    <div *ngIf="count !=0" class="products-flexitem" id="product">
       <app-product-box *ngFor="let prod of products" imageAddress="{{prod.imgAddress}}" title="{{prod.name}}" category="{{prod.category}}" btnText="خرید محصول" price="{{prod.price}}">
       </app-product-box>
 
       <app-pagination class="pagination-container" [totalItems]="count" [itemsPerPage]="productPerPage" [currentPage]="currentPage"></app-pagination>
-
-
     </div>
+
   </div>
 
 
