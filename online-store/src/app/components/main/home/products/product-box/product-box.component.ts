@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-product-box',
@@ -16,8 +16,13 @@ export class ProductBoxComponent implements OnInit {
   @Input() productId: string;
   @Input() btnText: string;
   @Input() showSoldNumber: boolean;
+  @Output() onBtnClick = new EventEmitter<any>();
 
   ngOnInit(): void {
+  }
+
+  emitButtonClick(e) {
+    this.onBtnClick.emit(e);
   }
 
 }
