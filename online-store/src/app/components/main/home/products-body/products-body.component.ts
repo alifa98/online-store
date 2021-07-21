@@ -5,6 +5,8 @@ import { ProductFiltering } from 'src/app/interface/ProductFiltering';
 import { Mock } from 'src/app/mockData';
 import { ProductLoaderService } from 'src/app/services/product.load.service';
 import { ProductService } from 'src/app/services/product.service';
+import {UserService} from '../../../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-products-body',
@@ -14,15 +16,24 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductsBodyComponent implements OnInit {
 
   selectedProductId: number;
-  showModal: boolean = false;
+  showModal = false;
 
-  productPerPage: number = 15;
-  currentPage: number = 1;
-  count: number = 40;
+  productPerPage = 15;
+  currentPage = 1;
+  count = 40;
 
   products: Product[];
 
-  constructor(private productLoaderService: ProductLoaderService) {
+  isLoggedIn: boolean;
+
+  constructor(private productLoaderService: ProductLoaderService, private userService: UserService, private router: Router) {
+    this.userService.updateLoginStatus();
+    this.userService.onLoginChange().subscribe(
+      (value => {
+      this.isLoggedIn = value;
+      })
+    );
+
     productLoaderService.loadProducts();
 
     this.productLoaderService.onProductFilteringChange().subscribe(
@@ -40,13 +51,16 @@ export class ProductsBodyComponent implements OnInit {
   }
 
 
-  showBuyingModal(id) {
+  showBuyingModal(id): void {
     this.selectedProductId = id;
     this.showModal = true;
   }
-  closeModal() {
+
+  closeModal(): void {
     this.showModal = false;
   }
 
-
+  openLoginPage(): void {
+    this.router.navigate(['login']);
+  }
 }
