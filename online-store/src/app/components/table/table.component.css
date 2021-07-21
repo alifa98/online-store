@@ -31,4 +31,5 @@ th {
 
 .operation:hover {
   color: #0ebac5;
+  cursor: pointer;
 }

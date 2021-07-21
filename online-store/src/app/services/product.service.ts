@@ -39,9 +39,16 @@ export class ProductService {
     return this.http.get(url);
   }
 
+  deleteCategory(categoryId): Observable<any> {
+    const url = `${this.apiUrl}/categories/`;
+    const formData = new FormData();
+    formData.append('delete_category', categoryId);
+    return this.http.post(url, formData);
+  }
+
   createNewProduct(name, category, price, imageFile): Observable<any> {
     const formData = new FormData();
-    console.log(imageFile);
+
     formData.append('create_new_product', '1');
     formData.append('name', name);
     formData.append('category', category);

@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from .models import Receipt, Category, Product
 from django.db.models.query_utils import Q
-
+from django.core.exceptions import ObjectDoesNotExist
 
 def product_view(request):
     if request.method == "POST":
@@ -116,12 +116,29 @@ def receipt_view(request):
 
 def categories_view(request):
     if request.method == 'GET':
-        categories = Category.objects.all()
-        json_result = []
-        for category in categories:
-            json_result.append({
-                'text': category.name,
-                'id': category.pk
-            })
+        json_result = make_categories()
 
         return JsonResponse(json_result, safe=False)
+
+    if request.method == 'POST':
+        if 'delete_category' in request.POST:
+            category_pk = request.POST.get('delete_category')
+            try:
+                selected_category = Category.objects.get(pk=category_pk)
+                if selected_category.name == 'دسته بندی نشده':
+                    return JsonResponse({'success': False, 'error': 'امکان حذف این دسته بندی موجود نیست'})
+                selected_category.delete()
+                return JsonResponse({'success': True, 'new_categories': make_categories()})
+            except ObjectDoesNotExist:
+                return JsonResponse({'success': False, 'error': 'دسته بندی موجود نیست'})
+
+
+def make_categories():
+  categories = Category.objects.all()
+  json_result = []
+  for category in categories:
+    json_result.append({
+      'text': category.name,
+      'id': category.pk
+    })
+  return json_result

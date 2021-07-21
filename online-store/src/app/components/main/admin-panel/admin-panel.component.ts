@@ -8,18 +8,20 @@ import { Category } from 'src/app/interface/category';
 import {Product} from '../../../interface/Product';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../../../services/product.service';
+
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',
   styleUrls: ['./admin-panel.component.css']
 })
+
+
 export class AdminPanelComponent implements OnInit {
   trackingCodeForm = new FormGroup({
     trackingCode: new FormControl('', [Validators.required, Validators.maxLength(255)]),
   });
 
   currentAdminStatus = 'لیست کالا ها';
-  subscription: Subscription;
   receipts: Receipt[] = Mock.getReceipts();
   receiptHeaders: TableHeader[] = [
     {
@@ -41,16 +43,16 @@ export class AdminPanelComponent implements OnInit {
   ];
   categoryHeaders: TableHeader[] = [
     {
-      key: 'categoryName',
+      key: 'text',
       name: 'نام دسته بندی'
     }
   ];
-  categories: Category[] = Mock.getCategories();
+  categories: Category[];
 
   products: Product[] = Mock.getProducts();
 
   constructor(private uiService: UiService, private productService: ProductService) {
-    this.subscription = this.uiService.onTabChange().subscribe(
+    this.uiService.onTabChange().subscribe(
       (value => {
         this.currentAdminStatus = value;
       })
@@ -58,6 +60,11 @@ export class AdminPanelComponent implements OnInit {
 
     this.productService.getAllReceipts().subscribe(res => {
         this.receipts = res;
+    });
+
+    this.productService.getCategories().subscribe(res => {
+      this.categories = res;
+      this.removeByAttr(this.categories, 'text', 'دسته بندی نشده');
     });
   }
 
@@ -67,7 +74,28 @@ export class AdminPanelComponent implements OnInit {
     });
   }
 
+  deleteCategory(categoryId): void {
+    this.productService.deleteCategory(categoryId).subscribe(res => {
+      if (res.success) {
+       this.categories = res.new_categories;
+       this.removeByAttr(this.categories, 'text', 'دسته بندی نشده');
+      }
+    });
+  }
+
   ngOnInit(): void {
   }
 
+  removeByAttr(arr, attr, value): void {
+    let i = arr.length;
+    while (i--){
+       if ( arr[i]
+           && arr[i].hasOwnProperty(attr)
+           && (arguments.length > 2 && arr[i][attr] === value ) ){
+
+           arr.splice(i, 1);
+
+       }
+    }
+  }
 }
