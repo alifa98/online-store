@@ -163,9 +163,13 @@ def categories_view(request):
                 if selected_category.name == 'دسته بندی نشده':
                     return JsonResponse({'success': False, 'error': 'امکان تغییر این دسته بندی موجود نیست'})
                 if len(new_name) > 0:
-                    selected_category.name = new_name
-                    selected_category.save()
-                    return JsonResponse({'success': True})
+                    if Category.objects.filter(name=new_name).count() == 0:
+                        selected_category.name = new_name
+                        selected_category.save()
+                        return JsonResponse({'success': True})
+                    else:
+                        return JsonResponse({'success': False,
+                                             'error': 'دسته بندی ای با نام مورد نظر در حال حاضر موجود است.'})
                 else:
                     return JsonResponse({'success': False, 'error': 'نام جدید نبایستی خالی باشد'})
             except ObjectDoesNotExist:
@@ -184,7 +188,6 @@ def make_categories():
 
 
 def buy(user, prodcutId, count):
-    json_result = {}
     product = Product.objects.get(id=prodcutId)
     if (user.credit >= product.price * count) and (product.available_amount >= count) and (count > 0):
         product.available_amount -= count
