@@ -8,6 +8,8 @@ import { Category } from 'src/app/interface/category';
 import {Product} from '../../../interface/Product';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../../../services/product.service';
+import {UserService} from '../../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-panel',
@@ -51,7 +53,15 @@ export class AdminPanelComponent implements OnInit {
 
   products: Product[] = Mock.getProducts();
 
-  constructor(private uiService: UiService, private productService: ProductService) {
+  constructor(private uiService: UiService, private productService: ProductService, private userService: UserService,
+              private router: Router) {
+    this.userService.updateAdminStatus();
+    this.userService.onIsAdminChange().subscribe(value => {
+        if (!value) {  // is not admin
+          router.navigate(['login']);
+        }
+    });
+
     this.uiService.onTabChange().subscribe(
       (value => {
         this.currentAdminStatus = value;

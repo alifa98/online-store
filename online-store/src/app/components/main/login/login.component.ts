@@ -24,11 +24,10 @@ export class LoginComponent implements OnInit {
   modalError: boolean;
 
   isLoggedIn: boolean;
-  subscription: Subscription;
-
 
   constructor(private userService: UserService, private router: Router) {
-    this.subscription = this.userService.onLoginChange().subscribe(
+    this.userService.updateLoginStatus();
+    this.userService.onLoginChange().subscribe(
       (value => {
       this.isLoggedIn = value;
       })
