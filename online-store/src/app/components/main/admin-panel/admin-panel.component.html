@@ -17,7 +17,8 @@
     </div>
 
     <div *ngIf="currentAdminStatus == 'لیست دسته'">
-      <app-table [headers]="categoryHeaders" [items]="categories" operation="True"></app-table>
+      <app-table [headers]="categoryHeaders" [items]="categories" editText="ویرایش دسته بندی"
+                 deleteText="X حذف دسته بندی" operation="True" (onDeleteClick)="deleteCategory($event)"></app-table>
     </div>
     <div *ngIf="currentAdminStatus == 'رسید ها'">
       <div class="admin-container--content--search">

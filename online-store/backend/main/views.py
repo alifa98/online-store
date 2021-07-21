@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from .models import Receipt, Category, Product
 from django.db.models.query_utils import Q
-
+from django.core.exceptions import ObjectDoesNotExist
 
 def product_view(request):
     if request.method == "POST":
@@ -84,14 +84,20 @@ def get_filtered_products(request):
 
 def receipt_view(request):
     if request.method == "GET":
+        if request.user.is_anonymous:
+            return JsonResponse({'success': False, 'error': 'بایستی ابتدا وارد سایت شوید.'}, safe=False)
+
         if 'all' in request.GET:
             if request.user.is_superuser:  # admin permission
                 receipts = Receipt.objects.all()
             else:
                 return JsonResponse({'success': False, 'error': 'شما دسترسی ندارید'}, safe=False)
         elif 'search' in request.GET:
-            search_value = request.GET.get('search')
-            receipts = Receipt.objects.filter(tracking_code__icontains=search_value)
+            if request.user.is_superuser:
+                search_value = request.GET.get('search')
+                receipts = Receipt.objects.filter(tracking_code__icontains=search_value)
+            else:
+                return JsonResponse({'success': False, 'error': 'شما دسترسی ندارید'}, safe=False)
         else:
             receipts = Receipt.objects.filter(related_user=request.user)
 
@@ -110,12 +116,45 @@ def receipt_view(request):
 
 def categories_view(request):
     if request.method == 'GET':
-        categories = Category.objects.all()
-        json_result = []
-        for category in categories:
-            json_result.append({
-                'text': category.name,
-                'id': category.pk
-            })
+        json_result = make_categories()
 
         return JsonResponse(json_result, safe=False)
+
+    if request.method == 'POST':
+        if 'delete_category' in request.POST:
+            category_pk = request.POST.get('delete_category')
+            try:
+                selected_category = Category.objects.get(pk=category_pk)
+                if selected_category.name == 'دسته بندی نشده':
+                    return JsonResponse({'success': False, 'error': 'امکان حذف این دسته بندی موجود نیست'})
+                selected_category.delete()
+                return JsonResponse({'success': True})
+            except ObjectDoesNotExist:
+                return JsonResponse({'success': False, 'error': 'دسته بندی موجود نیست'})
+
+        if 'edit_category' in request.POST:
+            category_pk = request.POST.get('edit_category')
+            new_name = request.POST.get('new_name')
+            try:
+                selected_category = Category.objects.get(pk=category_pk)
+                if selected_category.name == 'دسته بندی نشده':
+                    return JsonResponse({'success': False, 'error': 'امکان تغییر این دسته بندی موجود نیست'})
+                if len(new_name) > 0:
+                    selected_category.name = new_name
+                    selected_category.save()
+                    return JsonResponse({'success': True})
+                else:
+                    return JsonResponse({'success': False, 'error': 'نام جدید نبایستی خالی باشد'})
+            except ObjectDoesNotExist:
+                return JsonResponse({'success': False, 'error': 'دسته بندی موجود نیست'})
+
+
+def make_categories():
+  categories = Category.objects.all()
+  json_result = []
+  for category in categories:
+    json_result.append({
+      'text': category.name,
+      'id': category.pk
+    })
+  return json_result
