@@ -32,8 +32,10 @@
 
 .card--pic img {
   width: 200px;
+  object-fit: cover;
+  height: 200px;
   max-width: 200px;
-
+  max-height: 200px;
 }
 
 .card--product-title {

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductLoaderService } from 'src/app/services/product.load.service';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'action-modal',
@@ -42,6 +42,7 @@ export class ActionModalComponent implements OnInit {
       this.editProdcut.get('price').setValue(this.data.price);
       this.editProdcut.get('availableAmount').setValue(this.data.availableAmount);
     }
+
   }
 
   onClose(e): void {

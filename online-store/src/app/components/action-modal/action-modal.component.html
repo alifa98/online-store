@@ -4,8 +4,8 @@
 
     <input type="number" min="1" class="modal-input" #inputCount>
     <br>
-    <app-btn (onBtnClick)="onClose($event)" classes="btn-red" text="انصراف"></app-btn>
     <app-btn (onBtnClick)="buy()" classes="btn-blue" text="خرید"></app-btn>
+    <app-btn (onBtnClick)="onClose($event)" classes="btn-red" text="انصراف"></app-btn>
     <div class="message"> {{outputMessage}} </div>
   </div>
 
@@ -31,10 +31,11 @@
 
   <div class="action" *ngIf='action == "editCategory" '>
 
-    <input class="modal-input" #inputCategory>
+    <input class="modal-input" type="text" value={{data.text}} #inputCategory>
     <br>
 
     <app-btn (onBtnClick)="editCategory()" classes="btn-blue" text="تغییر دسته بندی"></app-btn>
+    <app-btn (onBtnClick)="onClose($event)" classes="btn-red" text="انصراف"></app-btn>
     <div class="message"> {{outputMessage}} </div>
   </div>
 
