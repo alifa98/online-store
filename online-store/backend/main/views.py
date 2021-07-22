@@ -4,7 +4,6 @@ from django.core.exceptions import ObjectDoesNotExist
 import secrets
 
 
-
 def product_view(request):
     if request.method == "POST":
         if 'edit_product' in request.POST:
@@ -201,7 +200,7 @@ def buy(user, prodcutId, count):
             sold_amount=count,
             buyer_full_name=f"{user.first_name} {user.last_name}",
             buyer_address=user.address,
-            price=product.price,
+            price=product.price * count,
             tracking_code=secrets.token_urlsafe(8),
             state='انجام شده'
         )
