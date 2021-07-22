@@ -30,8 +30,8 @@
       <app-table [headers]="receiptHeaders" [items]="receipts"></app-table>
     </div>
 
-    <action-modal *ngIf="showEditCategoryModal" (closeBtn)="closeModal()" action="editCategory" [data]="selectedProdcut"></action-modal>
-    <action-modal *ngIf="showEditProductModal" (closeBtn)="closeModal()" action="editProduct" [data]="selectedCategory"></action-modal>
+    <action-modal *ngIf="showEditCategoryModal" (closeBtn)="closeModal()" action="editCategory" [data]="selectedCategory"></action-modal>
+    <action-modal *ngIf="showEditProductModal" (closeBtn)="closeModal()" [categories]="categories" action="editProduct" [data]="selectedProduct"></action-modal>
 
   </div>
 </div>

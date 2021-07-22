@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductLoaderService } from 'src/app/services/product.load.service';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'action-modal',
@@ -14,9 +15,11 @@ export class ActionModalComponent implements OnInit {
 
   @Input() action: string;
   @Input() data: any;
+  @Input() categories: [];
   @Output() closeBtn = new EventEmitter<any>();
 
   @ViewChild('inputCount') inputRef: ElementRef;
+  @ViewChild('inputCategory') inputCategoryRef: ElementRef;
 
   outputMessage: string = "";
 
@@ -29,26 +32,40 @@ export class ActionModalComponent implements OnInit {
     availableAmount: new FormControl('', [Validators.required]),
   });
 
-  constructor(private pService: ProductService, private uService: UserService) {
-
+  constructor(private pService: ProductService, private uService: UserService, private productLoadService: ProductLoaderService) {
   }
 
 
   ngOnInit(): void {
+    if (this.action === 'editProduct') {
+      this.editProdcut.get('name').setValue(this.data.name);
+      this.editProdcut.get('price').setValue(this.data.price);
+      this.editProdcut.get('availableAmount').setValue(this.data.availableAmount);
+    }
   }
 
-  onClose(e) {
+  onClose(e): void {
     this.closeBtn.emit(e);
-
   }
 
 
-  //clean code note: emmit and handle in parent
-  buy() {
+  // clean code note: emmit and handle in parent
+  buy(): void {
     this.pService.buy(this.data, this.inputRef.nativeElement.value).subscribe(
       result => {
-        if (result["success"] != true) {
-          this.outputMessage = result["message"]
+        if (result['success'] != true) {
+          this.outputMessage = result['message']
+        } else {
+          this.closeBtn.emit();
+        }
+      });
+  }
+
+  editCategory(): void {
+    this.pService.editCategory(this.data.id, this.inputCategoryRef.nativeElement.value).subscribe(
+      result => {
+        if (result['success'] != true) {
+          this.outputMessage = result['error']
         } else {
           this.closeBtn.emit();
         }
@@ -59,14 +76,14 @@ export class ActionModalComponent implements OnInit {
   onEditProductSubmit(): void {
     const categoryIsSelected = this.editProdcut.get('category').value !== '';
 
-    if (!categoryIsSelected || this.editProdcut.invalid || this.file == null) {
+    if (!categoryIsSelected || this.editProdcut.invalid) {
       this.outputMessage = 'فرم را به درستی پر نشده است';
     }
     else {
-      this.pService.updateProduct(this.data.id, this.editProdcut.get('availableAmount').value, this.editProdcut.get('name').value, this.editProdcut.get('category').value, this.editProdcut.get('price').value, this.file)
+      this.pService.updateProduct(this.data.id, this.editProdcut.get('availableAmount').value, this.editProdcut.get('name').value,
+        this.editProdcut.get('category').value, this.editProdcut.get('price').value, this.file)
         .subscribe(res => {
           if (res.success) {
-            this.outputMessage = 'آپلود با موفقیت انجام شد';
             this.closeBtn.emit();
           }
           else {
@@ -79,16 +96,4 @@ export class ActionModalComponent implements OnInit {
   onFileSelect(event): void {
     this.file = event.target.files[0];
   }
-
-
-
-  ngAfterViewInit() {
-    if (this.action == "editProduct") {
-      this.editProdcut.get('name').setValue(this.data.name)
-      this.editProdcut.get('category').setValue(this.data.category)
-      this.editProdcut.get('price').setValue(this.data.price)
-      this.editProdcut.get('availableAmount').setValue(this.data.availableAmount)
-    }
-  }
-
 }

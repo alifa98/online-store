@@ -8,6 +8,7 @@ import secrets
 def product_view(request):
     if request.method == "POST":
         if 'edit_product' in request.POST:
+            print(request.POST)
             product_id = request.POST.get('id')
             name = request.POST.get('productName')
             category = request.POST.get('category')
@@ -18,7 +19,7 @@ def product_view(request):
             product = Product.objects.get(id=product_id)
             if len(name) > 0 and len(category) > 0 and int(price) >= 0 and int(available_amount) >= 0:
                 product.name = name
-                product.category = category
+                product.category = Category.objects.get(pk=category)
                 product.price = int(price)
                 product.available_amount = available_amount
                 if image_file:
@@ -162,9 +163,13 @@ def categories_view(request):
                 if selected_category.name == 'دسته بندی نشده':
                     return JsonResponse({'success': False, 'error': 'امکان تغییر این دسته بندی موجود نیست'})
                 if len(new_name) > 0:
-                    selected_category.name = new_name
-                    selected_category.save()
-                    return JsonResponse({'success': True})
+                    if Category.objects.filter(name=new_name).count() == 0:
+                        selected_category.name = new_name
+                        selected_category.save()
+                        return JsonResponse({'success': True})
+                    else:
+                        return JsonResponse({'success': False,
+                                             'error': 'دسته بندی ای با نام مورد نظر در حال حاضر موجود است.'})
                 else:
                     return JsonResponse({'success': False, 'error': 'نام جدید نبایستی خالی باشد'})
             except ObjectDoesNotExist:
@@ -183,7 +188,6 @@ def make_categories():
 
 
 def buy(user, prodcutId, count):
-    json_result = {}
     product = Product.objects.get(id=prodcutId)
     if (user.credit >= product.price * count) and (product.available_amount >= count) and (count > 0):
         product.available_amount -= count

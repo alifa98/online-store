@@ -31,10 +31,10 @@
 
   <div class="action" *ngIf='action == "editCategory" '>
 
-    <input type="number" min="1" class="modal-input" #inputCount>
+    <input class="modal-input" #inputCategory>
     <br>
 
-    <app-btn (onBtnClick)="buy()" classes="btn-blue" text="خرید"></app-btn>
+    <app-btn (onBtnClick)="editCategory()" classes="btn-blue" text="تغییر دسته بندی"></app-btn>
     <div class="message"> {{outputMessage}} </div>
   </div>
 

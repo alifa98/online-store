@@ -17,7 +17,7 @@
 
     <div *ngIf="count !=0" class="products-flexitem" id="product">
       <app-product-box *ngFor="let prod of products" imageAddress="{{prod.imgAddress}}" title="{{prod.name}}" category="{{prod.category}}" btnText="خرید محصول" price="{{prod.price}}"
-        (onBtnClick)="showBuyingModal(prod.id)">
+        (onBtnClick)="isLoggedIn ? showBuyingModal(prod.id) : openLoginPage()">
       </app-product-box>
 
       <action-modal *ngIf="showModal" (closeBtn)="closeModal()" action="buy" [data]="selectedProductId"></action-modal>

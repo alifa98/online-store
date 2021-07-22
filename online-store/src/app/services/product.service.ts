@@ -38,6 +38,13 @@ export class ProductService {
     return this.http.get(url);
   }
 
+  editCategory(categoryId, categoryName): Observable<any> {
+    const url = `${this.apiUrl}/categories/`;
+    const body = `edit_category=${categoryId}&new_name=${categoryName}`;
+
+    return this.http.post(url, body, httpOptions);
+  }
+
   deleteCategory(categoryId): Observable<any> {
     const url = `${this.apiUrl}/categories/`;
     const formData = new FormData();
@@ -66,7 +73,9 @@ export class ProductService {
     formData.append('category', category);
     formData.append('price', price);
     formData.append('availableAmount', availableAmount);
-    formData.append('imageFile', imageFile, imageFile.name);
+    if (imageFile) {
+      formData.append('imageFile', imageFile, imageFile.name);
+    }
 
     return this.http.post(`${this.apiUrl}/`, formData);
   }

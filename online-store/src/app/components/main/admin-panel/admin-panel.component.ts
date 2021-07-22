@@ -54,18 +54,19 @@ export class AdminPanelComponent implements OnInit {
 
   products: Product[];
 
-  productPerPage: number = 15;
-  currentPage: number = 1;
-  count: number = 40;
+  productPerPage = 15;
+  currentPage = 1;
+  count = 40;
 
 
-  selectedProdcut: Product;
-  showEditProductModal: boolean = false
+  selectedProduct: Product;
+  showEditProductModal = false;
 
   selectedCategory: Category;
-  showEditCategoryModal: boolean = false
+  showEditCategoryModal = false;
 
-  constructor(private uiService: UiService, private productService: ProductService, private productLoadService: ProductLoaderService, private userService: UserService, private router: Router) {
+  constructor(private uiService: UiService, private productService: ProductService, private productLoadService: ProductLoaderService,
+              private userService: UserService, private router: Router) {
     this.userService.updateAdminStatus();
     this.userService.onIsAdminChange().subscribe(value => {
       if (!value) {  // is not admin
@@ -131,7 +132,7 @@ export class AdminPanelComponent implements OnInit {
 
 
   showEditProduct(product): void {
-    this.selectedProdcut = product;
+    this.selectedProduct = product;
     this.showEditProductModal = true;
   }
 
@@ -142,5 +143,10 @@ export class AdminPanelComponent implements OnInit {
   closeModal(): void {
     this.showEditCategoryModal = false;
     this.showEditProductModal = false;
+    this.productLoadService.loadProducts();
+    this.productService.getCategories().subscribe(res => {
+      this.categories = res;
+      this.removeByAttr(this.categories, 'text', 'دسته بندی نشده');
+    });
   }
 }
