@@ -40,8 +40,8 @@ def sign_up_view(request):
             address = request.POST.get('address').strip()
 
             if signup_info_is_valid(first_name, last_name, username, password, address):
-                user = User.objects.create_superuser(username=username, email=username, password=password,
-                                                     address=address)
+                user = User.objects.create_user(username=username, email=username, password=password,
+                                                first_name=first_name, last_name=last_name, address=address)
                 user.save()
 
                 # Try to login
