@@ -191,6 +191,7 @@ def buy(user, prodcutId, count):
     product = Product.objects.get(id=prodcutId)
     if (user.credit >= product.price * count) and (product.available_amount >= count) and (count > 0):
         product.available_amount -= count
+        product.sold_amount += count
         user.credit -= product.price * count
         product.save()
         user.save()
