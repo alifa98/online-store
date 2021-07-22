@@ -89,6 +89,12 @@ export class ProductLoaderService {
   updateProductsCategoresInFiltering(ids: number[]): void {
     this.productFilter.categories = ids;
   }
-
+  updateProductsPerPageInFiltering(perPage: number): void {
+    this.productPerPage = perPage;
+    this.productFilter.perPage = perPage;
+  }
+  getPerPage(): number {
+    return this.productFilter.perPage;
+  }
 
 }

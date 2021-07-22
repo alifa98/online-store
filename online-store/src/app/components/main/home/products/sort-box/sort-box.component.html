@@ -6,4 +6,12 @@
   <app-btn classes='{{ activeSort == "price_reverse"? "btn-blue":"" }}' (click)='loadProductSortedBy("price_reverse")' text="کمترین قیمت"></app-btn>
   <app-btn classes='{{ activeSort == "id"? "btn-blue":"" }}' (click)='loadProductSortedBy("id")' text="جدیدترین"></app-btn>
 
+  <div class="perPage">
+    <select name="perPage" value="{{perpage}}" (change)="setPerPage(selectField.value);" #selectField>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="30">30</option>
+    </select>
+  </div>
 </div>

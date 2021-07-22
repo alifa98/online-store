@@ -10,9 +10,12 @@ export class SortBoxComponent implements OnInit {
 
   activeSort: string = '';
 
+  perpage: number = 10;
+
   constructor(private productLoaderService: ProductLoaderService) {
 
     this.activeSort = 'sold_amount'
+    this.perpage = this.productLoaderService.getPerPage();
   }
 
   ngOnInit(): void {
@@ -27,6 +30,13 @@ export class SortBoxComponent implements OnInit {
     this.productLoaderService.updateProductsSortByInFiltering(this.activeSort);
     this.productLoaderService.loadProducts();
   }
+
+  setPerPage(perPage: number): void {
+    this.productLoaderService.updateProductsPerPageInFiltering(perPage);
+    this.productLoaderService.loadProducts();
+  }
+
+
 
 
 }
