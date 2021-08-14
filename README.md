@@ -15,3 +15,8 @@ Features:
 
 
 ### You can clone the repository and explore more by running angular & Django server.
+
+
+```
+ng serve --proxy-config proxy.conf.jso
+```
