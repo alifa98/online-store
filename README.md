@@ -18,5 +18,5 @@ Features:
 
 
 ```
-ng serve --proxy-config proxy.conf.jso
+ng serve --proxy-config proxy.conf.json
 ```
